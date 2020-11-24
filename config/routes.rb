@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   # as we don't accept users not logged in to access our content
   root to: 'pages#home'
 
-  resources :trips, only: [:index, :new, :create, :show, :destroy]
+  resources :trips, only: [:index, :new, :edit, :update, :create, :show, :destroy]
 end

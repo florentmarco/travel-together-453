@@ -1,9 +1,5 @@
+<h2>Creat a new trip</h2>
+<h3> and live a life full of dream with your friends</h3>
 <div class="container">
-  <%= simple_form_for @trip do |f| %>
-    <%= f.input :name %>
-    <%= f.input :location %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit %>
-  <% end %>
+  <%= render 'form', trip: @trip %>
 </div>

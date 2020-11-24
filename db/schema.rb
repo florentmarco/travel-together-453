@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_134104) do
+ActiveRecord::Schema.define(version: 2020_11_24_123625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2020_11_19_134104) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "flight_details", force: :cascade do |t|
+    t.string "airline"
+    t.string "flight_number"
+    t.bigint "item_id"
+    t.string "departure_airport"
+    t.string "arrival_airport"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_flight_details_on_item_id"
+  end
+
   create_table "guests", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
@@ -36,30 +47,26 @@ ActiveRecord::Schema.define(version: 2020_11_19_134104) do
 
   create_table "items", force: :cascade do |t|
     t.bigint "trip_id", null: false
-    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
     t.string "name"
-    t.string "category"
     t.date "start_date"
     t.date "end_date"
-    t.boolean "confirmed"
     t.string "address"
+    t.string "status"
     t.integer "price"
     t.string "url"
-    t.string "airline"
-    t.string "airport"
-    t.string "flight_number"
-    t.time "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_id"], name: "index_items_on_task_id"
     t.index ["trip_id"], name: "index_items_on_trip_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "status"
+    t.bigint "user_id"
+    t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_tasks_on_item_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -98,9 +105,8 @@ ActiveRecord::Schema.define(version: 2020_11_19_134104) do
   add_foreign_key "comments", "users"
   add_foreign_key "guests", "trips"
   add_foreign_key "guests", "users"
-  add_foreign_key "items", "tasks"
   add_foreign_key "items", "trips"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "items", "users"
   add_foreign_key "trips", "users"
   add_foreign_key "votes", "items"
   add_foreign_key "votes", "users"

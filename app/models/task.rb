@@ -1,5 +1,4 @@
 class Task < ApplicationRecord
+  belongs_to :item
   belongs_to :user
-  has_many :items, dependent: :destroy
-  # to remove____
 end

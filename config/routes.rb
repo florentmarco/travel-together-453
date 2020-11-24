@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   # root to: 'devise/sessions#new'
 
   resources :trips, only: [:index, :new, :edit, :update, :create, :show, :destroy]
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'uikit', to: 'uikits#index'
 end

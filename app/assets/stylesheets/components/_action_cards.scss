@@ -18,9 +18,7 @@
   color: white;
 }
 
-
 // status tags
-
 .pending-tag {
   margin: 0px;
   color: #FF8A00;
@@ -54,13 +52,13 @@
   background: rgba(92,154,244,0.5);
 }
 
-.card-bottom-strip {
+//bottom strip
+.bottom-strip {
   display: flex;
   height: 40px;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, .5);
-  border-radius: 4px;
+  border-top: 1px solid rgba(0, 0, 0, .5);
 }
 
 .right-16 {
@@ -72,3 +70,92 @@
   position: relative;
   right: 16px;
 }
+
+.status-vote-grp {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heart {
+  width: 15px;
+  height: 15px;
+  background: url(heart.png);
+}
+
+//side card
+.ellipsis {
+  position: relative;
+  left: 50px;
+  top: 0px;
+  width: 15px;
+  height: 15px;
+  background: url(ellipsis.png);
+}
+
+.side-card {
+  width: 72px;
+  height: 133px;
+  // justify-content: center;
+  border-left: 1px solid rgba(0, 0, 0, .5);
+}
+
+.font-price{
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+//flight detail
+.flight-detail-card{
+  height: 133px;
+  width: 270px;
+}
+
+.flight-top-grp {
+  padding-top: 5px;
+  display: flex;
+}
+
+.time-date-loc-grp {
+  width: 100px;
+}
+
+.center{
+  text-align: center;
+  margin: 0px;
+}
+
+.line {
+  border-top: 2px solid rgba(0, 0, 0, .5);
+}
+
+.down {
+  position: relative;
+  top: 18px;
+}
+
+.font-big {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.font-small-bold {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.font-smaller {
+  font-size: 0.7em;
+}
+
+
+
+// main card
+.action-card {
+  height: 173px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 4px;
+}
+
+

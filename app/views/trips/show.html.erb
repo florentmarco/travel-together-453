@@ -1,3 +1,7 @@
-<h1>Trip to <%= @trip.location %>  </h1>
-<p> <%= @trip.name %> </p>
-<%= @trip.start_date %> <%= @trip.end_date %>
+<div class="container">
+  <h1>Trip to <%= @trip.location %>  </h1>
+  <p> <%= @trip.name %> </p>
+  <%= @trip.start_date %> <%= @trip.end_date %>
+
+  <%= link_to 'Back', trips_path %>
+</div>

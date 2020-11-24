@@ -1,0 +1,6 @@
+<h1>Trips</h1>
+
+<% @trips.each do |trip| %>
+  <h3> <%= trip.location %> </h3>
+  <p> From <%= trip.start_date %> to <%= trip.end_date %> </p>
+<% end %>

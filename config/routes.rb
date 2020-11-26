@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # root should redirect to the login page,
   # as we don't accept users not logged in to access our content
-  root to: 'pages#home'
+  root to: 'trips#index'
 
   # root to: 'devise/sessions#new'
 

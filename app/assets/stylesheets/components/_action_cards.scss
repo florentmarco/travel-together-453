@@ -81,7 +81,6 @@
 .heart {
   width: 15px;
   height: 15px;
-  background: url(heart.png);
 }
 
 //side card
@@ -91,7 +90,6 @@
   top: 0px;
   width: 15px;
   height: 15px;
-  background: url(ellipsis.png);
 }
 
 .side-card {
@@ -107,9 +105,10 @@
 }
 
 //flight detail
-.flight-detail-card{
+.common-detail-card{
   height: 133px;
   width: 270px;
+  // border: 1px solid rgba(0, 0, 0, .5);
 }
 
 .flight-top-grp {
@@ -149,6 +148,31 @@
   font-size: 0.7em;
 }
 
+//accommodation/activity detail
+.card-image {
+  width: 122px;
+  height: 103px;
+  border: 0.5px solid rgba(0, 0, 0, .5);
+}
+
+.font-normal {
+  font-size: 0.8em;
+}
+
+.font-smallest {
+  font-size: 0.6em;
+}
+
+.bold {
+  font-weight: bold;
+  line-height: 1.0;
+}
+
+.font-small-bold-no-space {
+  font-size: 0.7em;
+  font-weight: bold;
+  line-height: 1.0;
+}
 
 
 // main card

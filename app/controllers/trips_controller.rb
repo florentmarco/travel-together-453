@@ -2,11 +2,30 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-
     @trips = policy_scope(Trip).order(start_date: :desc)
   end
 
   def show
+    # raise
+    @trip = Trip.find(params[:id])
+
+    guests_trip_arr = current_user.guests.map do |guest|
+      guest.trip
+    end
+
+    if @trip.user == current_user
+      @trip
+    elsif guests_trip_arr.include?(@trip)
+      @trip
+    elsif params[:share] == "true"
+      @guest = Guest.new
+      @guest.trip = @trip
+      @guest.user = current_user
+      @guest.save
+      @trip
+    else
+      redirect_to trips_path
+    end
   end
 
   def new

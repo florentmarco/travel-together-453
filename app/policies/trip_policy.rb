@@ -12,7 +12,8 @@ class TripPolicy < ApplicationPolicy
   end
 
   def show?
-    user && (user == record.user || user.admin)
+    # user && (user == record.user || user.admin)
+    true
   end
 
   def update?

@@ -1,0 +1,182 @@
+// container
+.container-tt{
+  padding: 0 16px;
+}
+
+// primary button
+.btn-primary-tt {
+  color: white;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #5885AF;
+  transition: background 0.3s ease;
+}
+
+.btn-primary-tt:hover {
+  background: #436E96;
+  color: white;
+}
+
+// status tags
+.pending-tag {
+  margin: 0px;
+  color: #FF8A00;
+  font-size: 10px;
+  width: 70px;
+  text-align: justify;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(255,199,0,0.5);
+}
+
+.approved-tag {
+  margin: 0px;
+  color: #62A651;
+  font-size: 10px;
+  width: 80px;
+  text-align: justify;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(189,233,178,0.5);
+}
+
+.booked-tag {
+  margin: 0px;
+  color: #0062F4;
+  width: 65px;
+  font-size: 10px;
+  text-align: justify;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(92,154,244,0.5);
+}
+
+//bottom strip
+.bottom-strip {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(50, 50, 50, .2);
+}
+
+.right-16 {
+  position: relative;
+  left: 16px;
+}
+
+.left-16 {
+  position: relative;
+  right: 16px;
+}
+
+.status-vote-grp {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heart {
+  width: 15px;
+  height: 15px;
+}
+
+//side card
+.ellipsis {
+  position: relative;
+  left: 50px;
+  top: 0px;
+  width: 15px;
+  height: 15px;
+}
+
+.side-card {
+  width: 72px;
+  height: 133px;
+  // justify-content: center;
+  border-left: 1px solid rgba(50, 50, 50, .2);
+}
+
+.font-price{
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+//common card structure
+.common-detail-card{
+  height: 133px;
+  width: 270px;
+  // border: 1px solid rgba(50, 50, 50, .2);
+}
+
+.action-card {
+  height: 173px;
+  border: 1px solid rgba(50, 50, 50, .2);
+  border-radius: 4px;
+}
+
+//flight details
+.flight-top-grp {
+  padding-top: 5px;
+  display: flex;
+}
+
+.time-date-loc-grp {
+  width: 100px;
+}
+
+.center{
+  text-align: center;
+  margin: 0px;
+}
+
+.line {
+  border-top: 2px solid rgba(50, 50, 50, .2);
+}
+
+.down {
+  position: relative;
+  top: 18px;
+}
+
+.font-big {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.font-small-bold {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.font-smaller {
+  font-size: 0.7em;
+}
+
+//accommodation/activity detail
+.card-image {
+  width: 122px;
+  height: 103px;
+  border: 0.5px solid rgba(50, 50, 50, .2);
+}
+
+.font-normal {
+  font-size: 0.8em;
+}
+
+.font-smallest {
+  font-size: 0.6em;
+}
+
+.bold {
+  font-weight: bold;
+  line-height: 1.0;
+}
+
+.font-small-bold-no-space {
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 1.0;
+}

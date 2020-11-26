@@ -5,4 +5,6 @@ class Item < ApplicationRecord
   has_many :comments
   has_many :votes
   has_many :tasks
+
+  validates :type, inclusion: { in: %w(flights accomations activities) }
 end

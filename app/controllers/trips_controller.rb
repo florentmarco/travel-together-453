@@ -7,6 +7,7 @@ class TripsController < ApplicationController
   end
 
   def show
+    @item = Item.new
   end
 
   def new

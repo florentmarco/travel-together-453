@@ -6,3 +6,32 @@
   <%= link_to 'Edit', edit_trip_path(@trip) %>
   <%= link_to 'Back', trips_path %>
 </div>
+
+
+<div class="dropdown" data-controller="item_form">
+  <input data-target="item_form." type="text">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    type
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a data-action='flight' class="dropdown-item" href="#">Flight</a>
+    <a data-action='accomation' class="dropdown-item" href="#">Accomodation</a>
+    <a data-action='activity' class="dropdown-item" href="#">Activity</a>
+  </div>
+  <span data-target="item_form.form">
+  </span>
+</div>
+
+<div class="container" data-controller="item_form">
+      <%= simple_form_for [@trip, @item] do |f| %>
+        <%= f.input :type %>
+        <%= f.input :name %>
+        <%= f.input :start_date  %>
+        <%= f.input :end_date %>
+        <%= f.input :address %>
+        <%= f.input :url %>
+        <%= f.input :price %>
+        <%= f.submit %>
+      <% end %>
+    </span>
+</div>

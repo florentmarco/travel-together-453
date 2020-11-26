@@ -2,7 +2,15 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trips = policy_scope(Trip).order(start_date: :desc)
+    @trips_i_own = policy_scope(Trip)
+    @guest_of_trips = current_user.guests.map do |guest|
+      guest.trip
+    end
+    @alltrips = (@trips_i_own + @guest_of_trips)
+    @alltrips_asc = @alltrips.sort_by do |trip|
+      trip.start_date
+    end
+    @trips = @alltrips_asc.reverse
   end
 
   def show

@@ -6,17 +6,20 @@ class TripsController < ApplicationController
   end
 
   def show
-    # raise
-    @trip = Trip.find(params[:id])
-
-    guests_trip_arr = current_user.guests.map do |guest|
+    # get array of trips instance that current user is a guest of
+    @guests_trip_arr = current_user.guests.map do |guest|
       guest.trip
     end
 
+    # allow trip owner to enter
     if @trip.user == current_user
       @trip
-    elsif guests_trip_arr.include?(@trip)
+
+    # allow existing guests to enter
+    elsif @guests_trip_arr.include?(@trip)
       @trip
+
+    # allow users that have invite link to enter
     elsif params[:share] == "true"
       @guest = Guest.new
       @guest.trip = @trip

@@ -30,7 +30,25 @@
 }
 
 .card-product .card-product-infos {
-  padding: 8px;
-  position: relative;
-  top: -20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 8px;
+  height: 100%;
+  padding-bottom: 10px;
+  padding-top: 15px;
+}
+
+.clock p {
+opacity: .2;
+margin: 0px;
+padding-left: 4px;
+}
+
+.clock {
+  align-items: center;
+}
+
+.far.fa-clock {
+  opacity: .2;
 }

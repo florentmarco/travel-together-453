@@ -1,36 +1,80 @@
-<<<<<<< HEAD
-<h1>Welcome to our UIKIT</h1>
 
+<div class="text-center">
+  <h1>Welcome to our UIKIT</h1>
+</div>
 <hr>
 
-<h3>Card Trip Component</h3>
-
 <div class="container">
+  <p>Card Trip Component</p>
   <div class="card-product">
     <%= image_tag ("cardtrip.jpg") %>
     <div class="card-product-infos">
-      <h2>Hanoi Trip</h2>
-      <p>SAT, NOV 21 - THU, DEC 10, 2020</p>
+      <div class="product-info-main">
+        <h2>Hanoi Trip</h2>
+        <p>SAT, NOV 21 - THU, DEC 10, 2020</p>
+      </div>
+      <div class="clock d-flex">
+        <i class="far fa-clock"></i>
+        <p>20 days, today</p>
+      </div>
     </div>
+
   </div>
 </div>
 
 <hr>
-=======
-<h1>Test UIKIT</h1>
 
-<div class = "container-tt">
+<div class="container">
+  <p>Buttons</p>
 
-  <p> Primary button </p>
-  <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-  <hr>
+  <div class="btn">
+    <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+  </div>
+  <div class="btn">
+    <%= link_to "ADD A TRIP", "#", class: "btn btn-primary-tt btn-sm" %>
+  </div>
+  <div class="btn">
+    <%= link_to "BACK", "#", class: "btn btn-primary-tt btn-sm" %>
+  </div>
+  <div class="btn">
+    <%= link_to "+", "#", class: "btn-main" %>
+  </div>
 
+  <div class="btn">
+    <%= link_to "SEE MORE", "#", class: "btn-more" %>
+  </div>
+
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Avatars</p>
+  <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+  <img class="avatar-large" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+</div>
+
+<hr>
+
+<div class="container">
   <p> Status tags </p>
-  <p class = "pending-tag"> PENDING </p>
-  <p class = "approved-tag"> APPROVED </p>
-  <p class = "booked-tag"> BOOKED </p>
-  <hr>
 
+  <div class="tag">
+    <p class="pending-tag"> PENDING </p>
+  </div>
+
+  <div class="tag">
+    <p class="approved-tag"> APPROVED </p>
+  </div>
+
+  <div class="tag">
+    <p class="booked-tag">BOOKED</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
   <p>Bottom strip</p>
   <div class = "bottom-strip">
     <div class="status-vote-grp right-16">
@@ -44,8 +88,10 @@
       <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
     </div>
   </div>
+</div>
+<hr>
 
-  <hr>
+<div class="container">
 
   <p>Side card</p>
   <div class= "side-card">
@@ -55,34 +101,39 @@
       <p class="mt-0 font-smaller center"> per pax </p>
     </div>
   </div>
+</div>
 
-  <hr>
+<hr>
+
+<div class="container">
 
   <p>Flight details</p>
   <div class= "common-detail-card">
-        <div class= "flight-top-grp justify-content-between">
-          <div class="time-date-loc-grp">
-            <p class="center font-big">06:35</p>
-            <p class="center font-smallnt-small">20/11/2020</p>
-            <p class="center font-small">SIN</p>
-          </div>
-          <div class="down">
-            <p class="center font-small">10h00</p>
-            <div class="line"></div>
-          </div>
-          <div class="time-date-loc-grp">
-            <p class="center font-big">16:35</p>
-            <p class="center font-small">20/11/2020</p>
-            <p class="center font-small">GER</p>
-          </div>
-        </div>
-        <div>
-            <p class="m-0 ml-2 mt-2 font-small-bold">Singapore Airlines</p>
-            <p class="m-0 ml-2 font-smaller">SIA8888</p>
-        </div>
+    <div class= "flight-top-grp justify-content-between">
+      <div class="time-date-loc-grp">
+        <p class="center font-big">06:35</p>
+        <p class="center font-smallnt-small">20/11/2020</p>
+        <p class="center font-small">SIN</p>
       </div>
+      <div class="down">
+        <p class="center font-small">10h00</p>
+        <div class="line"></div>
+      </div>
+      <div class="time-date-loc-grp">
+        <p class="center font-big">16:35</p>
+        <p class="center font-small">20/11/2020</p>
+        <p class="center font-small">GER</p>
+      </div>
+    </div>
+    <div>
+      <p class="m-0 ml-2 mt-2 font-small-bold">Singapore Airlines</p>
+      <p class="m-0 ml-2 font-smaller">SIA8888</p>
+    </div>
+  </div>
+</div>
+<hr>
 
-  <hr>
+<div class="container">
 
   <p>Accommodation details</p>
   <div class= "common-detail-card">
@@ -109,8 +160,11 @@
       </div>
     </div>
   </div>
+</div>
 
-  <hr>
+<hr>
+
+<div class="container">
 
   <p>Activity details</p>
   <div class= "common-detail-card">
@@ -128,8 +182,11 @@
       </div>
     </div>
   </div>
+</div>
 
-  <hr>
+<hr>
+
+<div class="container">
 
   <p>Flight card</p>
   <div class= "action-card">
@@ -154,8 +211,8 @@
           </div>
         </div>
         <div>
-            <p class="m-0 ml-2 mt-2 font-small-bold">Singapore Airlines</p>
-            <p class="m-0 ml-2 font-smaller">SIA8888</p>
+          <p class="m-0 ml-2 mt-2 font-small-bold">Singapore Airlines</p>
+          <p class="m-0 ml-2 font-smaller">SIA8888</p>
         </div>
       </div>
 
@@ -183,8 +240,11 @@
     </div>
 
   </div>
+</div>
 
-  <hr>
+<hr>
+
+<div class="container">
 
   <p>Accommodation card</p>
   <div class= "action-card">
@@ -240,8 +300,11 @@
     </div>
 
   </div>
+</div>
 
-  <hr>
+<hr>
+
+<div class="container">
 
   <p>Activity card</p>
   <div class= "action-card">
@@ -288,10 +351,31 @@
     </div>
 
   </div>
-
-
-
-<!-- container-tt ending div -->
 </div>
 
->>>>>>> master
+<hr>
+<div class="container">
+  <p>Footer</p>
+  <div class="footer">
+    <div class="footer-links d-flex">
+      <div class="footer-items">
+        <a href="#"><i class="fas fa-home"></i></a>
+      </div>
+      <div class="footer-items">
+        <a href="#"><i class="fas fa-search"></i></a>
+      </div>
+      <div class="footer-items">
+        <%= link_to "+", "#", class: "btn-main" %>
+      </div>
+      <div class="footer-items">
+        <a href="#"><i class="far fa-bell"></i></a>
+      </div>
+      <div class="footer-items">
+        <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+

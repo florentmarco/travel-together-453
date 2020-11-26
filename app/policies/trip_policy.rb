@@ -21,4 +21,8 @@ class TripPolicy < ApplicationPolicy
   def destroy?
     user && (user == record.user || user.admin)
   end
+
+  def regenerate_invite_link?
+    true
+  end
 end

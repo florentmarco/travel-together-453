@@ -7,6 +7,39 @@ export default class extends Controller {
     console.log('connected')
   }
 
+  flight(event) {
+    event.preventDefault();
+    // trip_items_path(@trip)
+    const url = this.data.get('url') + '?flight=1';
+    fetch(url)
+      .then(res => res.text())
+      .then(data => {
+        this.itemsTarget.innerHTML = data;
+      });
+  }
+
+  accommodation(event) {
+    event.preventDefault();
+    // trip_items_path(@trip)
+    const url = this.data.get('url') + '?accommodation=1';
+    fetch(url)
+      .then(res => res.text())
+      .then(data => {
+        this.itemsTarget.innerHTML = data;
+      });
+  }
+
+  activity(event) {
+    event.preventDefault();
+    // trip_items_path(@trip)
+    const url = this.data.get('url') + '?activity=1';
+    fetch(url)
+      .then(res => res.text())
+      .then(data => {
+        this.itemsTarget.innerHTML = data;
+      });
+  }
+
   pending(event) {
     event.preventDefault();
     // trip_items_path(@trip)

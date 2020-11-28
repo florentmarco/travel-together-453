@@ -15,12 +15,15 @@
       <%= link_to "Pending", "#", class: "btn btn-secondary", "data-action": 'click->item-status#pending' %>
       <%= link_to "Approved", "#", class: "btn btn-secondary", "data-action": 'click->item-status#approved' %>
       <%= link_to "Booked", "#", class: "btn btn-secondary", "data-action": 'click->item-status#booked' %>
+      <hr>
+      <%= link_to "Flight", "#", class: "btn btn-secondary", "data-action": 'click->item-status#flight' %>
+      <%= link_to "Accommodation", "#", class: "btn btn-secondary", "data-action": 'click->item-status#accommodation' %>
+      <%= link_to "Activity", "#", class: "btn btn-secondary", "data-action": 'click->item-status#activity' %>
     <hr>
     <div data-target='item-status.items'>
       <%= render 'items/items', { items: @trip.items } %>
     </div>
   </div>
-
 </div>
 
 <!--       <%= check_box_tag :Pending, "", true, data:{action:"change->item-status#pending"} %>

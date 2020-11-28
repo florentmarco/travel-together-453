@@ -9,8 +9,12 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    # @item.category = params[:category]
     @item.user = current_user
     @item.trip = @trip
+    @item.save!
+    redirect_to trip_path(@trip)
+
   end
 
   private
@@ -21,7 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:trip).permit(:start_date, :end_date, :type, :name)
+    params.require(:item).permit(:category, :start_date, :end_date, :name, :address, :price, :url)
   end
-
 end

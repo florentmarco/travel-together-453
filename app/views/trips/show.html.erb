@@ -3,6 +3,10 @@
   <p> <%= @trip.name %> </p>
   <%= @trip.start_date %> <%= @trip.end_date %>
 
+  <% @trip.items.each do |item| %>
+  <%= item.name %> <%= item.price %>
+  <% end %>
+
   <%= link_to 'Edit', edit_trip_path(@trip) %>
   <%= link_to 'Back', trips_path %>
 </div>

@@ -17,9 +17,4 @@ Rails.application.routes.draw do
 
   patch "regenerate_invite_link/:id", to: "trips#regenerate_invite_link", as: :regenerate_invite_link
 
-  # filter routes
-  get 'pending', to: 'items#filter_pending', as: :filter_pending
-  get 'approved', to: 'items#filter_approved', as: :filter_approved
-  get 'booked', to: 'items#filter_booked', as: :filter_booked
-
 end

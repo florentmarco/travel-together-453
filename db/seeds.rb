@@ -54,7 +54,7 @@ puts "Creating trip and items"
 
   5.times do
     newitem = Item.new(
-      item_type: ["Flight", "Accommodation", "Activity"].sample,
+      category: ["Flight", "Accommodation", "Activity"].sample,
       status: ["Pending", "Approved", "Booked"].sample
       )
     newitem.trip = newtrip

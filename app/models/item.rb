@@ -5,4 +5,11 @@ class Item < ApplicationRecord
   has_many :comments
   has_many :votes
   has_many :tasks
+
+  include PgSearch::Model
+  pg_search_scope :search_by_status,
+    against: [:status],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

@@ -10,4 +10,28 @@
 
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: http://localhost:3000/trips/<%= @trip.id %>?token=<%= @trip.invite_token %> </p>
+
+  <!--   <%= link_to "Pending", filter_pending_path  %>
+  <%= link_to "Approved", filter_approved_path  %>
+  <%= link_to "Booked", filter_booked_path  %> -->
+
+  <!--     <%= form_tag items_index_path, method: :get do %>
+      <%= hidden_field_tag :pending, "Pending" %>
+      <%= hidden_field_tag :trip_id, @trip.id %>
+      <%= submit_tag "Pending", class: "btn btn-secondary", "data-action": "click->item-status#filter" %>
+    <% end %> -->
+
+
+  <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
+      <%= link_to "Pending", "#", class: "btn btn-secondary", "data-action": 'click->item-status#filter' %>
+      <%= link_to "Approved", "#", class: "btn btn-secondary", "data-action": 'click->item-status#filter' %>
+      <%= link_to "Booked", "#", class: "btn btn-secondary", "data-action": 'click->item-status#filter' %>
+
+
+    <hr>
+    <div data-target='item-status.items'>
+      <%= render 'items/items', { items: @trip.items } %>
+    </div>
+  </div>
+
 </div>

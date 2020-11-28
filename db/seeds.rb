@@ -13,6 +13,7 @@ require "open-uri"
 puts "Deleting databases"
 Trip.destroy_all
 User.destroy_all
+Item.destroy_all
 
 puts "Creating users"
 owner1 = User.new(
@@ -27,7 +28,7 @@ owner2 = User.new(
 )
 owner2.save
 
-puts "Creating trip"
+puts "Creating trip and items"
 
 
 10.times do
@@ -40,7 +41,7 @@ puts "Creating trip"
     user_id_array << user.id
   end
 
-  trip = Trip.new(
+  newtrip = Trip.new(
     name: name + ' trip',
     location: name,
     start_date: start_date,
@@ -48,13 +49,19 @@ puts "Creating trip"
     end_date: end_date,
     invite_token: rand(999999999)
   )
-  trip.save
+  newtrip.save
+  puts "#{newtrip}"
 
+  5.times do
+    newitem = Item.new(
+      item_type: ["Flight", "Accommodation", "Activity"].sample,
+      status: ["Pending", "Approved", "Booked"].sample
+      )
+    newitem.trip = newtrip
+    newitem.user = newtrip.user
+    newitem.save
+    puts "#{newitem}"
+  end
 end
 
-puts "Trips created"
-
-
-
-
-
+puts "Trips and items created"

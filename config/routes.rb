@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # root to: 'devise/sessions#new'
 
   resources :trips, only: [:index, :new, :edit, :update, :create, :show, :destroy] do
-    resources :items, only: [:create]
+    resources :items, only: [:new, :create]
   end
 
   get 'uikit', to: 'uikits#index'

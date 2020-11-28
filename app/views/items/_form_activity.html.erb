@@ -1,0 +1,14 @@
+<h2>add activity form</h2>
+
+
+<div class="container" data-controller="future-controller">
+      <%= simple_form_for [@trip, @item] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :start_date  %>
+        <%= f.input :address %>
+        <%= f.input :url %>
+        <%= f.input :price %>
+        <%= f.submit %>
+      <% end %>
+    </span>
+</div>

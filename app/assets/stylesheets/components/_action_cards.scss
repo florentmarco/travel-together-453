@@ -1,133 +1,238 @@
 
 
+// action-card
+
+.action-card {
+  overflow: hidden;
+  height: 173px;
+  width: 346px;
+  background: white;
+  border: .5px solid rgba(100, 100, 100, .2);
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+
 //bottom strip
-.bottom-strip {
-  display: flex;
+
+.action-card-bstrip {
+  overflow: hidden;
   height: 40px;
-  justify-content: space-between;
+  width: 346px;
+  background: white;
+  // border: .1px solid rgba(50, 50, 50, .2);
+  // box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 0px 0px 4px 4px;
   align-items: center;
-  border-top: 1px solid rgba(50, 50, 50, .2);
-}
-
-.right-16 {
-  position: relative;
-  left: 16px;
-}
-
-.left-16 {
-  position: relative;
-  right: 16px;
-}
-
-.status-vote-grp {
-  width: 120px;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding-left: 3px;
 }
 
 .heart {
   width: 15px;
   height: 15px;
+  margin-top: 3px;
 }
 
-//side card
-.ellipsis {
-  position: relative;
-  left: 50px;
-  top: 0px;
-  width: 15px;
-  height: 15px;
-}
+// price-card
 
-.side-card {
-  width: 72px;
+.action-card-pricecard {
+  overflow: hidden;
   height: 133px;
-  // justify-content: center;
-  border-left: 1px solid rgba(50, 50, 50, .2);
+  width: 80px;
+  background: white;
+  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  // box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 0px 4px 0px 0px;
 }
 
-.font-price{
-  font-size: 1.4em;
+.price-ellipsis {
+  width: 100%;
+}
+
+.ellipsis {
+  height: 15px;
+  margin: 5px;
+}
+
+.pricecard-price {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.pricecard-price .price {
   font-weight: bold;
 }
 
-//common card structure
-.common-detail-card{
-  height: 133px;
-  width: 270px;
-  // border: 1px solid rgba(50, 50, 50, .2);
-}
 
-.action-card {
+// main-card-flight
+
+.action-card-main-flight {
   overflow: hidden;
-  height: 173px;
+  height: 133px;
+  width: 266px;
   background: white;
-  border: 1px solid rgba(50, 50, 50, .2);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 4px;
-}
-
-//flight details
-.flight-top-grp {
-  padding-top: 5px;
-  display: flex;
-}
-
-.time-date-loc-grp {
-  width: 100px;
-}
-
-.center{
+  border-right: .5px solid rgba(50, 50, 50, .2);
+  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-radius: 4px 0px 0px 0px;
+  justify-content: space-between;
   text-align: center;
-  margin: 0px;
+  align-items: top;
+  padding: 5px;
 }
 
-.line {
-  border-top: 2px solid rgba(50, 50, 50, .2);
-}
 
-.down {
-  position: relative;
-  top: 18px;
-}
-
-.font-big {
+.action-card-main-flight .time {
   font-size: 1.2em;
   font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 
-.font-small-bold {
+.action-card-main-flight .date {
   font-size: 0.8em;
-  font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 
-.font-smaller {
-  font-size: 0.7em;
-}
-
-//accommodation/activity detail
-.card-image {
-  width: 122px;
-  height: 103px;
-  border: 0.5px solid rgba(50, 50, 50, .2);
-}
-
-.font-normal {
+.action-card-main-flight .airport {
   font-size: 0.8em;
+  margin-bottom: 0.3rem;
 }
 
-.font-smallest {
+.maincard-dep-flight {
+  padding-top: 5px;
+}
+
+.maincard-arr-flight {
+  padding-top: 5px;
+}
+
+
+.maincard-flight-duration {
+  width: 100%;
+  padding-top: 23px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.maincard-flight-duration p {
+  margin-bottom: 0.3rem;
+}
+
+.action-card-main-flight .duration-time {
+  padding-top: 10px;
   font-size: 0.6em;
+  opacity: .8;
+  border-bottom: 2px solid rgba(50, 50, 50, .2);
 }
 
-.bold {
-  font-weight: bold;
-  line-height: 1.0;
+.action-card-main-flight-bottom {
+  text-align: left;
+  padding-top: 10px;
 }
 
-.font-small-bold-no-space {
+
+.action-card-main-flight-bottom .airline {
+  font-size: 0.6em;
+  font-weight: 900;
+  opacity: .8;
+  margin-bottom: 0rem;
+}
+
+.action-card-main-flight-bottom .flight-number {
+  font-size: 0.6em;
+  opacity: .8;
+  margin-bottom: 0rem;
+}
+
+
+// main-card-accomodation
+
+.action-card-main-accomodation {
+  overflow: hidden;
+  height: 133px;
+  width: 266px;
+  background: white;
+  border-right: .5px solid rgba(50, 50, 50, .2);
+  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-radius: 4px 0px 0px 0px;
+}
+
+.action-card-main-accomodation-image img {
+  height: 100%;
+  width: 125px;
+  object-fit: cover;
+  border-radius: 4px 0px 0px 0px;
+}
+
+.action-card-main-accomodation .name {
+  font-size: .8em;
+  font-weight: 800;
+  margin-bottom: 0rem;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.action-card-main-accomodation .address {
+  font-size: 0.6em;
+  margin-bottom: 0rem;
+  padding-left: 10px;
+}
+
+
+.action-card-main-accomodation .check-in p {
+  font-size: 0.6em;
+  margin-bottom: 0rem;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.action-card-main-accomodation .dates p {
+  font-size: 0.6em;
+  margin-bottom: 0rem;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+
+// main card activities
+
+.action-card-main-activity {
+  overflow: hidden;
+  height: 133px;
+  width: 266px;
+  background: white;
+  border-right: .5px solid rgba(50, 50, 50, .2);
+  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-radius: 4px 0px 0px 0px;
+}
+
+.action-card-main-activity-image img {
+  height: 100%;
+  width: 125px;
+  object-fit: cover;
+  border-radius: 4px 0px 0px 0px;
+}
+
+.action-card-main-activity .name {
   font-size: 0.8em;
-  font-weight: bold;
-  line-height: 1.0;
+  font-weight: 800;
+  margin-bottom: 0rem;
+  padding-left: 10px;
+  padding-top: 5px;
 }
+
+.action-card-main-activity .date {
+  font-size: 0.8em;
+  margin-bottom: 0rem;
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+

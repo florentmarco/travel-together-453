@@ -1,9 +1,15 @@
+require 'json'
+require 'open-uri'
+
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
 
     @trips = policy_scope(Trip).order(start_date: :desc)
+    @trips.each do |trip|
+      place_api(trip.location)
+    end
   end
 
   def show
@@ -49,5 +55,16 @@ class TripsController < ApplicationController
   def set_trip
     @trip = Trip.find(params[:id])
     authorize @trip
+  end
+
+  def place_api(location)
+    url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{location}&inputtype=textquery&fields=photos&key=#{ENV['PLACES_API']}"
+    photo_serialised = open(url).read
+    photo = JSON.parse(photo_serialised)
+    photo_reference = photo["candidates"][0]["photos"][0]["photo_reference"]
+    photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV['PLACES_API']}"
+    photo_serialised = open(photo_url).read
+    byebug
+
   end
 end

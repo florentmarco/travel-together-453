@@ -9,13 +9,13 @@ class Item < ApplicationRecord
   pg_search_scope :search_by_status,
     against: [:status],
     using: {
-      tsearch: { prefix: true }
+      tsearch: { any_word: true }
   }
 
   pg_search_scope :search_by_category,
     against: [:category],
     using: {
-      tsearch: { prefix: true }
+      tsearch: { any_word: true }
   }
 
   pg_search_scope :search_by_id,

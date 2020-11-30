@@ -3,21 +3,18 @@ class ItemsController < ApplicationController
 
   def index
     # status filter function
-    if params[:flight].present?
-      @items = policy_scope(Item).search_by_category('Flight').search_by_id(params[:trip_id])
-    elsif params[:accommodation].present?
-      @items = policy_scope(Item).search_by_category('Accommodation').search_by_id(params[:trip_id])
-    elsif params[:activity].present?
-      @items = policy_scope(Item).search_by_category('Activity').search_by_id(params[:trip_id])
-    elsif params[:pending].present?
-      @items = policy_scope(Item).search_by_status('Pending').search_by_id(params[:trip_id])
-    elsif params[:approved].present?
-      @items = policy_scope(Item).search_by_status('Approved').search_by_id(params[:trip_id])
-    elsif params[:booked].present?
-      @items = policy_scope(Item).search_by_status('Booked').search_by_id(params[:trip_id])
+    if params[:category].present?
+      @category_filter = policy_scope(Item).search_by_category(params[:category]).search_by_id(params[:trip_id])
     else
-      @items = policy_scope(Item).search_by_id(params[:trip_id])
+      @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
     end
+
+    if params[:status].present?
+      @status_filter = @category_filter.search_by_status(params[:status]).search_by_id(params[:trip_id])
+    else
+      @status_filter = @category_filter
+    end
+    @items = @status_filter
 
     render partial: 'items/items', locals: { items: @items }
   end

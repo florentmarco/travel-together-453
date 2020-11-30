@@ -1,5 +1,37 @@
 import { Controller } from "stimulus"
 
+let statusArr = ["Pending", "Approved", "Booked"]
+let categoryArr = ["Flight", "Acommodation", "Activity"]
+
+const trigger = (filterParams) => {
+  if (statusArr.includes(filterParams)){
+      const index = statusArr.indexOf(filterParams)
+      statusArr.splice(index, 1);
+    } else {
+      statusArr.push(filterParams);
+    }
+}
+
+const fetchCategoryResults = (action) => {
+  // url = trip_items_path(@trip)
+  const url = action.data.get('url') + "?category=" + categoryArr.join(" ")
+  fetch(url)
+    .then(res => res.text())
+    .then(data => {
+      action.itemsTarget.innerHTML = data;
+    });
+}
+
+const fetchStatusResults = (action) => {
+  // url = trip_items_path(@trip)
+  const url = action.data.get('url') + "?status=" + statusArr.join(" ") + "&category=" + categoryArr.join(" ")
+  fetch(url)
+    .then(res => res.text())
+    .then(data => {
+      action.itemsTarget.innerHTML = data;
+    });
+}
+
 export default class extends Controller {
   static targets = [ "items" ]
 
@@ -7,69 +39,39 @@ export default class extends Controller {
     console.log('connected')
   }
 
-  flight(event) {
-    event.preventDefault();
-    // trip_items_path(@trip)
-    const url = this.data.get('url') + '?flight=1';
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        this.itemsTarget.innerHTML = data;
-      });
-  }
-
-  accommodation(event) {
-    event.preventDefault();
-    // trip_items_path(@trip)
-    const url = this.data.get('url') + '?accommodation=1';
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        this.itemsTarget.innerHTML = data;
-      });
-  }
-
-  activity(event) {
-    event.preventDefault();
-    // trip_items_path(@trip)
-    const url = this.data.get('url') + '?activity=1';
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        this.itemsTarget.innerHTML = data;
-      });
-  }
-
   pending(event) {
     event.preventDefault();
-    // trip_items_path(@trip)
-    const url = this.data.get('url') + '?pending=1';
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        this.itemsTarget.innerHTML = data;
-      });
+    trigger("Pending")
+    fetchStatusResults(this)
   }
 
   approved(event) {
     event.preventDefault();
-    // trip_items_path(@trip)
-    const url = this.data.get('url') + '?approved=1';
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        this.itemsTarget.innerHTML = data;
-      });
+    trigger("Approved")
+    fetchStatusResults(this)
   }
 
   booked(event) {
     event.preventDefault();
-    // trip_items_path(@trip)
-    const url = this.data.get('url') + '?booked=1';
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        this.itemsTarget.innerHTML = data;
-      });
+    trigger("Booked")
+    fetchStatusResults(this)
+  }
+
+  flight(event) {
+    event.preventDefault();
+    categoryArr = ["Flight"]
+    fetchCategoryResults(this)
+  }
+
+  accommodation(event) {
+    event.preventDefault();
+    categoryArr = ["Accommodation"]
+    fetchCategoryResults(this)
+  }
+
+  activity(event) {
+    event.preventDefault();
+    categoryArr = ["Activity"]
+    fetchCategoryResults(this)
   }
 }

@@ -54,35 +54,38 @@ document.addEventListener('turbolinks:load', () => {
     bookedTab.classList.add("active");
   }
 
-  flightTab.addEventListener("click", (event) => {
-    wipeActive()
-    resetStatus()
-    event.currentTarget.classList.add("active");
-  });
+  // if condition to prevent error on other pages
+  if (flightTab) {
+    flightTab.addEventListener("click", (event) => {
+      wipeActive()
+      resetStatus()
+      event.currentTarget.classList.add("active");
+    });
 
-  accommodationTab.addEventListener("click", (event) => {
-    wipeActive()
-    resetStatus()
-    event.currentTarget.classList.add("active");
-  });
+    accommodationTab.addEventListener("click", (event) => {
+      wipeActive()
+      resetStatus()
+      event.currentTarget.classList.add("active");
+    });
 
-  activityTab.addEventListener("click", (event) => {
-    wipeActive()
-    resetStatus()
-    event.currentTarget.classList.add("active");
-  });
+    activityTab.addEventListener("click", (event) => {
+      wipeActive()
+      resetStatus()
+      event.currentTarget.classList.add("active");
+    });
 
-  pendingTab.addEventListener("click", (event) => {
-    event.currentTarget.classList.toggle("active");
-  });
+    pendingTab.addEventListener("click", (event) => {
+      event.currentTarget.classList.toggle("active");
+    });
 
-  approvedTab.addEventListener("click", (event) => {
-    event.currentTarget.classList.toggle("active");
-  });
+    approvedTab.addEventListener("click", (event) => {
+      event.currentTarget.classList.toggle("active");
+    });
 
-  bookedTab.addEventListener("click", (event) => {
-    event.currentTarget.classList.toggle("active");
-  });
+    bookedTab.addEventListener("click", (event) => {
+      event.currentTarget.classList.toggle("active");
+    });
+  }
 
 });
 

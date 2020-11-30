@@ -32,11 +32,11 @@ owner2.save
 puts "Creating trip"
 
 
-10.times do 
+10.times do
   start_date = Date.today + rand(10..100)
   end_date = start_date + 5
   name = Faker::Address.country
-  
+
   user_id_array = []
   User.all.each do |user|
     user_id_array << user.id
@@ -47,7 +47,8 @@ puts "Creating trip"
     location: name,
     start_date: start_date,
     user_id: user_id_array.sample,
-    end_date: end_date 
+    end_date: end_date,
+    invite_token: rand(999999999)
   )
   trip.save
 

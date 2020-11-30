@@ -31,6 +31,59 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
+  const flightTab = document.querySelector("#flightTab")
+  const accommodationTab = document.querySelector("#accommodationTab")
+  const activityTab = document.querySelector("#activityTab")
+  const pendingTab = document.querySelector("#pendingTab")
+  const approvedTab = document.querySelector("#approvedTab")
+  const bookedTab = document.querySelector("#bookedTab")
+
+  const wipeActive = () => {
+    flightTab.classList.remove("active");
+    accommodationTab.classList.remove("active");
+    activityTab.classList.remove("active");
+  }
+
+  const resetStatus = () => {
+    pendingTab.classList.remove("active");
+    approvedTab.classList.remove("active");
+    bookedTab.classList.remove("active");
+    pendingTab.classList.add("active");
+    approvedTab.classList.add("active");
+    bookedTab.classList.add("active");
+  }
+
+  flightTab.addEventListener("click", (event) => {
+    wipeActive()
+    resetStatus()
+    event.currentTarget.classList.add("active");
+  });
+
+  accommodationTab.addEventListener("click", (event) => {
+    wipeActive()
+    resetStatus()
+    event.currentTarget.classList.add("active");
+  });
+
+  activityTab.addEventListener("click", (event) => {
+    wipeActive()
+    resetStatus()
+    event.currentTarget.classList.add("active");
+  });
+
+  pendingTab.addEventListener("click", (event) => {
+    event.currentTarget.classList.toggle("active");
+  });
+
+  approvedTab.addEventListener("click", (event) => {
+    event.currentTarget.classList.toggle("active");
+  });
+
+  bookedTab.addEventListener("click", (event) => {
+    event.currentTarget.classList.toggle("active");
+  });
+
 });
 
 import "controllers"

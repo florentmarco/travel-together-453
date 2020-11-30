@@ -7,9 +7,9 @@ class TripsController < ApplicationController
   def index
 
     @trips = policy_scope(Trip).order(start_date: :desc)
-    @trips.each do |trip|
-      place_api(trip.location)
-    end
+    #@trips.each do |trip|
+    #place_api(trip.location)
+    #end
   end
 
   def show
@@ -57,14 +57,13 @@ class TripsController < ApplicationController
     authorize @trip
   end
 
-  def place_api(location)
-    url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{location}&inputtype=textquery&fields=photos&key=#{ENV['PLACES_API']}"
-    photo_serialised = open(url).read
-    photo = JSON.parse(photo_serialised)
-    photo_reference = photo["candidates"][0]["photos"][0]["photo_reference"]
-    photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV['PLACES_API']}"
-    photo_serialised = open(photo_url).read
-    byebug
-
-  end
+  #def place_api(location)
+  #  url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{location}&inputtype=textquery&fields=photos&key=#{ENV['PLACES_API']}"
+  #  photo_serialised = open(url).read
+  #  photo = JSON.parse(photo_serialised)
+  #  photo_reference = photo["candidates"][0]["photos"][0]["photo_reference"]
+  #  photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV['PLACES_API']}"
+  #  photo_serialised = open(photo_url).read
+  #end
 end
+#

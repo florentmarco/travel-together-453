@@ -12,6 +12,7 @@ class TripsController < ApplicationController
     #@trips.each do |trip|
     #place_api(trip.location)
     #end
+
     # get array of trips instance that current user is a guest of
     @guest_of_trips = current_user.guests.map do |guest|
       guest.trip

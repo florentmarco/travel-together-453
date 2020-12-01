@@ -1,0 +1,15 @@
+<h2>add accomodation form</h2>
+
+<div class="container" data-controller="future-controller">
+      <%= simple_form_for [@trip, @item] do |f| %>
+        <%= f.hidden_field :category %>
+        <%= f.input :name %>
+        <%= f.input :start_date  %>
+        <%= f.input :end_date %>
+        <%= f.input :address %>
+        <%= f.input :url %>
+        <%= f.input :price %>
+        <%= f.submit %>
+      <% end %>
+    </span>
+</div>

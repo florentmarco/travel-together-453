@@ -1,0 +1,18 @@
+<h2>add flight form</h2>
+
+<div class="container" data-controller="future-controller">
+      <%= simple_form_for [@trip, @item] do |f| %>
+        <%= f.hidden_field :category  %>
+        <%= f.input :start_date  %>
+        <%= f.simple_fields_for :flight_details do |fd| %>
+          <%= fd.input :airline %>
+          <%= fd.input :flight_number %>
+          <%= fd.input :departure_airport %>
+          <%= fd.input :arrival_airport %>
+          <% end %>
+        <%= f.input :url %>
+        <%= f.input :price %>
+        <%= f.submit %>
+      <% end %>
+    </span>
+</div>

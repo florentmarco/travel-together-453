@@ -1,15 +1,27 @@
 <div class="container">
   <h1>Trips</h1>
-
-  <h4><%= link_to "Create a New Trip", new_trip_path %></h4>
-
+  <div class="btn">
+    <%= link_to "ADD A TRIP", new_trip_path, class: "btn btn-primary-tt btn-sm" %>
+  </div>
   <hr>
-
   <% @trips.each do |trip| %>
-      <h3> <%= link_to trip.location, trip_path(trip) %> </h3>
-      <p> From <%= trip.start_date %> to <%= trip.end_date %> </p>
-      <hr>
+    <div class="card-product">
+        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+        <% @spot = @client.spot("#{@reference}") %>
+        <%= image_tag (@spot.photos[0].fetch_url(800)) %>
+        <div class="card-product-infos">
+          <div class="product-info-main">
+            <h2><%= link_to trip.location + " Trip", trip_path(trip) %></h2>
+            <p><%= trip.start_date %> - <%= trip.end_date %></p>
+          </div>
+          <div class="clock d-flex">
+            <i class="far fa-clock"></i>
+            <p><%= (trip.end_date - trip.start_date).to_i %> days</p>
+           </div>
+        </div>
+    </div>
+    <br>
   <% end %>
-
 </div>
 

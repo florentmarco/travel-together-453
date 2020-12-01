@@ -33,7 +33,7 @@ owner2.save
 puts "Creating trip and items"
 
 
-10.times do
+8.times do
   start_date = Date.today + rand(10..100)
   end_date = start_date + 5
   name = Faker::Address.country
@@ -52,9 +52,10 @@ puts "Creating trip and items"
     invite_token: rand(999999999)
   )
   newtrip.save
-  puts "#{newtrip}"
+  puts
+  puts "#{newtrip.name.upcase}"
 
-  5.times do
+  15.times do
     newitem = Item.new(
       category: ["Flight", "Accommodation", "Activity"].sample,
       status: ["Pending", "Approved", "Booked"].sample
@@ -62,7 +63,7 @@ puts "Creating trip and items"
     newitem.trip = newtrip
     newitem.user = newtrip.user
     newitem.save
-    puts "#{newitem}"
+    puts "#{newitem.category} - #{newitem.status}"
   end
 end
 

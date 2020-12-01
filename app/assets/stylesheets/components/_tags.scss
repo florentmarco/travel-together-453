@@ -1,0 +1,29 @@
+.pending-tag {
+  margin: 5px;
+  color: #FF8A00;
+  font-size: 10px;
+  width: 70px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(255,199,0,0.5);
+}
+
+.approved-tag {
+  margin: 5px;
+  color: #62A651;
+  font-size: 10px;
+  width: 70px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(189,233,178,0.5);
+}
+
+.booked-tag {
+  margin: 5px;
+  color: #0062F4;
+  width: 70px;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(92,154,244,0.5);
+}

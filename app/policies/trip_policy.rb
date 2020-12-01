@@ -1,9 +1,7 @@
 class TripPolicy < ApplicationPolicy
-
-
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 
@@ -12,7 +10,8 @@ class TripPolicy < ApplicationPolicy
   end
 
   def show?
-    user && (user == record.user || user.admin)
+    # user && (user == record.user || user.admin)
+    true
   end
 
   def update?
@@ -21,5 +20,9 @@ class TripPolicy < ApplicationPolicy
 
   def destroy?
     user && (user == record.user || user.admin)
+  end
+
+  def regenerate_invite_link?
+    true
   end
 end

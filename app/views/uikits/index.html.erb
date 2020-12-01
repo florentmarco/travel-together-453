@@ -1,277 +1,362 @@
-<h1>Test UIKIT</h1>
 
-<div class = "container-tt">
+<div class="text-center">
+  <h1>Welcome to our UIKIT</h1>
+</div>
+<hr>
 
-  <p> Primary button </p>
-  <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-  <hr>
+<div class="container">
+  <p>Card Trip Component</p>
+  <div class="card-product">
+    <%= image_tag ("cardtrip.jpg") %>
+    <div class="card-product-infos">
+      <div class="product-info-main">
+        <h2>Hanoi Trip</h2>
+        <p>SAT, NOV 21 - THU, DEC 10, 2020</p>
+      </div>
+      <div class="clock d-flex">
+        <i class="far fa-clock"></i>
+        <p>20 days, today</p>
+      </div>
+    </div>
 
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Buttons</p>
+
+  <div class="btn">
+    <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+  </div>
+  <div class="btn">
+    <%= link_to "ADD A TRIP", "#", class: "btn btn-primary-tt btn-sm" %>
+  </div>
+  <div class="btn">
+    <%= link_to "BACK", "#", class: "btn btn-primary-tt btn-sm" %>
+  </div>
+  <div class="btn">
+    <%= link_to "+", "#", class: "btn-main" %>
+  </div>
+
+  <div class="btn">
+    <%= link_to "SEE MORE", "#", class: "btn-more" %>
+  </div>
+
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Avatars</p>
+  <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+  <img class="avatar-large" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+</div>
+
+<hr>
+
+<div class="container">
   <p> Status tags </p>
-  <p class = "pending-tag"> PENDING </p>
-  <p class = "approved-tag"> APPROVED </p>
-  <p class = "booked-tag"> BOOKED </p>
-  <hr>
 
-  <p>Bottom strip</p>
-  <div class = "bottom-strip">
-    <div class="status-vote-grp right-16">
-      <p class = "pending-tag"> PENDING </p>
-      <div class="d-flex justify-content-between align-items-center">
+  <div class="tag">
+    <p class="pending-tag"> PENDING </p>
+  </div>
+
+  <div class="tag">
+    <p class="approved-tag"> APPROVED </p>
+  </div>
+
+  <div class="tag">
+    <p class="booked-tag">BOOKED</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Action Card Flight</p>
+  <div class="action-card">
+    <div class="action-card-top d-flex">
+      <div class="action-card-main-flight">
+        <div class="action-card-main-flight-top d-flex">
+          <div class="maincard-dep-flight">
+            <p class="time"> 06:35 </p>
+            <p class="date"> 20/11/2020 </p>
+            <p class="airport"> SIN </p>
+          </div>
+          <div class="maincard-flight-duration">
+           <div>
+            <p class="duration-time">10h00</p>
+          </div>
+          <div class="line">
+          </div>
+        </div>
+        <div class="maincard-arr-flight">
+          <p class="time"> 14:35 </p>
+          <p class="date"> 21/11/2020 </p>
+          <p class="airport"> GER </p>
+        </div>
+      </div>
+      <div class="action-card-main-flight-bottom">
+        <p class="airline"> Singapore Airlines </p>
+        <p class="flight-number"> SIA4567 </p>
+      </div>
+    </div>
+    <div class="action-card-pricecard">
+      <div class="price-ellipsis d-flex justify-content-end">
+        <%= image_tag "ellipsis.png", class: "ellipsis"%>
+      </div>
+      <div class="pricecard-price">
+        <p class="mt-3 mb-0 price"> $450 </p>
+        <p class="mt-0 "> per pax </p>
+      </div>
+    </div>
+  </div>
+  <div class="action-card-bstrip d-flex">
+    <div class="d-flex align-items-center">
+      <div class="tag">
+    <p class="approved-tag"> APPROVED </p>
+      </div>
+      <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
         <p class= "mb-0 font-smaller"> 4 </p>
       </div>
     </div>
-    <div class = "left-16">
+    <div class="btn">
       <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
     </div>
   </div>
-
-  <hr>
-
-  <p>Side card</p>
-  <div class= "side-card">
-    <%= image_tag "ellipsis.png", class: "ellipsis"%>
-    <div>
-      <p class="mt-3 mb-0 font-price center"> $450 </p>
-      <p class="mt-0 font-smaller center"> per pax </p>
-    </div>
-  </div>
-
-  <hr>
-
-  <p>Flight details</p>
-  <div class= "common-detail-card">
-        <div class= "flight-top-grp justify-content-between">
-          <div class="time-date-loc-grp">
-            <p class="center font-big">06:35</p>
-            <p class="center font-smallnt-small">20/11/2020</p>
-            <p class="center font-small">SIN</p>
-          </div>
-          <div class="down">
-            <p class="center font-small">10h00</p>
-            <div class="line"></div>
-          </div>
-          <div class="time-date-loc-grp">
-            <p class="center font-big">16:35</p>
-            <p class="center font-small">20/11/2020</p>
-            <p class="center font-small">GER</p>
-          </div>
-        </div>
-        <div>
-            <p class="m-0 ml-2 mt-2 font-small-bold">Singapore Airlines</p>
-            <p class="m-0 ml-2 font-smaller">SIA8888</p>
-        </div>
-      </div>
-
-  <hr>
-
-  <p>Accommodation details</p>
-  <div class= "common-detail-card">
-    <div class= "d-flex">
-      <%= image_tag "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp", class:"card-image ml-2 mb-3 mt-3 mr-2" %>
-
-      <div class="down">
-        <div>
-          <p class="bold m-0 ml-2">Hilton Hotel</p>
-          <p class="m-0 ml-2 mt-1 font-smallest">Orchard Rd</p>
-        </div>
-
-        <div class="d-flex font-normal m-2">
-          <div>
-            <p class="m-0 mr-2">IN</p>
-            <p class="m-0 mr-2">OUT</p>
-          </div>
-
-          <div>
-            <p class="m-0">05/04/2020</p>
-            <p class="m-0">08/04/2020</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <p>Activity details</p>
-  <div class= "common-detail-card">
-    <div class= "d-flex">
-      <%= image_tag "https://cdn.britannica.com/47/80547-050-8B316D38/Field-green-tea-Mount-Fuji-Shizuoka-prefecture.jpg", class:"card-image ml-2 mb-3 mt-3 mr-2" %>
-
-      <div class="down">
-        <div>
-          <p class="font-small-bold-no-space m-0 ml-2 mr-2">Hiking on Mount Fuji</p>
-          <p class="m-0 ml-2 mt-1 font-smallest">Fuji Rd</p>
-        </div>
-
-        <p class="font-normal m-2">05/04/2020</p>
-
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <p>Flight card</p>
-  <div class= "action-card">
-
-    <div class="d-flex">
-
-      <div class= "common-detail-card">
-        <div class= "flight-top-grp justify-content-between">
-          <div class="time-date-loc-grp">
-            <p class="center font-big">06:35</p>
-            <p class="center font-smallnt-small">20/11/2020</p>
-            <p class="center font-small">SIN</p>
-          </div>
-          <div class="down">
-            <p class="center font-small">10h00</p>
-            <div class="line"></div>
-          </div>
-          <div class="time-date-loc-grp">
-            <p class="center font-big">16:35</p>
-            <p class="center font-small">20/11/2020</p>
-            <p class="center font-small">GER</p>
-          </div>
-        </div>
-        <div>
-            <p class="m-0 ml-2 mt-2 font-small-bold">Singapore Airlines</p>
-            <p class="m-0 ml-2 font-smaller">SIA8888</p>
-        </div>
-      </div>
-
-      <div class= "side-card">
-        <%= image_tag "ellipsis.png", class: "ellipsis"%>
-        <div>
-          <p class="mt-3 mb-0 font-price center"> $450 </p>
-          <p class="mt-0 font-smaller center"> per pax </p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class = "bottom-strip">
-      <div class="status-vote-grp right-16">
-        <p class = "pending-tag"> PENDING </p>
-        <div class="d-flex justify-content-between align-items-center">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> 4 </p>
-        </div>
-      </div>
-      <div class = "left-16">
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-      </div>
-    </div>
-
-  </div>
-
-  <hr>
-
-  <p>Accommodation card</p>
-  <div class= "action-card">
-
-    <div class="d-flex">
-
-      <div class= "common-detail-card">
-        <div class= "d-flex">
-          <%= image_tag "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp", class:"card-image ml-2 mb-3 mt-3 mr-2" %>
-
-          <div class="down">
-            <div>
-              <p class="bold m-0 ml-2">Hilton Hotel</p>
-              <p class="m-0 ml-2 font-smallest">Orchard Rd</p>
-            </div>
-
-            <div class="d-flex font-normal m-2">
-              <div>
-                <p class="m-0 mr-2">IN</p>
-                <p class="m-0 mr-2">OUT</p>
-              </div>
-
-              <div>
-                <p class="m-0">05/04/2020</p>
-                <p class="m-0">08/04/2020</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class= "side-card">
-        <%= image_tag "ellipsis.png", class: "ellipsis"%>
-        <div>
-          <p class="mt-3 mb-0 font-price center"> $350 </p>
-          <p class="mt-0 font-smaller center"> per pax </p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class = "bottom-strip">
-      <div class="status-vote-grp right-16">
-        <p class = "pending-tag"> PENDING </p>
-        <div class="d-flex justify-content-between align-items-center">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> 5 </p>
-        </div>
-      </div>
-      <div class = "left-16">
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-      </div>
-    </div>
-
-  </div>
-
-  <hr>
-
-  <p>Activity card</p>
-  <div class= "action-card">
-
-    <div class="d-flex">
-
-      <div class= "common-detail-card">
-        <div class= "d-flex">
-          <%= image_tag "https://cdn.britannica.com/47/80547-050-8B316D38/Field-green-tea-Mount-Fuji-Shizuoka-prefecture.jpg", class:"card-image ml-2 mb-3 mt-3 mr-2" %>
-
-          <div class="down">
-            <div>
-              <p class="font-small-bold-no-space m-0 ml-2 mr-2">Hiking on Mount Fuji!!!!!</p>
-              <p class="m-0 ml-2 mt-1 font-smallest">Fuji Rd</p>
-            </div>
-
-            <p class="font-normal m-2">05/04/2020</p>
-
-          </div>
-        </div>
-      </div>
-
-      <div class= "side-card">
-        <%= image_tag "ellipsis.png", class: "ellipsis"%>
-        <div>
-          <p class="mt-3 mb-0 font-price center"> $150 </p>
-          <p class="mt-0 font-smaller center"> per pax </p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class = "bottom-strip">
-      <div class="status-vote-grp right-16">
-        <p class = "pending-tag"> PENDING </p>
-        <div class="d-flex justify-content-between align-items-center">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> 4 </p>
-        </div>
-      </div>
-      <div class = "left-16">
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-      </div>
-    </div>
-
-  </div>
-
-
-
-<!-- container-tt ending div -->
 </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Action Card Accomodation</p>
+  <div class="action-card">
+    <div class="action-card-top d-flex">
+      <div class="action-card-main-accomodation d-flex">
+        <div class="action-card-main-accomodation-image">
+          <%= image_tag "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp" %>
+        </div>
+        <div class="action-card-main-accomodation-name">
+          <p class="name">Hilton Hotel</p>
+          <p class="address">Orchard Road</p>
+          <div class="action-card-main-accomodation-date d-flex">
+            <div class="check-in">
+              <p>IN</p>
+              <p>OUT</p>
+            </div>
+            <div class="dates">
+              <p class="check-in">05/04/2020</p>
+              <p class="check-out">06/04/2020</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="action-card-pricecard">
+        <div class="price-ellipsis d-flex justify-content-end">
+          <%= image_tag "ellipsis.png", class: "ellipsis"%>
+        </div>
+        <div class="pricecard-price">
+          <p class="mt-3 mb-0 price"> $450 </p>
+          <p class="mt-0 "> per pax </p>
+        </div>
+      </div>
+    </div>
+    <div class="action-card-bstrip d-flex">
+      <div class="d-flex align-items-center">
+        <div class="tag">
+          <p class="booked-tag">BOOKED</p>
+        </div>
+        <div class="bstrip-like d-flex">
+          <%= image_tag "heart.png", class: "heart mr-1"%>
+          <p class= "mb-0 font-smaller"> 4 </p>
+        </div>
+      </div>
+      <div class="btn">
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Action Card Activity</p>
+  <div class="action-card">
+    <div class="action-card-top d-flex">
+      <div class="action-card-main-activity d-flex">
+        <div class="action-card-main-activity-image">
+          <%= image_tag "https://cdn.britannica.com/47/80547-050-8B316D38/Field-green-tea-Mount-Fuji-Shizuoka-prefecture.jpg" %>
+        </div>
+        <div class="action-card-main-activity-name">
+          <p class="name">Hiking on Mt Fuji </p>
+          <p class="date">21/11/2020</p>
+
+        </div>
+      </div>
+      <div class="action-card-pricecard">
+        <div class="price-ellipsis d-flex justify-content-end">
+          <%= image_tag "ellipsis.png", class: "ellipsis"%>
+        </div>
+        <div class="pricecard-price">
+          <p class="mt-3 mb-0 price"> $450 </p>
+          <p class="mt-0 "> per pax </p>
+        </div>
+      </div>
+    </div>
+    <div class="action-card-bstrip d-flex">
+      <div class="d-flex align-items-center">
+        <div class="tag">
+          <p class="pending-tag"> PENDING </p>
+        </div>
+        <div class="bstrip-like d-flex">
+          <%= image_tag "heart.png", class: "heart mr-1"%>
+          <p class= "mb-0 font-smaller"> 4 </p>
+        </div>
+      </div>
+      <div class="btn">
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="container">
+  <p>Action Card Bottom Strip </p>
+  <div class="action-card-bstrip d-flex">
+    <div class="d-flex align-items-center">
+      <div class="tag">
+        <p class="pending-tag"> PENDING </p>
+      </div>
+      <div class="bstrip-like d-flex">
+        <%= image_tag "heart.png", class: "heart mr-1"%>
+        <p class= "mb-0 font-smaller"> 4 </p>
+      </div>
+    </div>
+    <div class="btn">
+      <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Action Card Price Card </p>
+  <div class="action-card-pricecard">
+    <div class="price-ellipsis d-flex justify-content-end">
+      <%= image_tag "ellipsis.png", class: "ellipsis"%>
+    </div>
+    <div class="pricecard-price">
+      <p class="mt-3 mb-0 price"> $450 </p>
+      <p class="mt-0 "> per pax </p>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Action Card Main Flight </p>
+  <div class="action-card-main-flight">
+    <div class="action-card-main-flight-top d-flex">
+      <div class="maincard-dep-flight">
+        <p class="time"> 06:35 </p>
+        <p class="date"> 20/11/2020 </p>
+        <p class="airport"> SIN </p>
+      </div>
+      <div class="maincard-flight-duration">
+       <div>
+        <p class="duration-time">10h00</p>
+      </div>
+      <div class="line">
+      </div>
+    </div>
+    <div class="maincard-arr-flight">
+      <p class="time"> 14:35 </p>
+      <p class="date"> 21/11/2020 </p>
+      <p class="airport"> GER </p>
+    </div>
+  </div>
+  <div class="action-card-main-flight-bottom">
+    <p class="airline"> Singapore Airlines </p>
+    <p class="flight-number"> SIA4567 </p>
+  </div>
+</div>
+</div>
+
+
+<hr>
+
+<div class="container">
+  <p>Action Card Main Accomodation </p>
+  <div class="action-card-main-accomodation d-flex">
+    <div class="action-card-main-accomodation-image">
+      <%= image_tag "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp" %>
+    </div>
+    <div class="action-card-main-accomodation-name">
+      <p class="name">Hilton Hotel</p>
+      <p class="address">Orchard Road</p>
+      <div class="action-card-main-accomodation-date d-flex">
+        <div class="check-in">
+          <p>IN</p>
+          <p>OUT</p>
+        </div>
+        <div class="dates">
+          <p class="check-in">05/04/2020</p>
+          <p class="check-out">06/04/2020</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Action Card Main Activity </p>
+  <div class="action-card-main-activity d-flex">
+    <div class="action-card-main-activity-image">
+      <%= image_tag "https://cdn.britannica.com/47/80547-050-8B316D38/Field-green-tea-Mount-Fuji-Shizuoka-prefecture.jpg" %>
+    </div>
+    <div class="action-card-main-activity-name">
+      <p class="name">Hiking on Mt Fuji </p>
+      <p class="date">21/11/2020</p>
+
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <p>Footer</p>
+  <div class="footer">
+    <div class="footer-links-left d-flex">
+      <div class="footer-items">
+        <a href="#"><i class="fas fa-home"></i></a>
+      </div>
+      <div class="footer-items">
+        <a href="#"><i class="fas fa-search"></i></a>
+      </div>
+      <div class="footer-btn-create">
+        <%= link_to "+", "#", class: "btn-main" %>
+      </div>
+        <div class="footer-items">
+          <a href="#"><i class="far fa-bell"></i></a>
+        </div>
+      <div class="footer-items">
+        <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
 

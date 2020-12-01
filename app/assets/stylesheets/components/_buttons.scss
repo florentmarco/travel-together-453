@@ -1,0 +1,43 @@
+.btn-main {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  background: #5885AF;
+}
+
+
+.btn-main:hover {
+  background: #436E96;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-primary-tt {
+  color: white;
+  font-size: 10px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: #5885AF;
+  transition: background 0.3s ease;
+}
+
+.btn-primary-tt:hover {
+  background: #436E96;
+  color: white;
+}
+
+.btn-more {
+  color: #5885AF;
+  font-size: 10px;
+  padding: 8px 48px;
+  border: 1px solid #5885AF;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.btn-more:hover {
+  background: #436E96;
+  color: white;
+  text-decoration: none;
+}

@@ -2,17 +2,65 @@ require 'json'
 require 'open-uri'
 
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link]
 
   def index
+    # get array of trips current user created (see TripPolicy)
+    @trips_i_own = policy_scope(Trip)
 
+<<<<<<< HEAD
     @trips = policy_scope(Trip).order(start_date: :desc)
     #@trips.each do |trip|
     #place_api(trip.location)
     #end
+=======
+    # get array of trips instance that current user is a guest of
+    @guest_of_trips = current_user.guests.map do |guest|
+      guest.trip
+    end
+
+    @alltrips = (@trips_i_own + @guest_of_trips)
+
+    # all trips sorted in ascending order
+    @alltrips_asc = @alltrips.sort_by do |trip|
+      trip.start_date
+    end
+
+    # all trips sorted in descending order
+    @trips = @alltrips_asc.reverse
+>>>>>>> master
   end
 
   def show
+    # get array of trips instance that current user is a guest of
+    @guests_trip_arr = current_user.guests.map do |guest|
+      guest.trip
+    end
+
+    # allow trip owner to enter
+    if @trip.user == current_user
+      @trip
+
+    # allow existing guests to enter
+    elsif @guests_trip_arr.include?(@trip)
+      @trip
+
+    # allow users that have invite link to enter
+    elsif params[:token] == @trip.invite_token
+      @guest = Guest.new
+      @guest.trip = @trip
+      @guest.user = current_user
+      @guest.save
+      @trip
+    else
+      redirect_to trips_path
+    end
+  end
+
+  def regenerate_invite_link
+    @trip.update(invite_token: rand(99999999))
+    redirect_to trip_path(@trip)
   end
 
   def new
@@ -24,6 +72,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @user = User.find(current_user.id)
     @trip.user = @user
+    @trip.invite_token = rand(99999999)
     authorize @trip
 
     if @trip.save

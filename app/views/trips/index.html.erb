@@ -15,10 +15,11 @@
           </div>
           <div class="clock d-flex">
             <i class="far fa-clock"></i>
-            <p>20 days, today</p>
+            <p><%= (trip.end_date - trip.start_date).to_i %> days</p>
            </div>
         </div>
     </div>
+    <br>
   <% end %>
 </div>
 

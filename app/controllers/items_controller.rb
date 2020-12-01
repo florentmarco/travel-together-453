@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   render partial: 'items/items', locals: { items: @items }
   end
-  
+
   def new
     @item = Item.new(category: params[:category])
     if @item.category == 'flight'

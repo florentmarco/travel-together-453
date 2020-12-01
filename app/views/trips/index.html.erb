@@ -1,21 +1,24 @@
 <div class="container">
   <h1>Trips</h1>
-
   <h4><%= link_to "Create a New Trip", new_trip_path %></h4>
-
   <hr>
-
   <% @trips.each do |trip| %>
-    <h3> <%= link_to trip.location, trip_path(trip) %> </h3>
-    <p> From <%= trip.start_date %> to <%= trip.end_date %> </p>
-    <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-    <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-    <% @spot = @client.spot("#{@reference}") %>
-    <img src="<%= @spot.photos[0].fetch_url(800)%>">
-      <h3> <%= link_to trip.location, trip_path(trip) %> </h3>
-      <p> From <%= trip.start_date %> to <%= trip.end_date %> </p>
-      <hr>
+    <div class="card-product">
+        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+        <% @spot = @client.spot("#{@reference}") %>
+        <%= image_tag (@spot.photos[0].fetch_url(800)) %>
+        <div class="card-product-infos">
+          <div class="product-info-main">
+            <h2><%= link_to trip.location + " Trip", trip_path(trip) %></h2>
+            <p><%= trip.start_date %> to <%= trip.end_date %></p>
+          </div>
+          <div class="clock d-flex">
+            <i class="far fa-clock"></i>
+            <p>20 days, today</p>
+           </div>
+        </div>
+    </div>
   <% end %>
-
 </div>
 

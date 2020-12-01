@@ -35,6 +35,8 @@ class TripsController < ApplicationController
       guest.trip
     end
 
+    @message = Message.new
+
     # allow trip owner to enter
     if @trip.user == current_user
       @trip

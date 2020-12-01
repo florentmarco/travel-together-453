@@ -3,8 +3,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new(category: params[:category])
+    if @item.category == 'flight'
+     @flight_detail = FlightDetail.new
+   end
+
     # render "items/_form_#{params[:category]}"
-    render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item}
+    render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
   end
 
   def create

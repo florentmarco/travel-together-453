@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Trips</h1>
-  <h4><%= link_to "Add Trip", new_trip_path %></h4>
+  <div class="btn">
+    <%= link_to "ADD A TRIP", new_trip_path, class: "btn btn-primary-tt btn-sm" %>
+  </div>
   <hr>
   <% @trips.each do |trip| %>
     <div class="card-product">

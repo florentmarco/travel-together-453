@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 let statusArr = ["Pending", "Approved", "Booked"]
-let categoryArr = ["Flight", "Acommodation", "Activity"]
+let categoryArr = ["Flight", "Accommodation", "Activity"]
 
 const trigger = (filterParams) => {
   if (statusArr.includes(filterParams)){
@@ -60,18 +60,21 @@ export default class extends Controller {
   flight(event) {
     event.preventDefault();
     categoryArr = ["Flight"]
+    statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)
   }
 
   accommodation(event) {
     event.preventDefault();
     categoryArr = ["Accommodation"]
+    statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)
   }
 
   activity(event) {
     event.preventDefault();
     categoryArr = ["Activity"]
+    statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)
   }
 }

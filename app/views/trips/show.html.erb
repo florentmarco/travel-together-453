@@ -15,25 +15,25 @@
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
     <ul class="list-inline tabs-underlined">
       <li>
-        <%= link_to "Flight", "#", id: "flightTab", class: "tab-underlined", "data-action": 'click->item-status#flight' %>
+        <%= link_to "Flight", "#", id: "flightTab", class: "tab-underlined active", "data-action": 'click->item-status#flight' %>
       </li>
       <li>
-        <%= link_to "Accommodation", "#", id: "accommodationTab", class: "tab-underlined", "data-action": 'click->item-status#accommodation' %>
+        <%= link_to "Accommodation", "#", id: "accommodationTab", class: "tab-underlined active", "data-action": 'click->item-status#accommodation' %>
       </li>
       <li>
-        <%= link_to "Activity", "#", id: "activityTab", class: "tab-underlined", "data-action": 'click->item-status#activity' %>
+        <%= link_to "Activity", "#", id: "activityTab", class: "tab-underlined active", "data-action": 'click->item-status#activity' %>
       </li>
     </ul>
       <hr>
     <ul class="list-inline tabs-underlined">
       <li>
-        <%= link_to "Pending", "#", id: "pendingTab", class: "tab-underlined", "data-action": 'click->item-status#pending' %>
+        <%= link_to "Pending", "#", id: "pendingTab", class: "tab-underlined active", "data-action": 'click->item-status#pending' %>
       </li>
       <li>
-        <%= link_to "Approved", "#", id: "approvedTab", class: "tab-underlined", "data-action": 'click->item-status#approved' %>
+        <%= link_to "Approved", "#", id: "approvedTab", class: "tab-underlined active", "data-action": 'click->item-status#approved' %>
       </li>
       <li>
-        <%= link_to "Booked", "#", id: "bookedTab", class: "tab-underlined", "data-action": 'click->item-status#booked' %>
+        <%= link_to "Booked", "#", id: "bookedTab", class: "tab-underlined active", "data-action": 'click->item-status#booked' %>
       </li>
       <hr>
     </ul>

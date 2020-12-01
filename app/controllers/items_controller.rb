@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
       @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
     end
 
-    if params[:status].present?
+    if params[:status].present? || params[:status] == ""
       @status_filter = @category_filter.search_by_status(params[:status]).search_by_id(params[:trip_id])
     else
       @status_filter = @category_filter

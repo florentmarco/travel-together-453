@@ -5,6 +5,10 @@ class Item < ApplicationRecord
   has_many :votes
   has_many :tasks
 
+  has_many :flight_details
+
+  validates :category, inclusion: { in: %w(flight accomodation activity) }
+
   include PgSearch::Model
   pg_search_scope :search_by_status,
     against: [:status],
@@ -23,4 +27,5 @@ class Item < ApplicationRecord
     using: {
       tsearch: { prefix: true }
   }
+
 end

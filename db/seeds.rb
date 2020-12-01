@@ -33,7 +33,7 @@ owner2.save
 puts "Creating trip and items"
 
 
-8.times do
+10.times do
   start_date = Date.today + rand(10..100)
   end_date = start_date + 5
   name = Faker::Address.country

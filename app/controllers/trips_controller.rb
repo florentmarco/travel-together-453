@@ -1,3 +1,6 @@
+require 'json'
+require 'open-uri'
+
 class TripsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link]
@@ -5,6 +8,10 @@ class TripsController < ApplicationController
   def index
     # get array of trips current user created (see TripPolicy)
     @trips_i_own = policy_scope(Trip)
+    @trips = policy_scope(Trip).order(start_date: :desc)
+    #@trips.each do |trip|
+    #place_api(trip.location)
+    #end
 
     # get array of trips instance that current user is a guest of
     @guest_of_trips = current_user.guests.map do |guest|
@@ -97,4 +104,14 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     authorize @trip
   end
+
+  #def place_api(location)
+  #  url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{location}&inputtype=textquery&fields=photos&key=#{ENV['PLACES_API']}"
+  #  photo_serialised = open(url).read
+  #  photo = JSON.parse(photo_serialised)
+  #  photo_reference = photo["candidates"][0]["photos"][0]["photo_reference"]
+  #  photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV['PLACES_API']}"
+  #  photo_serialised = open(photo_url).read
+  #end
 end
+#

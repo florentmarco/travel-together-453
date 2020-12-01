@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2020_11_28_062444) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
+    t.string "category"
     t.index ["trip_id"], name: "index_items_on_trip_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end

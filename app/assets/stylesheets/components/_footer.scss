@@ -1,18 +1,30 @@
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.footer-links-left {
   background: white;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
   height: 50px;
   padding: 0px 20px;
   color: rgba(0,0,0,0.3);
 }
-.footer-links {
-  align-items: center;
-  justify-content: space-between;
 
+.footer-links-right {
+  background: white;
+  // justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0px 20px;
+  color: rgba(0,0,0,0.3);
 }
-.footer-links a {
+
+
+.footer-items a {
   color: #436E96;
   opacity: 0.4;
   text-decoration: none;

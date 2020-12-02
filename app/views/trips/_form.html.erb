@@ -2,8 +2,8 @@
   <%= simple_form_for @trip do |f| %>
     <%= f.input :name %>
     <%= f.input :location %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
+    <%= f.input :start_date, input_html: {class: "datepicker"} %>
+    <%= f.input :end_date, input_html: {class: "datepicker"} %>
     <%= f.submit %>
   <% end %>
 

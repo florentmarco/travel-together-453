@@ -25,6 +25,7 @@ require("channels")
 // External imports
 import "bootstrap";
 import "../plugins/flatpickr";
+import { toggleDateInputs } from "../plugins/flatpickr";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -32,7 +33,7 @@ import "../plugins/flatpickr";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-
+  toggleDateInputs();
   const flightTab = document.querySelector("#flightTab")
   const accommodationTab = document.querySelector("#accommodationTab")
   const activityTab = document.querySelector("#activityTab")

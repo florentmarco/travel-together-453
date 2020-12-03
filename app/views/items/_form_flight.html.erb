@@ -3,7 +3,7 @@
 <div class="container" data-controller="future-controller">
       <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category  %>
-        <%= f.input :start_date  %>
+        <%= f.input :start_date, as: :string, input_html: {class: "datepicker"} %>
         <%= f.simple_fields_for :flight_details do |fd| %>
           <%= fd.input :airline %>
           <%= fd.input :flight_number %>

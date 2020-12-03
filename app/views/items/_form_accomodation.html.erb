@@ -4,7 +4,7 @@
       <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category %>
         <%= f.input :name %>
-        <%= f.input :start_date  %>
+        <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
         <%= f.input :end_date %>
         <%= f.input :address %>
         <%= f.input :url %>

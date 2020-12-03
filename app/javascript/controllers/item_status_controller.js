@@ -3,7 +3,7 @@ import { Controller } from "stimulus"
 let statusArr = ["Pending", "Approved", "Booked"]
 let categoryArr = ["Flight", "Accommodation", "Activity"]
 
-const trigger = (filterParams) => {
+const statusArrUpdate = (filterParams) => {
   if (statusArr.includes(filterParams)){
       const index = statusArr.indexOf(filterParams)
       statusArr.splice(index, 1);
@@ -41,19 +41,19 @@ export default class extends Controller {
 
   pending(event) {
     event.preventDefault();
-    trigger("Pending")
+    statusArrUpdate("Pending")
     fetchStatusResults(this)
   }
 
   approved(event) {
     event.preventDefault();
-    trigger("Approved")
+    statusArrUpdate("Approved")
     fetchStatusResults(this)
   }
 
   booked(event) {
     event.preventDefault();
-    trigger("Booked")
+    statusArrUpdate("Booked")
     fetchStatusResults(this)
   }
 

@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new(category: params[:category])
-    if @item.category == 'Flight'
+    if @item.category == 'flight'
       @flight_detail = FlightDetail.new
     end
 

@@ -62,7 +62,33 @@ puts "Creating trip and items"
       )
     newitem.trip = newtrip
     newitem.user = newtrip.user
+    newitem.price = rand(0..250)
+    newitem.url = 'www.sample.com'
+
+    case newitem.category
+    when "Accommodation"
+      newitem.name = Faker::Hipster.word
+      newitem.start_date = newitem.trip.start_date
+      newitem.end_date = newitem.trip.end_date
+    when "Activity"
+      newitem.name = Faker::Restaurant.name
+      newitem.address = Faker::Address.street_address
+      newitem.start_date = newitem.trip.start_date + rand(0..2)
+    end
+
     newitem.save!
+
+    if newitem.category == 'Flight'
+      fd = FlightDetail.new(
+        airline: ['Air Asia', 'Singapore Airline', 'Scoot'].sample,
+        flight_number: ['AA', 'SG', 'SC'].sample+ rand(100..999).to_s,
+        departure_airport: 'SIN',
+        arrival_airport: ['AAA', 'BBB', 'CCC', 'DDD', 'EEE'].sample
+        )
+      fd.item = newitem
+      fd.save!
+    end
+
     puts "#{newitem.category} - #{newitem.status}"
   end
 end

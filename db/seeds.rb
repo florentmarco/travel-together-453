@@ -21,14 +21,14 @@ owner1 = User.new(
   password: '111111',
   name: 'owner1'
 )
-owner1.save
+owner1.save!
 
 owner2 = User.new(
   email: "owner2@gmail.com",
   password: '111111',
   name: "owner2"
 )
-owner2.save
+owner2.save!
 
 puts "Creating trip and items"
 
@@ -51,7 +51,7 @@ puts "Creating trip and items"
     end_date: end_date,
     invite_token: rand(999999999)
   )
-  newtrip.save
+  newtrip.save!
   puts
   puts "#{newtrip.name.upcase}"
 
@@ -62,7 +62,7 @@ puts "Creating trip and items"
       )
     newitem.trip = newtrip
     newitem.user = newtrip.user
-    newitem.save
+    newitem.save!
     puts "#{newitem.category} - #{newitem.status}"
   end
 end

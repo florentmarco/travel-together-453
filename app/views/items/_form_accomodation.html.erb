@@ -1,15 +1,15 @@
-<h2>add accomodation form</h2>
-
-<div class="container" data-controller="future-controller">
-      <%= simple_form_for [@trip, @item] do |f| %>
+<div class="container" data-controller="future-controller" style="padding: 60px;">
+   <h2>Add Lodging</h2>
+   <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category %>
         <%= f.input :name %>
-        <%= f.input :start_date  %>
-        <%= f.input :end_date %>
+        <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
+        <%= f.input :end_date, as: :string, input_html: {class: "datepicker"} %>
         <%= f.input :address %>
         <%= f.input :url %>
         <%= f.input :price %>
-        <%= f.submit %>
-      <% end %>
-    </span>
+        <%= f.submit "create", class: "btn btn-primary"%>
+    <% end %>
+  </span>
 </div>
+

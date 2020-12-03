@@ -1,4 +1,5 @@
 import { Controller } from "stimulus";
+import flatpickr from "flatpickr";
 
 export default class extends Controller {
   static targets = [ "category", "form" ];
@@ -9,7 +10,12 @@ export default class extends Controller {
     const url = this.data.get("url") + `?category=${category}`
     fetch(url)
       .then(res => res.text())
-      .then(data => this.formTarget.innerHTML = data
+      .then(data => {
+        this.formTarget.innerHTML = data ;
+        flatpickr(".datepicker", {
+            minDate: "today",
+        });
+      }
     )
   }
 }

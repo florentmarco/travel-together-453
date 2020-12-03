@@ -7,7 +7,7 @@ export default class extends Controller {
   serve(event) {
     const category = event.target.dataset.item
     console.log(category)
-    const url = this.data.get("url") + `?category=${category}`
+    const url = this.data.get("url") + "?category=" + category
     fetch(url)
       .then(res => res.text())
       .then(data => {

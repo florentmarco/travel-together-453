@@ -9,7 +9,12 @@ class MessagesController < ApplicationController
     authorize @message
 
     if @message.save
-      redirect_to trip_path(@trip, anchor: "message-#{@message.id}")
+      TripChannel.broadcast_to(
+        @trip,
+        render_to_string(partial: "message", locals: { message: @message })
+      )
+      # redirect_to trip_path(@trip, anchor: "message-#{@message.id}")
+
     else
       render "trip/show"
     end

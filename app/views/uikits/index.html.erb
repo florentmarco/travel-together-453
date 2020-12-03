@@ -4,7 +4,7 @@
 </div>
 <hr>
 
-  <p>Banner</p>
+<p>Banner</p>
 <div class="banner">
   <div class="container">
     <h1>Travel Together</h1>
@@ -32,26 +32,25 @@
 </div>
 
 
-<div class="container">
-  <p>Card Trip Past Component</p>
-  <div class="card-product">
-    <%= image_tag ("cardtrip.jpg") %>
-    <div class="card-product-infos">
-      <div class="product-info-main">
-        <h2>Hanoi Trip</h2>
-        <p>SAT, NOV 21 - THU, DEC 10, 2020</p>
-      </div>
-      <div class="clock d-flex">
-        <i class="far fa-clock"></i>
-        <p>20 days, today</p>
-      </div>
-    </div>
+<hr>
 
+<div class="container">
+  <div class="past-box d-flex">
+  <!-- <p>Card Trip Past Component</p> -->
+  <div class="cardTripPast" style="background-image: url(<%= image_path('cardtrip.jpg') %>)">
+    <div class="past-product-info-main">
+      <h2>Hanoi Trip</h2>
+      <p>SAT, NOV 21 - THU, DEC 10, 2020</p>
+    </div>
+  </div>
+  <div class="cardTripPast" style="background-image: url(<%= image_path('cardtrip.jpg') %>)">
+    <div class="past-product-info-main">
+      <h2>Hanoi Trip</h2>
+      <p>SAT, NOV 21 - THU, DEC 10, 2020</p>
+    </div>
   </div>
 </div>
-
-
-
+</div>
 
 <hr>
 
@@ -147,7 +146,7 @@
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-    <p class="approved-tag"> APPROVED </p>
+        <p class="approved-tag"> APPROVED </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
@@ -378,9 +377,9 @@
     <div class="footer-btn-create">
       <%= link_to "+", "#", class: "btn-main" %>
     </div>
-      <div class="footer-items">
-        <a href="#"><i class="far fa-bell"></i></a>
-      </div>
+    <div class="footer-items">
+      <a href="#"><i class="far fa-bell"></i></a>
+    </div>
     <div class="footer-items">
       <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
     </div>

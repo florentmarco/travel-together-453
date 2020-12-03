@@ -29,10 +29,14 @@ import { toggleDateInputs } from "../plugins/flatpickr";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { initTripCable } from '../channels/trip_channel';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
+  initTripCable();
+
   toggleDateInputs();
   const flightTab = document.querySelector("#flightTab")
   const accommodationTab = document.querySelector("#accommodationTab")

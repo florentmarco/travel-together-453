@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import "../plugins/flatpickr";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -31,4 +32,50 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
+  const flightTab = document.querySelector("#flightTab")
+  const accommodationTab = document.querySelector("#accommodationTab")
+  const activityTab = document.querySelector("#activityTab")
+  const pendingTab = document.querySelector("#pendingTab")
+  const approvedTab = document.querySelector("#approvedTab")
+  const bookedTab = document.querySelector("#bookedTab")
+
+  const wipeCategoryActive = () => {
+    flightTab.classList.remove("active");
+    accommodationTab.classList.remove("active");
+    activityTab.classList.remove("active");
+  }
+
+  const resetStatusActive = () => {
+    pendingTab.checked = "false";
+    approvedTab.checked = "false";
+    bookedTab.checked = "false";
+    pendingTab.checked = "true";
+    approvedTab.checked = "true";
+    bookedTab.checked = "true";
+  }
+
+  // if condition to prevent error on other pages
+  if (flightTab) {
+    flightTab.addEventListener("click", (event) => {
+      wipeCategoryActive()
+      resetStatusActive()
+      event.currentTarget.classList.add("active");
+    });
+
+    accommodationTab.addEventListener("click", (event) => {
+      wipeCategoryActive()
+      resetStatusActive()
+      event.currentTarget.classList.add("active");
+    });
+
+    activityTab.addEventListener("click", (event) => {
+      wipeCategoryActive()
+      resetStatusActive()
+      event.currentTarget.classList.add("active");
+    });
+  }
+
 });
+
+import "controllers"

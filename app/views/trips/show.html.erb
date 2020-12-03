@@ -4,10 +4,118 @@
   <p> <%= @trip.name %> </p>
   <%= @trip.start_date %> <%= @trip.end_date %>
 
-  <%= link_to 'Edit', edit_trip_path(@trip) %>
-  <%= link_to 'Back', trips_path %>
-  <%= link_to  "Add Plan" %>
+  <ul>
+    <% @trip.items.each do |item| %>
+      <li><%= item.category %> <%= item.price %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary" %>
+  <%= link_to 'Back', trips_path, class: "btn btn-primary" %>
+  <%= link_to "Add Plan",  class: "btn btn-primary" %>
   <hr>
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: http://localhost:3000/trips/<%= @trip.id %>?token=<%= @trip.invite_token %> </p>
+
+  <hr>
+
+  <h3>Messages </h3>
+  <div id="messages" data-trip-id="<%= @trip.id %>">
+    <% @trip.messages.each do |message| %>
+      <div class="message-container" id="message-<%= message.id %>">
+        <i class="author">
+          <span><%= message.user.name %></span>
+          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        </i>
+        <p><%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [ @trip, @message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message ##{@trip.name}" %>
+    <%= f.submit %>
+  <% end %>
+
+  <hr>
+
+  <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
+    <div class="d-flex">
+      <ul class="list-inline tabs-underlined">
+        <li>
+          <%= link_to "Flight", "#", id: "flightTab", class: "tab-underlined active", "data-action": 'click->item-status#flight' %>
+        </li>
+        <li>
+          <%= link_to "Accommodation", "#", id: "accommodationTab", class: "tab-underlined active", "data-action": 'click->item-status#accommodation' %>
+        </li>
+        <li>
+          <%= link_to "Activity", "#", id: "activityTab", class: "tab-underlined active", "data-action": 'click->item-status#activity' %>
+        </li>
+      </ul>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filter
+        </button>
+        <div class="dropdown-menu">
+          <div class="form-check ml-3" >
+            <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
+            <label class="form-check-label" for="dropdownCheck2">
+              Pending
+            </label>
+          </div>
+          <div class="form-check ml-3" >
+            <input id= "approvedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#approved'>
+            <label class="form-check-label" for="dropdownCheck2">
+              Approved
+            </label>
+          </div>
+          <div class="form-check ml-3" >
+            <input id= "bookedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#booked'>
+            <label class="form-check-label" for="dropdownCheck2">
+              Booked
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div data-target='item-status.items'>
+      <%= render partial: 'items/item', collection: @trip.items %>
+    </div>
+
+    <div class="dropdown" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
+      <span data-target="item-form.category" type="text"></span>
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Add Plan
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <p data-action="click->item-form#serve" data-item="flight" class="dropdown-item" >Flight</p>
+        <p data-action="click->item-form#serve" data-item="accomodation" class="dropdown-item" >Accomodation</p>
+        <p data-action="click->item-form#serve" data-item="activity" class="dropdown-item" >Activity</p>
+      </div>
+      <span data-target="item-form.form">
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="dropdown" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
+    <span data-target="item-form.category" type="text"></span>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      type
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <p data-action="click->item-form#serve" data-item="flight" class="dropdown-item" >Flight</p>
+      <p data-action="click->item-form#serve" data-item="accomodation" class="dropdown-item" >Accomodation</p>
+      <p data-action="click->item-form#serve" data-item="activity" class="dropdown-item" >Activity</p>
+    </div>
+    <span data-target="item-form.form">
+    </span>
+  </div>
+
+<!-- closing div for container -->
 </div>

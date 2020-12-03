@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_165859) do
+ActiveRecord::Schema.define(version: 2020_11_28_062444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,20 @@ ActiveRecord::Schema.define(version: 2020_11_26_165859) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
+    t.string "category"
     t.index ["trip_id"], name: "index_items_on_trip_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_messages_on_trip_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -110,6 +122,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_165859) do
   add_foreign_key "guests", "users"
   add_foreign_key "items", "trips"
   add_foreign_key "items", "users"
+  add_foreign_key "messages", "trips"
+  add_foreign_key "messages", "users"
   add_foreign_key "trips", "users"
   add_foreign_key "votes", "items"
   add_foreign_key "votes", "users"

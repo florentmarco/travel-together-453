@@ -1,7 +1,6 @@
-<h2>add activity form</h2>
 
-
-<div class="container" data-controller="future-controller">
+<div class="container" data-controller="future-controller" style="padding: 60px;">
+      <h2>Add Activity</h2>
       <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category %>
         <%= f.input :name %>
@@ -9,7 +8,7 @@
         <%= f.input :address %>
         <%= f.input :url %>
         <%= f.input :price %>
-        <%= f.submit %>
+        <%= f.submit "create", class: "btn btn-primary"%>
       <% end %>
     </span>
 </div>

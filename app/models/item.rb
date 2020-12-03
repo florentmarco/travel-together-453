@@ -7,7 +7,7 @@ class Item < ApplicationRecord
 
   has_many :flight_details
 
-  validates :category, inclusion: { in: %w(flight accomodation activity) }
+  validates :category, inclusion: { in: %w(Flight Accommodation Activity) }
 
   include PgSearch::Model
   pg_search_scope :search_by_status,

@@ -17,9 +17,9 @@ class ItemsController < ApplicationController
   end
   @items = @status_filter
 
-  render partial: 'items/items', locals: { items: @items }
+  render partial: 'items/item', collection: @items
   end
-  
+
   def new
     @item = Item.new(category: params[:category])
     if @item.category == 'flight'

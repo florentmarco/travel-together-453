@@ -7,13 +7,28 @@
       <a href="#"><i class="fas fa-search"></i></a>
     </div>
     <div class="footer-btn-create">
-      <%= link_to "+", "#", class: "btn-main" %>
+      <%= link_to "+", new_trip_path, class: "btn-main" %>
     </div>
       <div class="footer-items">
         <a href="#"><i class="far fa-bell"></i></a>
       </div>
     <div class="footer-items">
-      <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Account", edit_user_registration_path, method: :get, class: "dropdown-item"%>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+      <!--<img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />-->
     </div>
   </div>
 </div>

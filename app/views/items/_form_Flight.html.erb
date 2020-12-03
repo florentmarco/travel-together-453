@@ -1,0 +1,18 @@
+<div class="container" data-controller="future-controller" style="padding: 60px;">
+  <span>
+   <h2>Add Flight</h2>
+    <%= simple_form_for [@trip, @item] do |f| %>
+      <%= f.hidden_field :category  %>
+      <%= f.input :start_date, as: :string, input_html: {class: "datepicker"} %>
+      <%= f.simple_fields_for :flight_details do |fd| %>
+        <%= fd.input :airline %>
+        <%= fd.input :flight_number %>
+        <%= fd.input :departure_airport %>
+        <%= fd.input :arrival_airport %>
+      <% end %>
+      <%= f.input :url %>
+      <%= f.input :price %>
+      <%= f.submit "create", class: "btn btn-primary" %>
+    <% end %>
+  </span>
+</div>

@@ -27,7 +27,7 @@
 
   <hr>
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
-  <p> Invite link: http://localhost:3000/trips/<%= @trip.id %>?token=<%= @trip.invite_token %> </p>
+  <p> Invite link: <%= request.domain %>/trips/<%= @trip.id %>?token=<%= @trip.invite_token %> </p>
 
   <hr>
 

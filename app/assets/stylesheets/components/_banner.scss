@@ -1,6 +1,6 @@
 .banner {
   background-size: cover;
-  background-image: url("banner.jpg");
+  background-image: url("banner2.jpg");
   background-position: center;
   height: 80px;
   width: 100%;
@@ -9,12 +9,12 @@
 }
 
 .banner h1 {
-  margin: 0;
-
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 12px;
+  margin-top: -20px;
+  color: #436E96;
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 24px;
   font-weight: bold;
+
 }
 
 // .banner p {

@@ -1,0 +1,14 @@
+.unvoted {
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  background-image: url("heart.png");
+  background-size: cover;
+}
+
+.voted {
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  background: red;
+}

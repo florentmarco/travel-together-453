@@ -1,6 +1,6 @@
 
 <% if item.category == "Activity" %>
-  <div class="action-card">
+  <div class="action-card mb-2">
     <div class="action-card-top d-flex">
       <div class="action-card-main-activity d-flex">
         <div class="action-card-main-activity-image">
@@ -26,13 +26,13 @@
         <div class="tag">
           <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
         </div>
-        <div class="bstrip-like d-flex">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <%= link_to "vote", trip_item_votes_path(item.trip, item), method: :post %>
+        <div class="bstrip-like d-flex", data-controller = "vote">
           <% if current_user.votes.count > 0 %>
-            <%= link_to "unvote", vote_path(current_user.votes.first), method: :delete %>
+            <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="/votes/<%= item.id %> "> </div>
+          <% else %>
+            <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="/trips/<%= item.trip.id %>/items/<%= item.id %>/votes"> </div>
           <% end %>
-          <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
+          <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
         </div>
       </div>
       <div class="btn">
@@ -40,10 +40,9 @@
       </div>
     </div>
   </div>
-  <hr>
 
 <% elsif item.category == "Flight" %>
-  <div class="action-card">
+  <div class="action-card mb-2">
     <div class="action-card-top d-flex">
       <div class="action-card-main-flight">
         <div class="action-card-main-flight-top d-flex">
@@ -95,10 +94,9 @@
     </div>
   </div>
 </div>
-  <hr>
 
 <% elsif item.category == "Accommodation" %>
-  <div class="action-card">
+  <div class="action-card mb-2">
     <div class="action-card-top d-flex">
       <div class="action-card-main-accomodation d-flex">
         <div class="action-card-main-accomodation-image">
@@ -144,18 +142,14 @@
     </div>
   </div>
 </div>
-  <hr>
 
 <% else %>
   <p>category not recognize</p>
   <hr>
 <% end %>
 
-
-
 <!--   <p> Item_id: <%= item.id %> </p>
   <p> Trip_id: <%= item.trip_id %> </p>
   <p> Category: <%= item.category %> </p>
   <p> Status: <%= item.status %> </p>
   <hr> -->
-

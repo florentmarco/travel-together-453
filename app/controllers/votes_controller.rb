@@ -7,15 +7,32 @@ class VotesController < ApplicationController
     @vote.user = current_user
     @vote.item = @item
     @vote.save
+    @votecount = @item.votes
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { votecount: @votecount } }
+    end
 
     authorize @vote
+    authorize @item
+    authorize @votecount
   end
 
   def destroy
-    @vote = Vote.find(params[:id])
+    @item = Item.find(params[:id])
+    @vote = @item.votes.select { |vote| vote.user = current_user }
     @vote.destroy
+    @votecount = @item.votes
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { votecount: @votecount } }
+    end
 
     authorize @vote
+    authorize @item
+    authorize @votecount
   end
 
   # private

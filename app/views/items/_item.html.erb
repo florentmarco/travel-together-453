@@ -9,7 +9,6 @@
         <div class="action-card-main-activity-name">
           <p class="name"> <%= item.name %> </p>
           <p class="date"><%= item.start_date %></p>
-
         </div>
       </div>
       <div class="action-card-pricecard">
@@ -25,7 +24,7 @@
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="pending-tag"> <%= item.status.capitalize %> </p>
+          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
         </div>
         <div class="bstrip-like d-flex">
           <%= image_tag "heart.png", class: "heart mr-1"%>
@@ -79,7 +78,7 @@
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-    <p class="approved-tag"> APPROVED </p>
+    <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
@@ -125,7 +124,7 @@
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-        <p class="booked-tag">BOOKED</p>
+        <p class= "<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>

@@ -13,7 +13,6 @@ require "open-uri"
 puts "Deleting databases"
 Trip.destroy_all
 User.destroy_all
-Item.destroy_all
 
 puts "Creating users"
 owner1 = User.new(
@@ -76,18 +75,18 @@ puts "Creating trip and items"
       newitem.start_date = newitem.trip.start_date + rand(0..2)
     end
 
-    newitem.save!
-
     if newitem.category == 'Flight'
       fd = FlightDetail.new(
         airline: ['Air Asia', 'Singapore Airline', 'Scoot'].sample,
-        flight_number: ['AA', 'SG', 'SC'].sample+ rand(100..999).to_s,
+        flight_number: ['AA', 'SG', 'SC'].sample + rand(100..999).to_s,
         departure_airport: 'SIN',
         arrival_airport: ['AAA', 'BBB', 'CCC', 'DDD', 'EEE'].sample
         )
       fd.item = newitem
       fd.save!
     end
+
+    newitem.save!
 
     puts "#{newitem.category} - #{newitem.status}"
   end

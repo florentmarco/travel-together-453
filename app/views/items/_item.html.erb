@@ -1,5 +1,5 @@
 
-<% if item.category == 'Activity' %>
+<% if item.category == "Activity" %>
   <div class="action-card">
     <div class="action-card-top d-flex">
       <div class="action-card-main-activity d-flex">
@@ -24,7 +24,7 @@
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="pending-tag"> <%= item.status.capitalize %> </p>
+          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
         </div>
         <div class="bstrip-like d-flex">
           <%= image_tag "heart.png", class: "heart mr-1"%>
@@ -42,7 +42,7 @@
   </div>
   <hr>
 
-<% elsif item.category == 'Flight' %>
+<% elsif item.category == "Flight" %>
   <div class="action-card">
     <div class="action-card-top d-flex">
       <div class="action-card-main-flight">
@@ -53,10 +53,10 @@
             <p class="airport"><%= item.flight_details.first.departure_airport %></p>
           </div>
           <div class="maincard-flight-duration">
-           <div>
-            <p class="duration-time">10h00</p>
-          </div>
-          <div class="line">
+            <div>
+              <p class="duration-time">10h00</p>
+            </div>
+            <div class="line">
           </div>
         </div>
         <div class="maincard-arr-flight">
@@ -83,7 +83,7 @@
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-    <p class="approved-tag"> APPROVED </p>
+        <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
@@ -94,9 +94,10 @@
       <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
     </div>
   </div>
+</div>
   <hr>
 
-<% elsif item.category == 'Accommodation' %>
+<% elsif item.category == "Accommodation" %>
   <div class="action-card">
     <div class="action-card-top d-flex">
       <div class="action-card-main-accomodation d-flex">
@@ -106,11 +107,13 @@
         <div class="action-card-main-accomodation-name">
           <p class="name"><%= item.name %></p>
           <p class="address"><%= item.address %></p>
+        </div>
           <div class="action-card-main-accomodation-date d-flex">
             <div class="check-in">
               <p>IN</p>
               <p>OUT</p>
             </div>
+            <div>
               <p style="font-size:12px" class="check-in"><%= item.start_date %></p>
               <p style="font-size:12px" class="check-out"><%= item.end_date %></p>
           </div>
@@ -126,11 +129,10 @@
         </div>
       </div>
     </div>
-  </div>
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-        <p class="booked-tag">BOOKED</p>
+        <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
@@ -141,6 +143,7 @@
       <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
     </div>
   </div>
+</div>
   <hr>
 
 <% else %>
@@ -155,3 +158,4 @@
   <p> Category: <%= item.category %> </p>
   <p> Status: <%= item.status %> </p>
   <hr> -->
+

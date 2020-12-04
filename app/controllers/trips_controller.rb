@@ -50,7 +50,6 @@ class TripsController < ApplicationController
       @guest = Guest.new
       @guest.trip = @trip
       @guest.user = current_user
-
       @guest.save
       @trip
     else

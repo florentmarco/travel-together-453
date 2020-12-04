@@ -9,7 +9,6 @@
         <div class="action-card-main-activity-name">
           <p class="name"> <%= item.name %> </p>
           <p class="date"><%= item.start_date %></p>
-
         </div>
       </div>
       <div class="action-card-pricecard">
@@ -29,7 +28,11 @@
         </div>
         <div class="bstrip-like d-flex">
           <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> 4 </p>
+          <%= link_to "vote", trip_item_votes_path(item.trip, item), method: :post %>
+          <% if current_user.votes.count > 0 %>
+            <%= link_to "unvote", vote_path(current_user.votes.first), method: :delete %>
+          <% end %>
+          <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
         </div>
       </div>
       <div class="btn">
@@ -38,6 +41,7 @@
     </div>
   </div>
   <hr>
+
 <% elsif item.category == 'Flight' %>
   <div class="action-card">
     <div class="action-card-top d-flex">
@@ -83,7 +87,7 @@
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
-        <p class= "mb-0 font-smaller"> 4 </p>
+        <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
       </div>
     </div>
     <div class="btn">
@@ -91,6 +95,7 @@
     </div>
   </div>
   <hr>
+
 <% elsif item.category == 'Accommodation' %>
   <div class="action-card">
     <div class="action-card-top d-flex">
@@ -129,7 +134,7 @@
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
-        <p class= "mb-0 font-smaller"> 4 </p>
+        <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
       </div>
     </div>
     <div class="btn">
@@ -137,6 +142,7 @@
     </div>
   </div>
   <hr>
+
 <% else %>
   <p>category not recognize</p>
   <hr>

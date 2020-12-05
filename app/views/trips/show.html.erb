@@ -21,11 +21,11 @@
 
   <hr>
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
-  <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip, host: request.host) %>?token=<%= @trip.invite_token %> </p>
+  <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
   <form action="/email">
     <label for="email">Send to:  </label>
     <input type="text" name="email" placeholder="Enter an email address"><br>
-    <input type="hidden" name="token" value="<%= Rails.application.routes.url_helpers.trip_url(@trip, host: request.host) %>?token=<%= @trip.invite_token %>">
+    <input type="hidden" name="token" value="<%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %>">
     <input type="hidden" name="subject" value="Your friend <%= @trip.user.name %> has invited you to the <%= @trip.location %> trip">
     <input type="hidden" name="trip_id" value="<%= @trip.id %>">
     <input type="hidden" name="trip_name" value="<%= @trip.location %>">

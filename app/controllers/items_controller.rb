@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new(category: params[:category])
     if @item.category == 'Flight'
+      flight_detail_params
       @flight_detail = FlightDetail.new
     end
 
@@ -32,6 +33,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    flight_detail_params if @item.category == 'Flight'
     # @item.category = params[:category]
     @item.user = current_user
     @item.trip = @trip
@@ -48,5 +50,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:category, :start_date, :end_date, :name, :address, :price, :url)
+  end
+
+  def flight_detail_params
+    params.require(:flight_detail).permit(:airline, :flight_number, :departure_airport, :arrival_airport)
   end
 end

@@ -15,13 +15,11 @@ class VotesController < ApplicationController
     end
 
     authorize @vote
-    authorize @item
-    authorize @votecount
   end
 
   def destroy
     @item = Item.find(params[:id])
-    @vote = @item.votes.select { |vote| vote.user = current_user }
+    @vote = @item.selected_vote(current_user)
     @vote.destroy
     @votecount = @item.votes
 
@@ -31,13 +29,5 @@ class VotesController < ApplicationController
     end
 
     authorize @vote
-    authorize @item
-    authorize @votecount
   end
-
-  # private
-
-  # def vote_params
-  #   params.require(:votes).permit()
-  # end
 end

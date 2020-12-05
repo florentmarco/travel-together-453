@@ -15,10 +15,12 @@ Rails.application.routes.draw do
       resources :votes, only: [:create]
     end
   end
+
   resources :votes, only: [:destroy]
 
   get 'uikit', to: 'uikits#index'
 
   patch "regenerate_invite_link/:id", to: "trips#regenerate_invite_link", as: :regenerate_invite_link
+  get "email", to: "trips#email"
 
 end

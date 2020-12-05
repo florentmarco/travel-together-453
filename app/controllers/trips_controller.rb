@@ -3,7 +3,7 @@ require 'open-uri'
 
 class TripsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link]
+  before_action :set_trip, only: [:show,  :edit, :update, :destroy, :regenerate_invite_link]
 
   def index
     # get array of trips current user created (see TripPolicy)
@@ -60,6 +60,20 @@ class TripsController < ApplicationController
   def regenerate_invite_link
     @trip.update(invite_token: rand(99999999))
     redirect_to trip_path(@trip)
+  end
+
+  def email
+   skip_authorization
+   token = params[:token]
+   subject=params[:subject]
+   user = params[:email]
+   trip_id = params[:trip_id]
+   start_date = params[:trip_sdate]
+   end_date = params[:trip_edate]
+   trip_name = params[:trip_name]
+   trip_user = params[:trip_user]
+   TripMailer.share(token,user,subject,start_date,end_date,trip_name,trip_user).deliver
+   redirect_to trip_path(trip_id), notice: "Email successfully sent"
   end
 
   def new

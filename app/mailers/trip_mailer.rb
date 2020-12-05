@@ -5,8 +5,12 @@ class TripMailer < ApplicationMailer
   #
   #   en.trip_mailer.share.subject
   #
-  def share(data,email,subject)
-    @body = data
+  def share(token,email,subject,start_date,end_date,trip_name,trip_user)
+    @token = token
+    @trip_start_date = start_date
+    @trip_end_date = end_date
+    @trip_name = trip_name
+    @trip_user = trip_user
     mail(to: email, subject: subject)
   end
 end

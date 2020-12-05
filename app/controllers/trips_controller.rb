@@ -63,6 +63,13 @@ class TripsController < ApplicationController
     redirect_to trip_path(@trip)
   end
 
+  def email
+   data = params[:body]
+   subject=params[:subject]
+   user = params[:email]
+   TripMailer.share(data,user,subject).deliver
+  end
+
   def new
     @trip = Trip.new
     authorize @trip

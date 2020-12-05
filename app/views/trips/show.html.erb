@@ -22,6 +22,14 @@
   <hr>
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: <%= request.domain %>/trips/<%= @trip.id %>?token=<%= @trip.invite_token %> </p>
+  <form action="/email">
+    <label for="email">Send to:  </label>
+    <input type="text" name="email" placeholder="Enter an email address"><br>
+    <input type="hidden" name="body" value="<%= request.domain %>/trips/<%= @trip.id %>?token=<%= @trip.invite_token %>">
+    <input type="hidden" name="subject" value="I invited you as a planner to the <%= @trip.location %> trip">
+    <input type="submit" value="Send" class="btn btn-primary">
+    <input type="submit" value="Cancel" class="btn btn-danger">
+  </form>
 
   <hr>
 

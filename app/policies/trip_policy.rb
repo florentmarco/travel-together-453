@@ -25,4 +25,8 @@ class TripPolicy < ApplicationPolicy
   def regenerate_invite_link?
     true
   end
+
+  def email?
+    true
+  end
 end

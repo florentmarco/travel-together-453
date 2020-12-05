@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :tasks
 
-  has_many :flight_details
+  has_one :flight_detail
 
   validates :category, inclusion: { in: %w(Flight Accommodation Activity) }
 

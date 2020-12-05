@@ -26,6 +26,8 @@
 
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
+  <hr>
+  <p> Share via Email : </p>
   <form action="/email">
     <label for="email">Send to:  </label>
     <input type="text" name="email" placeholder="Enter an email address"><br>
@@ -35,7 +37,7 @@
     <input type="hidden" name="trip_name" value="<%= @trip.location %>">
     <input type="hidden" name="trip_sdate" value="<%= @trip.start_date %>">
     <input type="hidden" name="trip_edate" value="<%= @trip.end_date %>">
-    <input type="hidden" name="trip_user" value="<%= @trip.user.name %>">
+    <input type="hidden" name="trip_user" value="<%= @trip.user.name %>"><br>
     <input type="submit" value="Send" class="btn btn-primary">
     <input type="submit" value="Cancel" class="btn btn-danger">
   </form>

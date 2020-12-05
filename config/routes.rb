@@ -11,9 +11,12 @@ Rails.application.routes.draw do
     resources :messages, only: :create
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    resources :items, only: [:index, :new, :create]
+    resources :items, only: [:index, :new, :create] do
+      resources :votes, only: [:create]
+    end
   end
 
+  resources :votes, only: [:destroy]
 
   get 'uikit', to: 'uikits#index'
 

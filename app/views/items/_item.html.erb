@@ -1,6 +1,6 @@
 
-<% if item.category == 'Activity' %>
-  <div class="action-card">
+<% if item.category == "Activity" %>
+  <div class="action-card mb-2">
     <div class="action-card-top d-flex">
       <div class="action-card-main-activity d-flex">
         <div class="action-card-main-activity-image">
@@ -9,7 +9,6 @@
         <div class="action-card-main-activity-name">
           <p class="name"> <%= item.name %> </p>
           <p class="date"><%= item.start_date %></p>
-
         </div>
       </div>
       <div class="action-card-pricecard">
@@ -25,11 +24,15 @@
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="pending-tag"> <%= item.status.capitalize %> </p>
+          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
         </div>
-        <div class="bstrip-like d-flex">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> 4 </p>
+        <div class="bstrip-like d-flex", data-controller = "vote">
+          <% if current_user.votes.count > 0 %>
+            <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="/votes/<%= item.id %> "> </div>
+          <% else %>
+            <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="/trips/<%= item.trip.id %>/items/<%= item.id %>/votes"> </div>
+          <% end %>
+          <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
         </div>
       </div>
       <div class="btn">
@@ -37,9 +40,9 @@
       </div>
     </div>
   </div>
-  <hr>
-<% elsif item.category == 'Flight' %>
-  <div class="action-card">
+
+<% elsif item.category == "Flight" %>
+  <div class="action-card mb-2">
     <div class="action-card-top d-flex">
       <div class="action-card-main-flight">
         <div class="action-card-main-flight-top d-flex">
@@ -49,10 +52,10 @@
             <p class="airport"><%= item.flight_details.first.departure_airport %></p>
           </div>
           <div class="maincard-flight-duration">
-           <div>
-            <p class="duration-time">10h00</p>
-          </div>
-          <div class="line">
+            <div>
+              <p class="duration-time">10h00</p>
+            </div>
+            <div class="line">
           </div>
         </div>
         <div class="maincard-arr-flight">
@@ -79,20 +82,22 @@
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-    <p class="approved-tag"> APPROVED </p>
+
+        <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
-        <p class= "mb-0 font-smaller"> 4 </p>
+        <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
       </div>
     </div>
     <div class="btn">
       <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
     </div>
   </div>
-  <hr>
-<% elsif item.category == 'Accommodation' %>
-  <div class="action-card">
+</div>
+
+<% elsif item.category == "Accommodation" %>
+  <div class="action-card mb-2">
     <div class="action-card-top d-flex">
       <div class="action-card-main-accomodation d-flex">
         <div class="action-card-main-accomodation-image">
@@ -101,11 +106,13 @@
         <div class="action-card-main-accomodation-name">
           <p class="name"><%= item.name %></p>
           <p class="address"><%= item.address %></p>
+        </div>
           <div class="action-card-main-accomodation-date d-flex">
             <div class="check-in">
               <p>IN</p>
               <p>OUT</p>
             </div>
+            <div>
               <p style="font-size:12px" class="check-in"><%= item.start_date %></p>
               <p style="font-size:12px" class="check-out"><%= item.end_date %></p>
           </div>
@@ -121,28 +128,26 @@
         </div>
       </div>
     </div>
-  </div>
   <div class="action-card-bstrip d-flex">
     <div class="d-flex align-items-center">
       <div class="tag">
-        <p class="booked-tag">BOOKED</p>
+        <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
       <div class="bstrip-like d-flex">
         <%= image_tag "heart.png", class: "heart mr-1"%>
-        <p class= "mb-0 font-smaller"> 4 </p>
+        <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
       </div>
     </div>
     <div class="btn">
       <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
     </div>
   </div>
-  <hr>
+</div>
+
 <% else %>
   <p>category not recognize</p>
   <hr>
 <% end %>
-
-
 
 <!--   <p> Item_id: <%= item.id %> </p>
   <p> Trip_id: <%= item.trip_id %> </p>

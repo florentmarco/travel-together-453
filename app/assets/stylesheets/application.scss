@@ -12,3 +12,8 @@
 @import "components/index";
 @import "pages/index";
 @import "flatpickr/dist/flatpickr";
+
+// for application html
+body {
+  padding-bottom: 65px;
+}

@@ -33,7 +33,7 @@ const fetchStatusResults = (action) => {
 }
 
 export default class extends Controller {
-  static targets = [ "items" ]
+  static targets = [ "items"]
 
   connect() {
     console.log('connected')
@@ -57,8 +57,16 @@ export default class extends Controller {
     fetchStatusResults(this)
   }
 
+  clearActive() {
+    document.querySelectorAll('.tab-underlined').forEach(tab => {
+      tab.classList.remove('active');
+    })
+  }
+
   flight(event) {
     event.preventDefault();
+    this.clearActive();
+    event.target.classList.add('active');
     categoryArr = ["Flight"]
     statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)
@@ -66,6 +74,8 @@ export default class extends Controller {
 
   accommodation(event) {
     event.preventDefault();
+    this.clearActive();
+    event.target.classList.add('active')
     categoryArr = ["Accommodation"]
     statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)
@@ -73,6 +83,8 @@ export default class extends Controller {
 
   activity(event) {
     event.preventDefault();
+    this.clearActive();
+    event.target.classList.add('active')
     categoryArr = ["Activity"]
     statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)

@@ -10,7 +10,7 @@
         <p class="name"> <%= item.name %> </p>
         <p class="date"><%= item.start_date %></p>
       </div>
-    </div>                         
+    </div>
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
@@ -101,9 +101,13 @@
 
         <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
       </div>
-      <div class="bstrip-like d-flex">
-        <%= image_tag "heart.png", class: "heart mr-1"%>
-        <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
+      <div class="bstrip-like d-flex", data-controller = "vote">
+        <% if item.voted_by?(current_user) %>
+          <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
+        <% else %>
+          <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
+        <% end %>
+        <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
       </div>
     </div>
     <div class="btn">
@@ -147,11 +151,16 @@
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="booked-tag">BOOKED</p>
+          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
+
         </div>
-        <div class="bstrip-like d-flex">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> 4 </p>
+        <div class="bstrip-like d-flex", data-controller = "vote">
+          <% if item.voted_by?(current_user) %>
+            <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
+          <% else %>
+            <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
+          <% end %>
+          <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
         </div>
       </div>
       <div class="btn">

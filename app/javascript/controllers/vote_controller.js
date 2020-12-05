@@ -1,27 +1,5 @@
 import { Controller } from "stimulus"
 
-const voteStatusUpdate = (controller, event) => {
-  if (controller.heartTarget.className == "voted"){
-      controller.heartTarget.classList.remove("voted")
-      controller.heartTarget.classList.add("unvoted")
-      fetchResult(event)
-    } else {
-      controller.heartTarget.classList.remove("unvoted")
-      controller.heartTarget.classList.add("voted")
-      fetchResult(event)
-    }
-}
-
-const fetchResult = (event) => {
-  const url = event.target.dataset.item
-  fetch(url, { headers: { accept: 'application/json' } })
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data);
-    this.countTarget.innerText = data.votecount.length;
-  });
-}
-
 export default class extends Controller {
   static targets = [ "heart", "count" ]
 
@@ -31,6 +9,57 @@ export default class extends Controller {
 
   voting(event) {
     event.preventDefault();
-    voteStatusUpdate(this, event)
+    this.voteStatusUpdate(event)
+  }
+
+  voteStatusUpdate(event) {
+    if (this.heartTarget.className == "voted"){
+      this.heartTarget.classList.remove("voted")
+      this.heartTarget.classList.add("unvoted")
+      this.fetchRemoveVoteResult(event)
+    } else {
+      this.heartTarget.classList.remove("unvoted")
+      this.heartTarget.classList.add("voted")
+      this.fetchAddVoteResult(event)
+    }
+  }
+
+  fetchAddVoteResult (event) {
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+    const str = event.target.dataset.item.split(",")
+    const url = "/trips/${str[0]}/items/${str[1]}/votes"
+    fetch(url, {
+      headers: {
+        accept: 'application/json',
+        "X-CSRF-Token": csrf_token
+      },
+      method: "POST"
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.countTarget.innerText = data.votecount.length;
+    });
+  }
+
+  // data-item="/trips/<%= item.trip.id %>/items/<%= item.id %>/votes"
+  // "[<%= item.trip.id %>,<%= item.id %>]"
+
+  fetchRemoveVoteResult = (event) => {
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+    const str = event.target.dataset.item.split(",")
+    const url = "/votes/${str[1]}"
+    fetch(url, {
+      headers: {
+        accept: 'application/json',
+        "X-CSRF-Token": csrf_token
+      },
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.countTarget.innerText = data.votecount.length;
+    });
   }
 }
+
+// data-item="/votes/<%= item.id %> "

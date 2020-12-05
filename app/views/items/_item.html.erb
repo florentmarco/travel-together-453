@@ -134,7 +134,7 @@
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="booked-tag">BOOKED</p>
+          <p class="booked-tag"><%= item.status.capitalize %></p>
         </div>
         <div class="bstrip-like d-flex">
           <%= image_tag "heart.png", class: "heart mr-1"%>

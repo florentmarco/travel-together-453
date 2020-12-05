@@ -14,7 +14,6 @@ class MessagesController < ApplicationController
         render_to_string(partial: "message", locals: { message: @message })
       )
       # redirect_to trip_path(@trip, anchor: "message-#{@message.id}")
-
     else
       render "trip/show"
     end

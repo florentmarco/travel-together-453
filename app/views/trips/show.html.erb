@@ -46,22 +46,24 @@
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
     <div class="d-flex">
-      <ul class="list-inline tabs-underlined">
-        <li>
-          <%= link_to "Flight", "#", id: "flightTab", class: "tab-underlined active", "data-action": 'click->item-status#flight' %>
-        </li>
-        <li>
-          <%= link_to "Accommodation", "#", id: "accommodationTab", class: "tab-underlined active", "data-action": 'click->item-status#accommodation' %>
-        </li>
-        <li>
-          <%= link_to "Activity", "#", id: "activityTab", class: "tab-underlined active", "data-action": 'click->item-status#activity' %>
-        </li>
-      </ul>
+      <div class="list-inline tabs-underlined">
+        <div>
+          <%= link_to "Flight", "#", class: "tab-underlined active", id: "flightTative", "data-action": 'click->item-status#flight' %>
+        </div>
+        <div>
+          <%= link_to "Accommodation", "#", id: "accommodationTab", class: "tab-underlined", "data-action": 'click->item-status#accommodation' %>
+        </div>
+        <div>
+         <%= link_to "Activity", "#", id: "activityTab", class: "tab-underlined", "data-action": 'click->item-status#activity'  %>
+        </div>
+      </div>
+</div>
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Filter
-        </button>
+
+      <div class="dropdown mb-2 mt-2">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter
+          </button>
         <div class="dropdown-menu">
           <div class="form-check ml-3" >
             <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
@@ -83,9 +85,7 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <hr>
 
     <div data-target='item-status.items'>
       <%= render partial: 'items/item', collection: @trip.items %>

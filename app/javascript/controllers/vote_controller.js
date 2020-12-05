@@ -27,7 +27,7 @@ export default class extends Controller {
   fetchAddVoteResult (event) {
     const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
     const str = event.target.dataset.item.split(",")
-    const url = "/trips/${str[0]}/items/${str[1]}/votes"
+    const url = "/trips/" + str[0] + "/items/" + str[1] + "/votes"
     fetch(url, {
       headers: {
         accept: 'application/json',
@@ -47,7 +47,7 @@ export default class extends Controller {
   fetchRemoveVoteResult = (event) => {
     const csrf_token = document.querySelector('meta[name="csrf-token"]').content;
     const str = event.target.dataset.item.split(",")
-    const url = "/votes/${str[1]}"
+    const url = "/votes/" + str[1]
     fetch(url, {
       headers: {
         accept: 'application/json',

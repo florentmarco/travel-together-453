@@ -2,7 +2,7 @@
   width: 15px;
   height: 15px;
   margin-top: 3px;
-  background-image: url("heart.png");
+  background-image: url("emptyheart.png");
   background-size: cover;
 }
 
@@ -10,5 +10,6 @@
   width: 15px;
   height: 15px;
   margin-top: 3px;
-  background: red;
+  background-image: url("heart.png");
+  background-size: cover;
 }

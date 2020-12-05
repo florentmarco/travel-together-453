@@ -3,26 +3,26 @@ class ItemsController < ApplicationController
   before_action :set_trip, only: [:new, :create]
 
   def index
-  # status filter function
-  if params[:category].present?
-    @category_filter = policy_scope(Item).search_by_category(params[:category]).search_by_id(params[:trip_id])
-  else
-    @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
-  end
+    # status filter function
+    if params[:category].present?
+      @category_filter = policy_scope(Item).search_by_category(params[:category]).search_by_id(params[:trip_id])
+    else
+      @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
+    end
 
-  if params[:status].present? || params[:status] == ""
-    @status_filter = @category_filter.search_by_status(params[:status]).search_by_id(params[:trip_id])
-  else
-    @status_filter = @category_filter
-  end
-  @items = @status_filter
+    if params[:status].present? || params[:status] == ""
+      @status_filter = @category_filter.search_by_status(params[:status]).search_by_id(params[:trip_id])
+    else
+      @status_filter = @category_filter
+    end
+    @items = @status_filter
 
-  render partial: 'items/item', collection: @items
+    render partial: 'items/item', collection: @items
   end
 
   def new
     @item = Item.new(category: params[:category])
-    if @item.category == 'flight'
+    if @item.category == 'Flight'
       @flight_detail = FlightDetail.new
     end
 

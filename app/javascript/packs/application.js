@@ -38,6 +38,7 @@ document.addEventListener('turbolinks:load', () => {
   initTripCable();
 
   toggleDateInputs();
+  const itineraryTab = document.querySelector("#itineraryTab")
   const flightTab = document.querySelector("#flightTab")
   const accommodationTab = document.querySelector("#accommodationTab")
   const activityTab = document.querySelector("#activityTab")
@@ -46,6 +47,7 @@ document.addEventListener('turbolinks:load', () => {
   const bookedTab = document.querySelector("#bookedTab")
 
   const wipeCategoryActive = () => {
+    itineraryTab.classList.remove("active");
     flightTab.classList.remove("active");
     accommodationTab.classList.remove("active");
     activityTab.classList.remove("active");
@@ -63,6 +65,12 @@ document.addEventListener('turbolinks:load', () => {
   // if condition to prevent error on other pages
   if (flightTab) {
     flightTab.addEventListener("click", (event) => {
+      wipeCategoryActive()
+      resetStatusActive()
+      event.currentTarget.classList.add("active");
+    });
+
+    itineraryTab.addEventListener("click", (event) => {
       wipeCategoryActive()
       resetStatusActive()
       event.currentTarget.classList.add("active");

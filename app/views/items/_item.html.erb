@@ -83,7 +83,6 @@
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
         <div class="tag">
-
           <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
         </div>
         <div class="bstrip-like d-flex", data-controller = "vote">
@@ -96,17 +95,7 @@
         </div>
        </div>
        <div class="btn">
-
         <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-
-      <div class="bstrip-like d-flex", data-controller = "vote">
-        <% if item.voted_by?(current_user) %>
-          <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
-        <% else %>
-          <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
-        <% end %>
-        <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
-
       </div>
     </div>
   </div>

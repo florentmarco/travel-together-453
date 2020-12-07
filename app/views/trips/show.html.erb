@@ -28,6 +28,7 @@
   <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
   <hr>
   <p> Share via Email : </p>
+  <!-- TODO: the form should just submit the trip id instead -->
   <form action="/email">
     <label for="email">Send to:  </label>
     <input type="text" name="email" placeholder="Enter an email address"><br>

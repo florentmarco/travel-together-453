@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://travel-together-453.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "https://travel-together-453.herokuapp.com/" }
   config.action_controller.default_url_options = { host: "https://travel-together-453.herokuapp.com" }
   Rails.application.routes.default_url_options[:host] = "https://travel-together-453.herokuapp.com"
   # Settings specified here will take precedence over those in config/application.rb.

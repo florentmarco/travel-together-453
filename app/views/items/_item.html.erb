@@ -11,9 +11,6 @@
         <p class="date"><%= item.start_date %></p>
       </div>
     </div>
-<<<<<<< HEAD
-    <div class="action-card-bstrip d-flex">
-=======
     <div class="action-card-pricecard">
       <div class="price-ellipsis d-flex justify-content-end">
         <%= image_tag "ellipsis.png", class: "ellipsis"%>
@@ -25,7 +22,6 @@
     </div>
   </div>
   <div class="action-card-bstrip d-flex">
->>>>>>> master
       <div class="d-flex align-items-center">
         <div class="tag">
           <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
@@ -90,15 +86,19 @@
 
           <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
         </div>
-        <div class="bstrip-like d-flex">
-          <%= image_tag "heart.png", class: "heart mr-1"%>
-          <p class= "mb-0 font-smaller"> <%= item.votes.count %> </p>
+        <div class="bstrip-like d-flex", data-controller = "vote">
+          <% if item.voted_by?(current_user) %>
+            <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
+          <% else %>
+            <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
+          <% end %>
+          <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
         </div>
-      </div>
-<<<<<<< HEAD
-      <div class="btn">
+       </div>
+       <div class="btn">
+
         <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-=======
+
       <div class="bstrip-like d-flex", data-controller = "vote">
         <% if item.voted_by?(current_user) %>
           <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
@@ -106,7 +106,7 @@
           <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
         <% end %>
         <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
->>>>>>> master
+
       </div>
     </div>
   </div>

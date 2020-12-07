@@ -7,43 +7,16 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show,  :edit, :update, :destroy, :regenerate_invite_link]
 
   def index
-    # get array of trips current user created (see TripPolicy)
-    @trips_i_own = policy_scope(Trip)
-    @trips = policy_scope(Trip).order(start_date: :desc)
-
-    # TODO: remove all commented out codes
-    #@trips.each do |trip|
-    #place_api(trip.location)
-    #end
-
-    # TODO: create an instance method in user.rb instead for this
-    # e.g. current_user.guest_trips
-    # get array of trips instance that current user is a guest of
-    @guest_of_trips = current_user.guests.map do |guest|
-      guest.trip
-    end
-
-    # TODO: create an instance method in user.rb instead for this
-    # combined with the sorting on line 32
-    # e.g. current_user.all_trips
-    @alltrips = (@trips_i_own + @guest_of_trips)
-
-    # all trips sorted in ascending order
-    @alltrips_asc = @alltrips.sort_by do |trip|
-      trip.start_date
-    end
-
-    # TODO: refactor this
-    # all trips sorted in descending order
-    @trips = @alltrips_asc.reverse
+    # set authorisation
+    @trips = policy_scope(Trip)
+    # get all trips that the current user own and is a guest of (logic in user.rb)
+    @trips = current_user.all_trips
   end
 
   def show
     # get array of trips instance that current user is a guest of
     # TODO: create an instance method in user.rb instead for this
-    @guests_trip_arr = current_user.guests.map do |guest|
-      guest.trip
-    end
+    @guests_trip_arr = current_user.guest_of_trips(current_user)
 
     # TODO: i think chatrooms should have it's own page
     @message = Message.new
@@ -149,4 +122,3 @@ class TripsController < ApplicationController
   #  photo_serialised = open(photo_url).read
   #end
 end
-#

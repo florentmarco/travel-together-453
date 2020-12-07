@@ -11,7 +11,7 @@ class TripPolicy < ApplicationPolicy
 
   def show?
     # QN: everyone can see trip even though they're not part of it?
-    # user && (user == record.user || user.admin)
+    # user && ((user == record.user) || user.guest_of_trips(user).include?(@trip))
     true
   end
 

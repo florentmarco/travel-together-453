@@ -10,9 +10,29 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   after_create :send_welcome_email
-  
+
+  def all_trips
+    alltrips = trips_i_own(self) + guest_of_trips(self)
+
+    # sorting
+    alltrips_asc = alltrips.sort_by do |trip|
+      trip.start_date
+    end
+    alltrips_asc.reverse
+  end
+
+  def trips_i_own(user)
+    user.trips
+  end
+
+  def guest_of_trips(user)
+    user.guests.map do |guest|
+      guest.trip
+    end
+  end
+
   private
 
   def send_welcome_email

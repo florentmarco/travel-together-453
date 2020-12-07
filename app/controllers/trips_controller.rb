@@ -35,8 +35,6 @@ class TripsController < ApplicationController
       guest.trip
     end
 
-    @message = Message.new
-
     # allow trip owner to enter
     if @trip.user == current_user
       @trip
@@ -55,6 +53,9 @@ class TripsController < ApplicationController
     else
       redirect_to trips_path
     end
+
+    @chatroom = Chatroom.find_by(trip_id: @trip.id)
+
   end
 
   def regenerate_invite_link
@@ -75,6 +76,9 @@ class TripsController < ApplicationController
     authorize @trip
 
     if @trip.save
+      @chatroom = Chatroom.new(name: @trip.name)
+      @chatroom.trip = @trip
+      @chatroom.save
       redirect_to trip_path(@trip)
     else
       render :new

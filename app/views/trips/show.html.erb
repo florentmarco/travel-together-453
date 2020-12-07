@@ -77,19 +77,6 @@
     </div>
   </div>
 
-  <hr>
-
-  <h3>Messages</h3>
-  <%= simple_form_for [ @trip, @message ], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@trip.name}" %>
-    <%= f.submit %>
-  <% end %>
-
-  <div id="messages" data-trip-id="<%= @trip.id %>">
-    <% @trip.messages.reverse.each do |message| %>
-      <%= render 'messages/message', message: message %>
-    <% end %>
-  </div>
-
+  <%= link_to 'Chat', trip_chatroom_path(@trip, @chatroom), class: "btn btn-primary" %>
 <!-- closing div for container -->
 </div>

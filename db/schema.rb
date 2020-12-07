@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_28_062444) do
+ActiveRecord::Schema.define(version: 2020_12_05_043250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_chatrooms_on_trip_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -57,8 +65,8 @@ ActiveRecord::Schema.define(version: 2020_11_28_062444) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "type"
     t.string "category"
+    t.string "type"
     t.index ["trip_id"], name: "index_items_on_trip_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -69,6 +77,8 @@ ActiveRecord::Schema.define(version: 2020_11_28_062444) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "chatroom_id", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["trip_id"], name: "index_messages_on_trip_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -102,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_062444) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", default: "", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -116,12 +126,14 @@ ActiveRecord::Schema.define(version: 2020_11_28_062444) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "chatrooms", "trips"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "guests", "trips"
   add_foreign_key "guests", "users"
   add_foreign_key "items", "trips"
   add_foreign_key "items", "users"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "trips"
   add_foreign_key "messages", "users"
   add_foreign_key "trips", "users"

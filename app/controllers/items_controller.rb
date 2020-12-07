@@ -1,10 +1,16 @@
 class ItemsController < ApplicationController
+  # TODO: this authenticate_user! should only happened on `applications_controller`
   before_action :authenticate_user!
   before_action :set_trip, only: [:new, :create]
 
+  # TODO: this should be an API flow instead
+  # create an api that your front-end will consume
+  # /items.json => show all items in your db in json
+  # your stimulus controller will be way simpler
   def index
     # status filter function
     if params[:category].present?
+      # QN: why need to chain both search fns?
       @category_filter = policy_scope(Item).search_by_category(params[:category]).search_by_id(params[:trip_id])
     else
       @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
@@ -20,6 +26,7 @@ class ItemsController < ApplicationController
     render partial: 'items/item', collection: @items
   end
 
+  # TODO: no authorization?
   def new
     @item = Item.new(category: params[:category])
     if @item.category == 'Flight'
@@ -30,6 +37,7 @@ class ItemsController < ApplicationController
     render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
   end
 
+  # TODO: no authorization?
   def create
     @item = Item.new(item_params)
     # @item.category = params[:category]
@@ -41,6 +49,7 @@ class ItemsController < ApplicationController
 
   private
 
+  # QN: we're in items_controller but we're authorizing trip?
   def set_trip
     @trip = Trip.find(params[:trip_id])
     authorize @trip

@@ -10,6 +10,7 @@ class TripPolicy < ApplicationPolicy
   end
 
   def show?
+    # QN: everyone can see trip even though they're not part of it?
     # user && (user == record.user || user.admin)
     true
   end
@@ -23,6 +24,7 @@ class TripPolicy < ApplicationPolicy
   end
 
   def regenerate_invite_link?
+    # QN: everyone can generate new link?
     true
   end
 

@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+// TODO: flatpickr is imported twice?
 import "../plugins/flatpickr";
 import { toggleDateInputs } from "../plugins/flatpickr";
 
@@ -37,6 +38,7 @@ document.addEventListener('turbolinks:load', () => {
 
   initTripCable();
 
+  // TODO: create a new plugin for this
   toggleDateInputs();
   const flightTab = document.querySelector("#flightTab")
   const accommodationTab = document.querySelector("#accommodationTab")

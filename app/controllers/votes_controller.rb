@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  # TODO: should put this on application_controller instead
   before_action :authenticate_user!
 
   def create
@@ -9,6 +10,7 @@ class VotesController < ApplicationController
     @vote.save
     @votecount = @item.votes
 
+    # 💙
     respond_to do |format|
       format.html
       format.json { render json: { votecount: @votecount } }
@@ -23,6 +25,7 @@ class VotesController < ApplicationController
     @vote.destroy
     @votecount = @item.votes
 
+    # 💙
     respond_to do |format|
       format.html
       format.json { render json: { votecount: @votecount } }

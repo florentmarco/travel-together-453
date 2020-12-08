@@ -43,66 +43,65 @@
 
 
 <% elsif item.category == "Flight" %>
-<div class="action-card">
-  <div class="action-card-top d-flex">
-    <div class="action-card-main-flight">
-      <div class="action-card-main-flight-top d-flex">
-        <div class="maincard-dep-flight">
-          <p class="time"> 06:35 </p>
-          <p class="date"> <%= item.start_date %>  </p>
-          <p class="airport"><%= item.flight_details.first.departure_airport %></p>
-        </div>
-        <div class="maincard-flight-duration">
-          <div>
-            <p class="duration-time">10h00</p>
+  <div class="action-card">
+    <div class="action-card-top d-flex">
+      <div class="action-card-main-flight">
+        <div class="action-card-main-flight-top d-flex">
+          <div class="maincard-dep-flight">
+            <p class="time"> 06:35 </p>
+            <p class="date"> <%= item.start_date %>  </p>
+            <p class="airport"><%= item.flight_detail.departure_airport %></p>
           </div>
-          <div class="line">
+          <div class="maincard-flight-duration">
+            <div>
+              <p class="duration-time">10h00</p>
+            </div>
+            <div class="line">
+            </div>
+          </div>
+          <div class="maincard-arr-flight">
+            <p class="time"> 14:35 </p>
+            <p class="date"> <%= item.end_date %> </p>
+            <p class="airport"><%= item.flight_detail.arrival_airport%></p>
           </div>
         </div>
-        <div class="maincard-arr-flight">
-          <p class="time"> 14:35 </p>
-          <p class="date"> <%= item.end_date %> </p>
-          <p class="airport"><%= item.flight_details.first.arrival_airport%></p>
+        <div class="action-card-main-flight-bottom">
+          <p class="airline"><%= item.flight_detail.airline %></p>
+          <p class="flight-number"><%= item.flight_detail.flight_number %></p>
         </div>
       </div>
-      <div class="action-card-main-flight-bottom">
-        <p class="airline"><%= item.flight_details.first.airline %></p>
-        <p class="flight-number"><%= item.flight_details.first.flight_number %></p>
+      <div class="action-card-pricecard">
+        <div class="price-ellipsis d-flex justify-content-end">
+          <%= image_tag "ellipsis.png", class: "ellipsis"%>
+        </div>
+        <div class="pricecard-price">
+          <p class="mt-3 mb-0 price"> $<%= item.price %> </p>
+          <p class="mt-0 "> per pax </p>
+        </div>
       </div>
     </div>
-    <div class="action-card-pricecard">
-      <div class="price-ellipsis d-flex justify-content-end">
-        <%= image_tag "ellipsis.png", class: "ellipsis"%>
-      </div>
-      <div class="pricecard-price">
-        <p class="mt-3 mb-0 price"> $<%= item.price %> </p>
-        <p class="mt-0 "> per pax </p>
+    <div class="action-card-bstrip d-flex">
+      <div class="d-flex align-items-center">
+        <div class="tag">
+          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
+        </div>
+        <div class="bstrip-like d-flex", data-controller = "vote">
+          <% if item.voted_by?(current_user) %>
+            <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
+          <% else %>
+            <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
+          <% end %>
+          <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
+        </div>
+       </div>
+       <div class="btn">
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
       </div>
     </div>
   </div>
-  <div class="action-card-bstrip d-flex">
-    <div class="d-flex align-items-center">
-      <div class="tag">
-
-        <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
-      </div>
-      <div class="bstrip-like d-flex", data-controller = "vote">
-        <% if item.voted_by?(current_user) %>
-          <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
-        <% else %>
-          <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
-        <% end %>
-        <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
-      </div>
-    </div>
-    <div class="btn">
-      <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
-    </div>
-  </div>
-</div>
 
 <% elsif item.category == "Accommodation" %>
-<div class="action-card">
+  <div class="action-card">
     <div class="action-card-top d-flex">
       <div class="action-card-main-accomodation d-flex">
         <div class="action-card-main-accomodation-image">

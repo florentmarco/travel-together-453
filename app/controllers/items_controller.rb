@@ -36,6 +36,10 @@ class ItemsController < ApplicationController
     @item.user = current_user
     @item.trip = @trip
     @item.save!
+    if @item.category == 'Flight'
+      @flight_detail = FlightDetail.new(flight_detail_params)
+      @item.flight_detail = @flight_detail
+    end
     redirect_to trip_path(@trip)
   end
 
@@ -47,6 +51,10 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:category, :start_date, :end_date, :name, :address, :price, :url)
+    params.require(:item).permit(:category, :start_date, :end_date, :name, :address, :price, :url, :flight_detail)
+  end
+
+  def flight_detail_params
+    params.require(:item).require(:flight_detail).permit(:airline, :flight_number, :departure_airport, :arrival_airport)
   end
 end

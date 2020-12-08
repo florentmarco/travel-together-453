@@ -4,6 +4,7 @@ require 'open-uri'
 class TripsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link]
+  before_action :set_chatroom, only: [:show]
 
   def index
     # get array of trips current user created (see TripPolicy)
@@ -53,9 +54,6 @@ class TripsController < ApplicationController
     else
       redirect_to trips_path
     end
-
-    @chatroom = Chatroom.find_by(trip_id: @trip.id)
-
   end
 
   def regenerate_invite_link
@@ -107,6 +105,16 @@ class TripsController < ApplicationController
   def set_trip
     @trip = Trip.find(params[:id])
     authorize @trip
+  end
+
+  def set_chatroom
+    if @trip.chatroom.nil?
+      @chatroom = Chatroom.new(name: @trip.name)
+      @chatroom.trip = @trip
+      @chatroom.save
+    else
+      @chatroom = Chatroom.find_by(trip_id: @trip.id)
+    end
   end
 
   #def place_api(location)

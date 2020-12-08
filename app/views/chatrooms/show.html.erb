@@ -1,6 +1,6 @@
 <div class="container">
 
-  <%= link_to 'Back', trip_path(@trip), class: "btn btn-primary" %>
+  <%= link_to 'Back', trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
 
   <h3>Messages</h3>
   <%= simple_form_for [ @trip, @chatroom, @message ], remote: true do |f| %>

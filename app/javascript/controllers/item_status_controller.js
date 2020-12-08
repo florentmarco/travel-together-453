@@ -67,10 +67,9 @@ export default class extends Controller {
     event.preventDefault();
     this.clearActive();
     event.target.classList.add('active');
-    categoryArr = ["Itinerary"];
+    categoryArr = ["Flight", "Accommodation", "Activity"];
     statusArr = ["Booked"];
-    debugger;
-    fetchCategoryResults(this)
+    fetchStatusResults(this)
   }
 
   flight(event) {
@@ -79,7 +78,6 @@ export default class extends Controller {
     event.target.classList.add('active');
     categoryArr = ["Flight"]
     statusArr = ["Pending", "Approved", "Booked"]
-    debugger;
     fetchCategoryResults(this)
   }
 

@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
         @trip,
         render_to_string(partial: "message", locals: { message: @message })
       )
+      # TODO: my bad, i think we still need the line below just in case the javascript doesn't run
       # redirect_to trip_path(@trip, anchor: "message-#{@message.id}")
     else
       render "trip/show"

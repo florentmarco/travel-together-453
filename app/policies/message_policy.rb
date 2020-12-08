@@ -5,6 +5,7 @@ class MessagePolicy < ApplicationPolicy
     end
   end
 
+  # TODO: everyone can send message?
   def create?
     true
   end

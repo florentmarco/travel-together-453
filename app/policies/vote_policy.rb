@@ -5,10 +5,12 @@ class VotePolicy < ApplicationPolicy
     end
   end
 
+  # TODO: should everyone can vote?
   def create?
     true
   end
 
+  # TODO: should everyone can destroy?
   def destroy?
     true
   end

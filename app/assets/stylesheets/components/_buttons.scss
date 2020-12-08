@@ -55,3 +55,48 @@
   color: white;
   text-decoration: none;
 }
+
+
+
+.landing-buttons {
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+
+
+.btn-main-login {
+  color: #5885AF;
+  padding: 12px 43px;
+  border-radius: 8px;
+  font-weight: lighter;
+  border: 1px solid;
+
+}
+
+.btn-main-login:hover {
+  background: #436E96;
+  color: white;
+  text-decoration: none;
+
+}
+
+
+.btn-main-signup {
+  color: white;
+  padding: 12px 43px;
+  border-radius: 8px;
+  font-weight: lighter;
+  background: #5885AF;
+}
+
+.btn-main-signup:hover {
+  background: #436E96;
+  color: white;
+  text-decoration: none;
+}
+
+
+
+
+

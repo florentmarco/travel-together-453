@@ -27,6 +27,20 @@
   color: white;
 }
 
+.btn-danger-tt {
+  color: white;
+  font-size: 10px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: #EEA47FFF;
+  transition: background 0.3s ease;
+}
+
+.btn-danger-tt:hover {
+  background: #EEA47FFF;
+  color: white;
+}
+
 .btn-more {
   color: #5885AF;
   font-size: 10px;

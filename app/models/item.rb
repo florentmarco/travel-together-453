@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :tasks
 
-  has_many :flight_details
+  has_one :flight_detail
 
   validates :category, inclusion: { in: %w(Flight Accommodation Activity) }
 
@@ -28,4 +28,12 @@ class Item < ApplicationRecord
       tsearch: { prefix: true }
   }
 
+  # .where returns a collection
+  def voted_by?(user)
+    votes.where(user_id: user.id).exists?
+  end
+
+  def selected_vote(user)
+    votes.where(user_id: user.id).first
+  end
 end

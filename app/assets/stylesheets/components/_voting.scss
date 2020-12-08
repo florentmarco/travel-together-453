@@ -1,15 +1,15 @@
 .unvoted {
   width: 15px;
   height: 15px;
-  margin-top: 3px;
-  background-image: url("emptyheart.png");
+  margin-top: 3.5px;
+  background-image: url(asset_path("emptyheart.png"));
   background-size: cover;
 }
 
 .voted {
   width: 15px;
   height: 15px;
-  margin-top: 3px;
-  background-image: url("heart.png");
+  margin-top: 3.5px;
+  background-image: url(asset_path("heart.png"));
   background-size: cover;
 }

@@ -33,10 +33,10 @@ const fetchStatusResults = (action) => {
 }
 
 export default class extends Controller {
-  static targets = [ "items"]
+  static targets = [ "items", "tag"]
 
   connect() {
-    console.log('connected')
+    console.log('item status connected')
   }
 
   pending(event) {
@@ -89,4 +89,12 @@ export default class extends Controller {
     statusArr = ["Pending", "Approved", "Booked"]
     fetchCategoryResults(this)
   }
+
+  change_to_booked(event) {
+    event.preventDefault();
+    console.log('hello');
+    debugger;
+    this.tagTarget.innerText = "Booked";
+  }
+
 }

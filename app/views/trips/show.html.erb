@@ -39,6 +39,7 @@
     <input type="hidden" name="trip_edate" value="<%= @trip.end_date %>">
     <input type="hidden" name="trip_user" value="<%= @trip.user.name %>"><br>
     <input type="submit" value="Send" class="btn btn-primary-tt btn-sm">
+    <input type="submit" value="Cancel" class="bbtn btn-danger-tt btn-sm">
     <input type="submit" value="Cancel" class="btn btn-danger-tt btn-sm">
   </form>
 
@@ -48,13 +49,16 @@
     <div class="d-flex">
       <div class="list-inline tabs-underlined">
         <div>
-          <%= link_to "Flight", "#", class: "tab-underlined active", id: "flightTative", "data-action": 'click->item-status#flight' %>
+          <%= link_to "Itinerary", "#", class: "tab-underlined", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
         </div>
         <div>
-          <%= link_to "Accommodation", "#", id: "accommodationTab", class: "tab-underlined", "data-action": 'click->item-status#accommodation' %>
+          <%= link_to "Flight", "#", class: "tab-underlined", id: "flightTab", "data-action": 'click->item-status#flight' %>
         </div>
         <div>
-         <%= link_to "Activity", "#", id: "activityTab", class: "tab-underlined", "data-action": 'click->item-status#activity'  %>
+          <%= link_to "Accommodation", "#", class: "tab-underlined", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
+        </div>
+        <div>
+         <%= link_to "Activity", "#", class: "tab-underlined", id: "activityTab", "data-action": 'click->item-status#activity'  %>
         </div>
       </div>
 </div>
@@ -92,19 +96,7 @@
     </div>
   </div>
 
-  <hr>
-
-  <h3>Messages</h3>
-  <%= simple_form_for [ @trip, @message ], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@trip.name}" %>
-    <%= f.submit %>
-  <% end %>
-
-  <div id="messages" data-trip-id="<%= @trip.id %>">
-    <% @trip.messages.reverse.each do |message| %>
-      <%= render 'messages/message', message: message %>
-    <% end %>
-  </div>
+  <%= link_to 'Chat', trip_chatroom_path(@trip, @chatroom), class: "fab" %>
 
 <!-- closing div for container -->
 </div>

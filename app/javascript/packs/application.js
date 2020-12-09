@@ -29,15 +29,16 @@ import { toggleDateInputs } from "../plugins/flatpickr";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initTripCable } from '../channels/trip_channel';
+import { initChatroomCable } from '../channels/chatroom_channel';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
 
-  initTripCable();
+  initChatroomCable();
 
   toggleDateInputs();
+  const itineraryTab = document.querySelector("#itineraryTab")
   const flightTab = document.querySelector("#flightTab")
   const accommodationTab = document.querySelector("#accommodationTab")
   const activityTab = document.querySelector("#activityTab")
@@ -46,6 +47,7 @@ document.addEventListener('turbolinks:load', () => {
   const bookedTab = document.querySelector("#bookedTab")
 
   const wipeCategoryActive = () => {
+    itineraryTab.classList.remove("active");
     flightTab.classList.remove("active");
     accommodationTab.classList.remove("active");
     activityTab.classList.remove("active");
@@ -63,6 +65,12 @@ document.addEventListener('turbolinks:load', () => {
   // if condition to prevent error on other pages
   if (flightTab) {
     flightTab.addEventListener("click", (event) => {
+      wipeCategoryActive()
+      resetStatusActive()
+      event.currentTarget.classList.add("active");
+    });
+
+    itineraryTab.addEventListener("click", (event) => {
       wipeCategoryActive()
       resetStatusActive()
       event.currentTarget.classList.add("active");

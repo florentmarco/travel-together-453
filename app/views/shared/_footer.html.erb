@@ -1,17 +1,18 @@
-<div class="footer">
-  <div class="footer-links-left d-flex">
+<div class="footer d-flex">
     <div class="footer-items">
-      <a href="#"><i class="fas fa-home"></i></a>
+      <%= link_to "", trips_path, class: "fas fa-home" %>
     </div>
-   <!--  <div class="footer-items">
-      <a href="#"><i class="fas fa-search"></i></a>
-    </div> -->
-    <div class="footer-btn-create">
-      <%= link_to "+", new_trip_path, class: "btn-main" %>
+    <div class="footer-items">
+      <%= link_to "", trips_path, class: "fas fa-angle-left" %>
     </div>
-     <!--  <div class="footer-items">
-        <a href="#"><i class="far fa-bell"></i></a>
-      </div> -->
+    <div class="footer-items">
+      <%= link_to "+", new_trip_path, class: "btn-main-footer" %>
+    </div>
+      <div class="footer-items">
+        <div class="notification-symbol">
+        <%= link_to "", new_user_session_path, class: "far fa-bell" %>
+      </div>
+    </div>
     <div class="footer-items">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
@@ -32,3 +33,4 @@
     </div>
   </div>
 </div>
+

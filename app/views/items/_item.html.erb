@@ -47,6 +47,8 @@
       <div class="action-card-main-flight">
         <div class="action-card-main-flight-top d-flex">
           <div class="maincard-dep-flight">
+            <p class="time"> <%= item.start_date.strftime("%k:%M") %> </p>
+            <p class="date"> <%= item.start_date.strftime("%d/%m/%Y") %>  </p>
             <p class="time"> 06:35 </p>
             <p class="date"> <%= item.start_date %>  </p>
             <p class="airport"><%= item.flight_details.first.departure_airport %></p>
@@ -71,14 +73,14 @@
           </div>
           <div class="maincard-flight-duration">
             <div>
-              <p class="duration-time">10h00</p>
+              <p class="duration-time"><%=  ( item.end_date - item.start_date) / 3600  %></p>
             </div>
             <div class="line">
             </div>
           </div>
           <div class="maincard-arr-flight">
-            <p class="time"> 14:35 </p>
-            <p class="date"> <%= item.end_date %> </p>
+            <p class="time"> <%= item.end_date.strftime("%k:%M") %> </p>
+            <p class="date"> <%= item.end_date.strftime("%d/%m/%Y") %> </p>
             <p class="airport"><%= item.flight_detail.arrival_airport%></p>
           </div>
         </div>
@@ -143,8 +145,8 @@
               <p>OUT</p>
             </div>
             <div class="dates">
-              <p class="check-in"><%= item.start_date %></p>
-              <p class="check-out"><%= item.end_date %></p>
+              <p class="check-in"><%= item.start_date.strftime("%d/%m/%Y") %></p>
+              <p class="check-out"><%= item.end_date.strftime("%d/%m/%Y") %></p>
             </div>
           </div>
         </div>

@@ -21,10 +21,10 @@
       </div>
     </div>
   </div>
-  <div class="action-card-bstrip d-flex">
+  <div class="action-card-bstrip d-flex" data-controller="tag">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
+          <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.capitalize %> </p>
         </div>
         <div class="bstrip-like d-flex", data-controller = "vote">
           <% if item.voted_by?(current_user) %>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="btn">
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}" %>
       </div>
     </div>
   </div>
@@ -80,10 +80,10 @@
         </div>
       </div>
     </div>
-    <div class="action-card-bstrip d-flex">
+    <div class="action-card-bstrip d-flex" data-controller="tag">
       <div class="d-flex align-items-center">
         <div class="tag">
-          <p class="<%= item.status.downcase %>-tag"> <%= item.status.capitalize %> </p>
+          <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.capitalize %> </p>
         </div>
         <div class="bstrip-like d-flex", data-controller = "vote">
           <% if item.voted_by?(current_user) %>
@@ -95,7 +95,7 @@
         </div>
        </div>
        <div class="btn">
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}" %>
       </div>
     </div>
   </div>
@@ -132,11 +132,11 @@
         </div>
       </div>
     </div>
-    <div class="action-card-bstrip d-flex" data-controller="item_status">
+    <div class="action-card-bstrip d-flex" data-controller="tag">
       <div class="d-flex align-items-center">
         <div class="tag">
           <div>
-            <p class="<%= item.status.downcase %>-tag", data-target= "item_status.tag"> <%= item.status.capitalize %> </p>
+            <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.capitalize %> </p>
           </div>
         </div>
         <div class="bstrip-like d-flex", data-controller = "vote">
@@ -150,7 +150,7 @@
       </div>
       <div>
         <div class="btn">
-          <%= link_to "CONFIRM", trip_item_path(item.trip, item), method: :patch, class: "btn btn-primary-tt btn-sm", data: { action: "click->item_status#change_to_booked" } %>
+          <%= link_to "CONFIRM", "javascript:", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}" %>
         </div>
       </div>
     </div>

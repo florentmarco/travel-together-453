@@ -10,7 +10,7 @@
 
   <div class="dropdown" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
     <span data-target="item-form.category" type="text"></span>
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-primary-tt dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Add item
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -40,6 +40,7 @@
     <input type="hidden" name="trip_user" value="<%= @trip.user.name %>"><br>
     <input type="submit" value="Send" class="btn btn-primary-tt btn-sm">
     <input type="submit" value="Cancel" class="bbtn btn-danger-tt btn-sm">
+    <input type="submit" value="Cancel" class="btn btn-danger-tt btn-sm">
   </form>
 
   <hr>
@@ -64,7 +65,7 @@
 
 
       <div class="dropdown mb-2 mt-2">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-primary-tt dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Filter
           </button>
         <div class="dropdown-menu">
@@ -95,19 +96,7 @@
     </div>
   </div>
 
-  <hr>
-
-  <h3>Messages</h3>
-  <%= simple_form_for [ @trip, @message ], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@trip.name}" %>
-    <%= f.submit %>
-  <% end %>
-
-  <div id="messages" data-trip-id="<%= @trip.id %>">
-    <% @trip.messages.reverse.each do |message| %>
-      <%= render 'messages/message', message: message %>
-    <% end %>
-  </div>
+  <%= link_to 'Chat', trip_chatroom_path(@trip, @chatroom), class: "fab" %>
 
 <!-- closing div for container -->
 </div>

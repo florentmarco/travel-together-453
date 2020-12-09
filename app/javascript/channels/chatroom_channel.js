@@ -1,12 +1,12 @@
 import consumer from "./consumer";
 
-const initTripCable = () => {
+const initChatroomCable = () => {
   const messagesContainer = document.getElementById('messages');
   console.log("file imported?");
   if (messagesContainer) {
-    const id = messagesContainer.dataset.tripId;
+    const id = messagesContainer.dataset.chatroomId;
 
-    consumer.subscriptions.create({ channel: "TripChannel", id: id }, {
+    consumer.subscriptions.create({ channel: "ChatroomChannel", id: id }, {
       received(data) {
         // console.log(data); // called when data is broadcast in the cable
         messagesContainer.insertAdjacentHTML('afterbegin', data);
@@ -15,4 +15,4 @@ const initTripCable = () => {
   }
 }
 
-export { initTripCable };
+export { initChatroomCable };

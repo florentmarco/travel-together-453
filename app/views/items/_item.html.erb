@@ -67,6 +67,24 @@
         <div class="action-card-main-flight-bottom">
           <p class="airline"><%= item.flight_details.first.airline %></p>
           <p class="flight-number"><%= item.flight_details.first.flight_number %></p>
+            <p class="airport"><%= item.flight_detail.departure_airport %></p>
+          </div>
+          <div class="maincard-flight-duration">
+            <div>
+              <p class="duration-time">10h00</p>
+            </div>
+            <div class="line">
+            </div>
+          </div>
+          <div class="maincard-arr-flight">
+            <p class="time"> 14:35 </p>
+            <p class="date"> <%= item.end_date %> </p>
+            <p class="airport"><%= item.flight_detail.arrival_airport%></p>
+          </div>
+        </div>
+        <div class="action-card-main-flight-bottom">
+          <p class="airline"><%= item.flight_detail.airline %></p>
+          <p class="flight-number"><%= item.flight_detail.flight_number %></p>
         </div>
       </div>
       <div class="action-card-pricecard">
@@ -94,6 +112,16 @@
         </div>
       </div>
       <div class="btn">
+        <div class="bstrip-like d-flex", data-controller = "vote">
+          <% if item.voted_by?(current_user) %>
+            <div class= "voted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="<%= item.trip.id %>,<%= item.id %>"> </div>
+          <% else %>
+            <div class= "unvoted", data-action= 'click->vote#voting', data-target="vote.heart", data-item="[<%= item.trip.id %>,<%= item.id %>]"> </div>
+          <% end %>
+          <p class= "mb-0 ml-1 font-smaller", data-target="vote.count"> <%= item.votes.count %> </p>
+        </div>
+       </div>
+       <div class="btn">
         <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm" %>
       </div>
     </div>

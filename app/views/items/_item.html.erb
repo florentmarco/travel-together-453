@@ -51,7 +51,7 @@
             <p class="date"> <%= item.start_date.strftime("%d/%m/%Y") %>  </p>
             <p class="time"> 06:35 </p>
             <p class="date"> <%= item.start_date %>  </p>
-            <p class="airport"><%= item.flight_details.first.departure_airport %></p>
+            <p class="airport"><%= item.flight_detail.departure_airport %></p>
           </div>
           <div class="maincard-flight-duration">
             <div>
@@ -63,12 +63,12 @@
           <div class="maincard-arr-flight">
             <p class="time"> 14:35 </p>
             <p class="date"> <%= item.end_date %> </p>
-            <p class="airport"><%= item.flight_details.first.arrival_airport%></p>
+            <p class="airport"><%= item.flight_detail.arrival_airport%></p>
           </div>
         </div>
         <div class="action-card-main-flight-bottom">
-          <p class="airline"><%= item.flight_details.first.airline %></p>
-          <p class="flight-number"><%= item.flight_details.first.flight_number %></p>
+          <p class="airline"><%= item.flight_detail.airline %></p>
+          <p class="flight-number"><%= item.flight_detail.flight_number %></p>
             <p class="airport"><%= item.flight_detail.departure_airport %></p>
           </div>
           <div class="maincard-flight-duration">

@@ -59,7 +59,6 @@
   <hr>
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
-    <div class="d-flex">
       <div class="list-inline tabs-underlined">
         <div>
           <%= link_to "Itinerary", "#", class: "tab-underlined active", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>

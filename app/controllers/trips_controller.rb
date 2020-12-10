@@ -32,6 +32,10 @@ class TripsController < ApplicationController
   end
 
   def show
+    # get the trip owner
+    @trip_owner = @trip.user.name
+    # get the list of guest
+    @guest_user = @trip.guests.map(&:user)
     # get array of trips instance that current user is a guest of
     @guests_trip_arr = current_user.guests.map do |guest|
       guest.trip

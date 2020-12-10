@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Trip to <%= @trip.location %>  </h1>
-  
+
   <%= @trip.start_date %> <%= @trip.end_date %>
 
   <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
@@ -59,53 +59,50 @@
   <hr>
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
-      <div class="list-inline tabs-underlined">
-        <div>
-          <%= link_to "Itinerary", "#", class: "tab-underlined active", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
-        </div>
-        <div>
-          <%= link_to "Flight", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
-        </div>
-        <div>
-          <%= link_to "Accommodation", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
-        </div>
-        <div>
-         <%= link_to "Activity", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
-        </div>
+    <div class="list-inline tabs-underlined">
+      <div>
+        <%= link_to "Itinerary", "#", class: "tab-underlined active", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
       </div>
-</div>
-
-
-      <div class="dropdown mb-2 mt-2">
-          <button class="btn btn-primary-tt dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Filter
-          </button>
-        <div class="dropdown-menu">
-          <div class="form-check ml-3" >
-            <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
-            <label class="form-check-label" for="dropdownCheck2">
-              Pending
-            </label>
-          </div>
-          <div class="form-check ml-3" >
-            <input id= "approvedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#approved'>
-            <label class="form-check-label" for="dropdownCheck2">
-              Approved
-            </label>
-          </div>
-          <div class="form-check ml-3" >
-            <input id= "bookedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#booked'>
-            <label class="form-check-label" for="dropdownCheck2">
-              Booked
-            </label>
-          </div>
-        </div>
+      <div>
+        <%= link_to "Flight", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
       </div>
-
-
-    <div data-target='item-status.items'>
-      <%= render partial: 'items/item', collection: @trip.items %>
+      <div>
+        <%= link_to "Accommodation", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
+      </div>
+      <div>
+       <%= link_to "Activity", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
+      </div>
     </div>
+  </div>
+
+  <div class="dropdown mb-2 mt-2">
+    <button class="btn btn-primary-tt dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Filter
+    </button>
+    <div class="dropdown-menu">
+      <div class="form-check ml-3" >
+        <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
+        <label class="form-check-label" for="dropdownCheck2">
+          Pending
+        </label>
+      </div>
+      <div class="form-check ml-3" >
+        <input id= "approvedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#approved'>
+        <label class="form-check-label" for="dropdownCheck2">
+          Approved
+        </label>
+      </div>
+      <div class="form-check ml-3" >
+        <input id= "bookedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#booked'>
+        <label class="form-check-label" for="dropdownCheck2">
+          Booked
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div data-target='item-status.items'>
+    <%= render partial: 'items/item', collection: @trip.items %>
   </div>
 
   <%= link_to 'Chat', trip_chatroom_path(@trip, @chatroom), class: "fab" %>

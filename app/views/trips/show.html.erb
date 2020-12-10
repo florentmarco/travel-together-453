@@ -27,6 +27,8 @@
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
   <hr>
+  <p>Travellers: <%= @trip.user.name %>  </p>
+  <hr>
   <p> Share via Email : </p>
   <form action="/email">
     <label for="email">Send to:  </label>

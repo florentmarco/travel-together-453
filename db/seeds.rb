@@ -51,6 +51,13 @@ puts "Creating trip and items"
     invite_token: rand(999999999)
   )
   newtrip.save!
+
+  newchatroom = Chatroom.new(
+    name: newtrip.name + ' chatroom',
+    trip_id: newtrip.id
+  )
+  newchatroom.save!
+
   puts
   puts "#{newtrip.name.upcase}"
 

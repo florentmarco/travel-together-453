@@ -16,14 +16,14 @@ User.destroy_all
 
 puts "Creating users"
 owner1 = User.new(
-  email: "owner1@gmail.com",
+  email: "owner1@example.com",
   password: '111111',
   name: 'owner1'
 )
 owner1.save!
 
 owner2 = User.new(
-  email: "owner2@gmail.com",
+  email: "owner2@example.com",
   password: '111111',
   name: "owner2"
 )

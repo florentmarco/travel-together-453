@@ -1,9 +1,9 @@
 
 <div class="container">
-  <h3>Upcoming Trips</h3>
-  <div class="btn">
-    <%= link_to "ADD A TRIP", new_trip_path, class: "btn btn-primary-tt btn-sm" %>
+  <div class="btn-create-trip">
+    <%= link_to "CREATE TRIP", new_trip_path, class: "btn-main-trips" %>
   </div>
+   <h3>UPCOMING TRIPS</h3>
   <% @trips.each do |trip| %>
     <div class="card-product">
         <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
@@ -23,7 +23,7 @@
     </div>
     <br>
   <% end %>
-<h3>Past Trips</h3>
+<h3>PAST TRIPS</h3>
 
 
 

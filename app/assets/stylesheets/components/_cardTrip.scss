@@ -8,7 +8,7 @@
   margin-bottom: -18px;
 }
 
-.card-product img {
+.card-product .card-trip-image {
   height: 100%;
   width: 120px;
   object-fit: cover;
@@ -57,4 +57,11 @@ padding-left: 4px;
 
 .far.fa-clock {
   opacity: .2;
+}
+
+.ellipsis-trip-icon {
+  height: 15px;
+  margin: 5px;
+  position: absolute;
+  right: 14px;
 }

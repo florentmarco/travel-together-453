@@ -11,9 +11,6 @@ class TripsController < ApplicationController
     # get array of trips current user created (see TripPolicy)
     @trips_i_own = policy_scope(Trip)
     @trips = policy_scope(Trip).order(start_date: :desc)
-    #@trips.each do |trip|
-    #place_api(trip.location)
-    #end
 
     # get array of trips instance that current user is a guest of
     @guest_of_trips = current_user.guests.map do |guest|
@@ -33,14 +30,14 @@ class TripsController < ApplicationController
 
   def show
     # get the trip owner
-    @trip_owner = @trip.user.name
+    @trip_owner = @trip.user
     # get the list of guest
     @guest_user = @trip.guests.map(&:user)
     # get array of trips instance that current user is a guest of
     @guests_trip_arr = current_user.guests.map do |guest|
       guest.trip
     end
-
+    
     # allow trip owner to enter
     if @trip.user == current_user
       @trip

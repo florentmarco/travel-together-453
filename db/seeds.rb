@@ -76,6 +76,8 @@ puts "Creating trip and items"
     end
 
     if newitem.category == 'Flight'
+      newitem.start_date = newitem.trip.start_date
+      newitem.end_date = newitem.trip.end_date
       fd = FlightDetail.new(
         airline: ['Air Asia', 'Singapore Airline', 'Scoot'].sample,
         flight_number: ['AA', 'SG', 'SC'].sample + rand(100..999).to_s,

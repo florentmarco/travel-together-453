@@ -11,9 +11,6 @@ class TripsController < ApplicationController
     # get array of trips current user created (see TripPolicy)
     @trips_i_own = policy_scope(Trip)
     @trips = policy_scope(Trip).order(start_date: :desc)
-    #@trips.each do |trip|
-    #place_api(trip.location)
-    #end
 
     # get array of trips instance that current user is a guest of
     @guest_of_trips = current_user.guests.map do |guest|

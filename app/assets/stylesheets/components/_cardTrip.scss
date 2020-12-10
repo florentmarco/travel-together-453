@@ -2,13 +2,13 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 4px;
   display: flex;
-  align-items: center;
+  margin-bottom: -18px;
 }
 
-.card-product img {
+.card-product .card-trip-image {
   height: 100%;
   width: 120px;
   object-fit: cover;
@@ -18,8 +18,12 @@
 .card-product h2 {
   font-size: 16px;
   font-weight: bold;
+  color: #436E96;
   margin: 0;
 }
+
+
+
 
 .card-product p {
   font-size: 12px;
@@ -28,6 +32,8 @@
   margin-bottom: 0;
   margin-top: 8px;
 }
+
+
 
 .card-product .card-product-infos {
   display: flex;
@@ -51,4 +57,11 @@ padding-left: 4px;
 
 .far.fa-clock {
   opacity: .2;
+}
+
+.ellipsis-trip-icon {
+  height: 15px;
+  margin: 5px;
+  position: absolute;
+  right: 14px;
 }

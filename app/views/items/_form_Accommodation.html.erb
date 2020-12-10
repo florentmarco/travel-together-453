@@ -1,6 +1,6 @@
 <div class="container" data-controller="future-controller" style="padding: 60px;">
   <span>
-   <h2>Add Lodging</h2>
+   <h3>ADD LODGING</h3>
    <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category %>
         <%= f.input :name %>
@@ -9,7 +9,7 @@
         <%= f.input :address %>
         <%= f.input :url %>
         <%= f.input :price %>
-        <%= f.submit "create", class: "btn btn-primary"%>
+        <%= f.submit "create", class: "btn-main-trips"%>
     <% end %>
   </span>
 </div>

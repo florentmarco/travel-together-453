@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:new, :create]
+  before_action :set_trip, only: [:new, :create, :update]
 
   def index
     # status filter function
@@ -41,6 +41,18 @@ class ItemsController < ApplicationController
       @item.flight_detail = @flight_detail
     end
     redirect_to trip_path(@trip)
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(status: "Booked")
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { item: @item } }
+    # end
+
+    authorize @item
   end
 
   private

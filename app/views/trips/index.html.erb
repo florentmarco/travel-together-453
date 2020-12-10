@@ -1,15 +1,16 @@
 
 <div class="container">
-  <h3>Upcoming Trips</h3>
-  <div class="btn">
-    <%= link_to "ADD A TRIP", new_trip_path, class: "btn btn-primary-tt btn-sm" %>
+  <div class="btn-create-trip">
+    <%= link_to "CREATE TRIP", new_trip_path, class: "btn-main-trips" %>
   </div>
+   <h3>UPCOMING TRIPS</h3>
   <% @trips.each do |trip| %>
     <div class="card-product">
         <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
         <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
         <% @spot = @client.spot("#{@reference}") %>
-        <%= image_tag (@spot.photos[0].fetch_url(800)) %>
+        <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
+        <%= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
         <div class="card-product-infos">
           <div class="product-info-main">
             <h2><%= link_to trip.location + " Trip", trip_path(trip) %></h2>
@@ -23,7 +24,7 @@
     </div>
     <br>
   <% end %>
-<h3>Past Trips</h3>
+<h3>PAST TRIPS</h3>
 
 
 

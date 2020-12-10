@@ -1,12 +1,10 @@
-<div class="container" style="padding: 60px;">
-  <h2>Add Trip</h2>
+<div class="container" style="padding: 0px;">
+  <h3>ADD TRIP</h3>
   <%= simple_form_for @trip do |f| %>
     <%= f.input :name %>
     <%= f.input :location %>
     <%= f.input :start_date, as: :string, input_html: {class: "datepicker"} %>
     <%= f.input :end_date, as: :string, input_html: {class: "datepicker"} %>
-    <%= f.submit "create" , class: "btn btn-primary" %>
+    <%= f.submit "CREATE" , class: "btn-main-trips" %>
   <% end %>
-  <br>
-  <%= link_to 'Back', trips_path, class: "btn btn-primary" %>
 </div>

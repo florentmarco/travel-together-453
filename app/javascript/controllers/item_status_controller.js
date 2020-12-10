@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 let statusArr = ["Pending", "Approved", "Booked"]
-let categoryArr = ["Flight", "Accommodation", "Activity"]
+let categoryArr = ["Itinerary", "Flight", "Accommodation", "Activity"]
 
 const statusArrUpdate = (filterParams) => {
   if (statusArr.includes(filterParams)){
@@ -33,10 +33,10 @@ const fetchStatusResults = (action) => {
 }
 
 export default class extends Controller {
-  static targets = [ "items"]
+  static targets = [ "items", "tag"]
 
   connect() {
-    console.log('connected')
+    console.log('item status connected')
   }
 
   pending(event) {
@@ -63,6 +63,15 @@ export default class extends Controller {
     })
   }
 
+  itinerary(event) {
+    event.preventDefault();
+    this.clearActive();
+    event.target.classList.add('active');
+    categoryArr = ["Flight", "Accommodation", "Activity"];
+    statusArr = ["Booked"];
+    fetchStatusResults(this)
+  }
+
   flight(event) {
     event.preventDefault();
     this.clearActive();
@@ -75,18 +84,33 @@ export default class extends Controller {
   accommodation(event) {
     event.preventDefault();
     this.clearActive();
-    event.target.classList.add('active')
-    categoryArr = ["Accommodation"]
-    statusArr = ["Pending", "Approved", "Booked"]
+    event.target.classList.add('active');
+    categoryArr = ["Accommodation"];
+    statusArr = ["Pending", "Approved", "Booked"];
     fetchCategoryResults(this)
   }
 
   activity(event) {
     event.preventDefault();
     this.clearActive();
-    event.target.classList.add('active')
-    categoryArr = ["Activity"]
-    statusArr = ["Pending", "Approved", "Booked"]
+    event.target.classList.add('active');
+    categoryArr = ["Activity"];
+    statusArr = ["Pending", "Approved", "Booked"];
     fetchCategoryResults(this)
+  }
+
+  change_to_booked(event) {
+    event.preventDefault();
+    url = event.target.dataset.item;
+    console.log(url)
+    fetch(url, {
+      headers: {
+        accept: 'application/json',
+        "X-CSRF-Token": csrf_token
+      },
+      method: "POST"
+    })
+    this.tagTarget.className = "booked-tag"
+    this.tagTarget.innerText = "Booked";
   }
 }

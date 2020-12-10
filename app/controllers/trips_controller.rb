@@ -3,15 +3,14 @@ require 'open-uri'
 
 class TripsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:show,  :edit, :update, :destroy, :regenerate_invite_link]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link]
+  before_action :set_chatroom, only: [:show]
+
 
   def index
     # get array of trips current user created (see TripPolicy)
     @trips_i_own = policy_scope(Trip)
     @trips = policy_scope(Trip).order(start_date: :desc)
-    #@trips.each do |trip|
-    #place_api(trip.location)
-    #end
 
     # get array of trips instance that current user is a guest of
     @guest_of_trips = current_user.guests.map do |guest|
@@ -30,6 +29,10 @@ class TripsController < ApplicationController
   end
 
   def show
+    # get the trip owner
+    @trip_owner = @trip.user.name
+    # get the list of guest
+    @guest_user = @trip.guests.map(&:user)
     # get array of trips instance that current user is a guest of
     @guests_trip_arr = current_user.guests.map do |guest|
       guest.trip
@@ -53,9 +56,6 @@ class TripsController < ApplicationController
     else
       redirect_to trips_path
     end
-
-    @chatroom = Chatroom.find_by(trip_id: @trip.id)
-
   end
 
   def regenerate_invite_link
@@ -121,6 +121,16 @@ class TripsController < ApplicationController
   def set_trip
     @trip = Trip.find(params[:id])
     authorize @trip
+  end
+
+  def set_chatroom
+    if @trip.chatroom.nil?
+      @chatroom = Chatroom.new(name: @trip.name)
+      @chatroom.trip = @trip
+      @chatroom.save
+    else
+      @chatroom = Chatroom.find_by(trip_id: @trip.id)
+    end
   end
 
   #def place_api(location)

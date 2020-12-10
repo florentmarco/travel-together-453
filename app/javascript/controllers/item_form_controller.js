@@ -14,6 +14,7 @@ export default class extends Controller {
         this.formTarget.innerHTML = data ;
         flatpickr(".datepicker", {
             minDate: "today",
+            enableTime: true,
         });
       }
     )

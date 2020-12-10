@@ -41,19 +41,19 @@ export default class extends Controller {
 
   pending(event) {
     event.preventDefault();
-    statusArrUpdate("Pending")
+    statusArrUpdate("PENDING")
     fetchStatusResults(this)
   }
 
   approved(event) {
     event.preventDefault();
-    statusArrUpdate("Approved")
+    statusArrUpdate("APPROVED")
     fetchStatusResults(this)
   }
 
   booked(event) {
     event.preventDefault();
-    statusArrUpdate("Booked")
+    statusArrUpdate("BOOKED")
     fetchStatusResults(this)
   }
 

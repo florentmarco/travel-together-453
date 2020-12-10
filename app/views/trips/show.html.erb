@@ -59,21 +59,22 @@
   <hr>
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
+     <div>
       <div class="list-inline tabs-underlined">
         <div>
-          <%= link_to "Itinerary", "#", class: "tab-underlined active", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
+          <%= link_to "ITINERARY", "#", class: "tab-underlined active", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
         </div>
         <div>
-          <%= link_to "Flight", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
+          <%= link_to "FLIGHT", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
         </div>
         <div>
-          <%= link_to "Accommodation", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
+          <%= link_to "ACCOMMODATION", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
         </div>
         <div>
-         <%= link_to "Activity", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
+         <%= link_to "ACTIVITY", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
         </div>
       </div>
-</div>
+    </div>
 
 
       <div class="dropdown mb-2 mt-2">

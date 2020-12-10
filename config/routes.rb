@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :items, only: [:destroy]
+
   resources :votes, only: [:destroy]
 
   get 'uikit', to: 'uikits#index'

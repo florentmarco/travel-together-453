@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:new, :create]
+  before_action :set_trip, only: [:new, :create, :edit, :update]
 
   def index
     # status filter function
@@ -42,6 +42,15 @@ class ItemsController < ApplicationController
     end
     redirect_to trip_path(@trip)
   end
+
+  # def edit
+  # end
+
+  # def update
+  # end
+
+  # def destroy
+  # end
 
   private
 

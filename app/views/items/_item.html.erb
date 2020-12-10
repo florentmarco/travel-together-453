@@ -16,7 +16,8 @@
           <%= image_tag "ellipsis.png", class: "ellipsis dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Edit", "#", method: :get, class: "dropdown-item"%>
-            <%= link_to "Delete", "#", method: :delete, class: "dropdown-item" %>
+            <% raise  %>
+            <%= link_to "Delete", item_path(@trip.items), method: :delete, class: "dropdown-item" %>
           </div>
         </div>
         <div class="pricecard-price">

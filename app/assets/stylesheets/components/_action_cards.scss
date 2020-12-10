@@ -33,7 +33,9 @@
 // price-card
 
 .action-card-pricecard {
-  overflow: hidden;
+  // remove overflow: hidden as it doens't allow to display dropddown menu
+  // on action-card-pricecard
+  // overflow: hidden;
   height: 133px;
   width: 80px;
   background: white;

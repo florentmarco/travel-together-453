@@ -12,8 +12,12 @@
         </div>
       </div>
       <div class="action-card-pricecard">
-        <div class="price-ellipsis d-flex justify-content-end">
-          <%= image_tag "ellipsis.png", class: "ellipsis"%>
+        <div class="price-ellipsis d-flex justify-content-end dropleft">
+          <%= image_tag "ellipsis.png", class: "ellipsis dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Edit", "#", method: :get, class: "dropdown-item"%>
+            <%= link_to "Delete", "#", method: :delete, class: "dropdown-item" %>
+          </div>
         </div>
         <div class="pricecard-price">
           <p class="mt-3 mb-0 price"> $<%= item.price %></p>
@@ -40,6 +44,7 @@
       </div>
     </div>
   </div>
+</div>
 
 <% elsif item.category == "Flight" %>
   <div class="action-card">
@@ -69,17 +74,20 @@
             <p class="flight-number"><%= item.flight_detail.flight_number %></p>
           </div>
       </div>
-         <div class="action-card-pricecard">
-                <div class="price-ellipsis d-flex justify-content-end">
-                  <%= image_tag "ellipsis.png", class: "ellipsis"%>
-                </div>
-                <div class="pricecard-price">
-                  <p class="mt-3 mb-0 price"> $<%= item.price %> </p>
-                  <p class="mt-0 "> per pax </p>
-                </div>
+      <div class="action-card-pricecard">
+        <div class="price-ellipsis d-flex justify-content-end dropleft">
+          <%= image_tag "ellipsis.png", class: "ellipsis dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Edit", "#", method: :get, class: "dropdown-item"%>
+            <%= link_to "Delete", "#", method: :delete, class: "dropdown-item" %>
           </div>
+        </div>
+        <div class="pricecard-price">
+          <p class="mt-3 mb-0 price"> $<%= item.price %> </p>
+          <p class="mt-0 "> per pax </p>
+        </div>
       </div>
-
+    </div>
     <div class="action-card-bstrip d-flex">
       <div class="d-flex align-items-center">
 
@@ -98,9 +106,9 @@
       </div>
       <div class="btn">
           <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt" %>
+      </div>
     </div>
-    </div>
-</div>
+  </div>
 
 
 
@@ -127,8 +135,12 @@
         </div>
       </div>
       <div class="action-card-pricecard">
-        <div class="price-ellipsis d-flex justify-content-end">
-          <%= image_tag "ellipsis.png", class: "ellipsis"%>
+        <div class="price-ellipsis d-flex justify-content-end dropleft">
+          <%= image_tag "ellipsis.png", class: "ellipsis dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Edit", "#", method: :get, class: "dropdown-item"%>
+            <%= link_to "Delete", "#", method: :delete, class: "dropdown-item" %>
+          </div>
         </div>
         <div class="pricecard-price">
           <p class="mt-3 mb-0 price"> $<%= item.price %> </p>

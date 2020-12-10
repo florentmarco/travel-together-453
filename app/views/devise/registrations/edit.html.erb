@@ -10,7 +10,11 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
-
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar %>
+        <% else %>
+          <%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg"  %>
+        <% end %>
       <%= f.input :name,
                   hint: "leave it blank if you don't want to change it",
                   required: false,
@@ -26,6 +30,7 @@
                   hint: "we need your current password to confirm your changes",
                   required: true,
                   input_html: { autocomplete: "current-password" } %>
+      <%= f.file_field :avatar %>
     </div>
 
     <div class="form-actions">

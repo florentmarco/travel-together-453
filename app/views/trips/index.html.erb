@@ -9,10 +9,11 @@
         <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
         <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
         <% @spot = @client.spot("#{@reference}") %>
-        <%= image_tag (@spot.photos[0].fetch_url(800)) %>
+        <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
+        <%= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
         <div class="card-product-infos">
           <div class="product-info-main">
-            <h2><%= link_to trip.location + " Trip", trip_path(trip) %></h2>
+            <h2><%= link_to trip.location, trip_path(trip) %></h2>
             <p><%= trip.start_date %> - <%= trip.end_date %></p>
           </div>
           <div class="clock d-flex">

@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Trip to <%= @trip.location %>  </h1>
-  <p> <%= @trip.name %> </p>
+  
   <%= @trip.start_date %> <%= @trip.end_date %>
 
   <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
@@ -13,6 +13,22 @@
     <button class="btn btn-primary-tt dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Add item
     </button>
+    <% if @trip_owner.avatar.attached? %>
+      <%= image_tag @trip_owner.avatar, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% end %>
+    <% if @guest_user.count ==  0 %>
+      <%=  %>
+    <% else %>
+      <% @guest_user.each do |guest|%>
+        <% if guest.avatar.attached? %>
+          <%= image_tag guest.avatar, class: "avatar" %>
+        <% else %>
+          <%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+    <% end %>
+  <% end %>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <p data-action="click->item-form#serve" data-item="Flight" class="dropdown-item" >Flight</p>
       <p data-action="click->item-form#serve" data-item="Accommodation" class="dropdown-item" >Accommodation</p>
@@ -26,37 +42,23 @@
   <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
   <hr>
 
-  <p>Travellers: <%= @trip_owner %>
-  <% if @guest_user.count ==  0 %>
-    <%=  %>
-  <% else %>
-    <% @guest_user.each do |guest|%>
-      <%= guest.name %>
-    <% end %>
-  <% end %>
-  </p>
-
-  <hr>
   <p> Share via Email : </p>
   <form action="/email">
     <label for="email">Send to:  </label>
-    <input type="text" name="email" placeholder="Enter an email address"><br>
+    <input type="text" name="email" placeholder="Enter an email address">
     <input type="hidden" name="token" value="<%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %>">
     <input type="hidden" name="subject" value="Your friend <%= @trip.user.name %> has invited you to the <%= @trip.location %> trip">
     <input type="hidden" name="trip_id" value="<%= @trip.id %>">
     <input type="hidden" name="trip_name" value="<%= @trip.location %>">
     <input type="hidden" name="trip_sdate" value="<%= @trip.start_date %>">
     <input type="hidden" name="trip_edate" value="<%= @trip.end_date %>">
-    <input type="hidden" name="trip_user" value="<%= @trip.user.name %>"><br>
+    <input type="hidden" name="trip_user" value="<%= @trip.user.name %>">
     <input type="submit" value="Send" class="btn btn-primary-tt btn-sm">
-    <input type="submit" value="Cancel" class="bbtn btn-danger-tt btn-sm">
-    <input type="submit" value="Cancel" class="btn btn-danger-tt btn-sm">
   </form>
 
   <hr>
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
-    <div class="d-flex">
       <div class="list-inline tabs-underlined">
         <div>
           <%= link_to "Itinerary", "#", class: "tab-underlined active", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>

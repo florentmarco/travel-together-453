@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     resources :items, only: [:index, :new, :create, :update] do
       resources :votes, only: [:create]
+      patch 'update_to_booked', to: 'items#update_to_booked'
     end
   end
   resources :votes, only: [:destroy]

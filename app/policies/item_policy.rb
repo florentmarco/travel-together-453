@@ -6,6 +6,10 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def update?
+    # record.user == user
+  end
+
+  def update_to_booked?
     record.user == user
   end
 end

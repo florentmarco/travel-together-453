@@ -16,14 +16,14 @@ User.destroy_all
 
 puts "Creating users"
 owner1 = User.new(
-  email: "owner1@gmail.com",
+  email: "owner1@example.com",
   password: '111111',
   name: 'owner1'
 )
 owner1.save!
 
 owner2 = User.new(
-  email: "owner2@gmail.com",
+  email: "owner2@example.com",
   password: '111111',
   name: "owner2"
 )
@@ -76,6 +76,8 @@ puts "Creating trip and items"
     end
 
     if newitem.category == 'Flight'
+      newitem.start_date = newitem.trip.start_date
+      newitem.end_date = newitem.trip.end_date
       fd = FlightDetail.new(
         airline: ['Air Asia', 'Singapore Airline', 'Scoot'].sample,
         flight_number: ['AA', 'SG', 'SC'].sample + rand(100..999).to_s,

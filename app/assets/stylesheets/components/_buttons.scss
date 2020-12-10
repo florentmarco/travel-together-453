@@ -18,7 +18,8 @@
   font-size: 10px;
   padding: 4px 12px;
   border-radius: 4px;
-  background: #5885AF;
+  color:#5885AF;
+  border: 1px solid #5885AF;
   transition: background 0.3s ease;
 }
 
@@ -54,4 +55,67 @@
   background: #436E96;
   color: white;
   text-decoration: none;
+}
+
+
+
+.landing-buttons {
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+
+
+.btn-main-login {
+  color: #5885AF;
+  padding: 12px 43px;
+  border-radius: 8px;
+  font-weight: lighter;
+  border: 1px solid;
+}
+
+.btn-main-login:hover {
+  background: #436E96;
+  color: white;
+  text-decoration: none;
+
+}
+
+
+.btn-main-signup {
+  color: white;
+  padding: 12px 43px;
+  border-radius: 8px;
+  font-weight: lighter;
+  background: #5885AF;
+}
+
+.btn-main-signup:hover {
+  background: #436E96;
+  color: white;
+  text-decoration: none;
+}
+
+
+.btn-create-trip {
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+}
+
+
+.btn-main-trips {
+  color: #5885AF;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: lighter;
+  border: 1px solid;
+}
+
+.btn-main-footer {
+  color: white;
+  padding: 4px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  background: #5885AF;
 }

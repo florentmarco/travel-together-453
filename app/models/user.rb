@@ -7,12 +7,13 @@ class User < ApplicationRecord
   has_many :comments
   has_many :tasks
   has_many :items
+  has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   after_create :send_welcome_email
-  
+
   private
 
   def send_welcome_email

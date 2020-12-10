@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:new, :create]
+  before_action :set_trip, only: [:new, :create, :update, :update_to_booked]
 
   def index
     # status filter function
@@ -43,11 +43,18 @@ class ItemsController < ApplicationController
     redirect_to trip_path(@trip)
   end
 
+  def update_to_booked
+    @item = Item.find(params[:item_id])
+    @item.update(status: "Booked")
+
+    authorize @item
+  end
+
   private
 
   def set_trip
     @trip = Trip.find(params[:trip_id])
-    authorize @trip
+    # authorize @trip
   end
 
   def item_params

@@ -35,16 +35,16 @@ puts "Creating trip and items"
 10.times do
   start_date = Date.today + rand(10..100)
   end_date = start_date + 5
-  name = Faker::Address.country
+  name = ['Kerala', 'France', 'Nepal', 'New Zealand', 'Canada', 'Indonesia', 'Australia']
 
   user_id_array = []
   User.all.each do |user|
     user_id_array << user.id
   end
-
+  trip_name = name.sample
   newtrip = Trip.new(
-    name: name + ' trip',
-    location: name,
+    name: trip_name + 'Trip',
+    location: trip_name,
     start_date: start_date,
     user_id: user_id_array.sample,
     end_date: end_date,

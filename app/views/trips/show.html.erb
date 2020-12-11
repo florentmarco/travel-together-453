@@ -7,36 +7,48 @@
   <%= link_to 'Back', trips_path, class: "btn btn-primary-tt btn-sm" %>
 
   <hr>
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+      <div class="dropdown  my-1 mr-3 py-1" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
+        <span data-target="item-form.category" type="text"></span>
+        <button class="btn btn-primary-tt dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add item
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <p data-action="click->item-form#serve" data-item="Flight" class="dropdown-item" >Flight</p>
+          <p data-action="click->item-form#serve" data-item="Accommodation" class="dropdown-item" >Accommodation</p>
+          <p data-action="click->item-form#serve" data-item="Activity" class="dropdown-item" >Activity</p>
+        </div>
+        <span data-target="item-form.form"></span>
+      </div>
 
-  <div class="dropdown" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
-    <span data-target="item-form.category" type="text"></span>
-    <button class="btn btn-primary-tt dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Add item
-    </button>
-    <% if @trip_owner.avatar.attached? %>
-      <%= image_tag @trip_owner.avatar, class: "avatar" %>
-    <% else %>
-      <%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-    <% end %>
-    <% if @guest_user.count ==  0 %>
-      <%=  %>
-    <% else %>
-      <% @guest_user.each do |guest|%>
-        <% if guest.avatar.attached? %>
-          <%= image_tag guest.avatar, class: "avatar" %>
+      <div>
+        <% if @trip_owner.avatar.attached? %>
+          <%= image_tag @trip_owner.avatar, class: "avatar" %>
         <% else %>
           <%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
-    <% end %>
-  <% end %>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <p data-action="click->item-form#serve" data-item="Flight" class="dropdown-item" >Flight</p>
-      <p data-action="click->item-form#serve" data-item="Accommodation" class="dropdown-item" >Accommodation</p>
-      <p data-action="click->item-form#serve" data-item="Activity" class="dropdown-item" >Activity</p>
+
+        <% if @guest_user.count ==  0 %>
+          <%=  %>
+        <% else %>
+          <% @guest_user.each do |guest|%>
+            <% if guest.avatar.attached? %>
+              <%= image_tag guest.avatar, class: "avatar" %>
+            <% else %>
+              <%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <span data-target="item-form.form">
-    </span>
+    <div>
+      <div>
+        <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "far fa-comments my-1 mx-3 h2" %>
+      </div>
+    </div>
   </div>
+
   <hr>
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
@@ -54,6 +66,7 @@
     <input type="hidden" name="trip_edate" value="<%= @trip.end_date %>">
     <input type="hidden" name="trip_user" value="<%= @trip.user.name %>">
     <input type="submit" value="Send" class="btn btn-primary-tt btn-sm">
+    <input type="submit" value="Cancel" class="btn btn-danger-tt btn-sm">
   </form>
 
   <hr>
@@ -108,8 +121,6 @@
       <%= render partial: 'items/item', collection: @trip.items %>
     </div>
   </div>
-
-  <%= link_to 'Chat', trip_chatroom_path(@trip, @chatroom), class: "fab" %>
 
 <!-- closing div for container -->
 </div>

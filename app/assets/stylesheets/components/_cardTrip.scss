@@ -61,9 +61,17 @@ padding-left: 4px;
 }
 
 .ellipsis-trip-icon {
+  overflow: cover;
   height: 15px;
   width: 15px;
   margin: 5px;
   position: absolute;
   right: 0px;
+}
+
+.dropdown {
+  right: 0;
+  left: auto;
+  padding-left: 1px;
+  padding-right: 1px;
 }

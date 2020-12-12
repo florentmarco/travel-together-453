@@ -1,7 +1,6 @@
 // action-card
 
 .action-card {
-  overflow: hidden;
   height: 173px;
   width: 346px;
   background: white;
@@ -33,11 +32,10 @@
 // price-card
 
 .action-card-pricecard {
-  overflow: hidden;
   height: 133px;
   width: 80px;
   background: white;
-  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-bottom: .2px solid rgba(50, 50, 50, .2);
   // box-shadow: 0 0 10px rgba(0,0,0,0.2);
   border-radius: 0px 4px 0px 0px;
 }
@@ -68,8 +66,8 @@
   height: 133px;
   width: 266px;
   background: white;
-  border-right: .5px solid rgba(50, 50, 50, .2);
-  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-right: .2px solid rgba(50, 50, 50, .2);
+  border-bottom: .2px solid rgba(50, 50, 50, .2);
   border-radius: 4px 0px 0px 0px;
   justify-content: space-between;
   text-align: center;
@@ -118,7 +116,7 @@
   padding-top: 10px;
   font-size: 0.6em;
   opacity: .8;
-  border-bottom: 2px solid rgba(50, 50, 50, .2);
+  border-bottom: .2px solid rgba(50, 50, 50, .2);
 }
 
 .action-card-main-flight-bottom {
@@ -149,8 +147,8 @@
   height: 133px;
   width: 266px;
   background: white;
-  border-right: .5px solid rgba(50, 50, 50, .2);
-  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-right: .2px solid rgba(50, 50, 50, .2);
+  border-bottom: .2px solid rgba(50, 50, 50, .2);
   border-radius: 4px 0px 0px 0px;
 }
 
@@ -198,8 +196,8 @@
   height: 133px;
   width: 266px;
   background: white;
-  border-right: .5px solid rgba(50, 50, 50, .2);
-  border-bottom: .5px solid rgba(50, 50, 50, .2);
+  border-right: .2px solid rgba(50, 50, 50, .2);
+  border-bottom: .2px solid rgba(50, 50, 50, .2);
   border-radius: 4px 0px 0px 0px;
 }
 
@@ -226,7 +224,10 @@
 
 
 
-
+.ellipsis-trip-icon-action-card {
+ margin-left: 67px;
+ z-index: 1;
+}
 
 
 

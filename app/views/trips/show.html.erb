@@ -1,12 +1,20 @@
+
+<!-- <div class="banner-show">
+<%#= image_tag (@spot.photos[0].fetch_url(800)) %>
+</div>
+ -->
 <div class="container">
-  <h1>Trip to <%= @trip.location %>  </h1>
+  <div class="trip-show-top d-flex ">
+    <div>
+      <h3>Trip to <%= @trip.location %>  </h3>
+      <h4><%= @trip.start_date %> to <%= @trip.end_date %></h4>
+    </div>
+    <div class="btn-trip-show-top">
+    <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
+    <%#= link_to 'Back', trips_path, class: "btn btn-primary-tt btn-sm" %>
+    </div>
+  </div>
 
-  <%= @trip.start_date %> <%= @trip.end_date %>
-
-  <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
-  <%= link_to 'Back', trips_path, class: "btn btn-primary-tt btn-sm" %>
-
-  <hr>
   <div class="d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
       <div class="dropdown  my-1 mr-3 py-1" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
@@ -49,10 +57,9 @@
     </div>
   </div>
 
-  <hr>
+
   <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
   <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
-  <hr>
 
   <p> Share via Email : </p>
   <form action="/email">
@@ -91,8 +98,11 @@
 
 
       <div class="dropdown mb-2 mt-2">
-          <button class="btn btn-primary-tt dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Filter
+          <button class="btn-primary-tt-filter dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-filter-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+        </svg>
           </button>
         <div class="dropdown-menu">
           <div class="form-check ml-3" >

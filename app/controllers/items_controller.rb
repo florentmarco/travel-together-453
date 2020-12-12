@@ -31,8 +31,6 @@ class ItemsController < ApplicationController
     authorize @item
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new
-      @flight_detail.airline = 'TT'
-      @flight_detail.save
     end
 
     render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}

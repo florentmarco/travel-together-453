@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:new, :create, :update, :update_to_booked]
+  before_action :set_trip, only: [:new, :create, :update, :update_to_booked, :form]
 
   def index
     # status filter function
@@ -21,14 +21,17 @@ class ItemsController < ApplicationController
   end
 
   def new
+    authorize @trip
+  end
+
+  def form
     @item = @trip.items.new(category: params[:category])
+    authorize @item
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new
     end
 
-    # render "items/_form_#{params[:category]}"
     render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
-    authorize @item
   end
 
   def create

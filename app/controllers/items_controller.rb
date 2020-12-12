@@ -21,13 +21,14 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new(category: params[:category])
+    @item = @trip.items.new(category: params[:category])
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new
     end
 
     # render "items/_form_#{params[:category]}"
     render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
+    authorize @item
   end
 
   def create
@@ -41,6 +42,7 @@ class ItemsController < ApplicationController
       @item.flight_detail = @flight_detail
     end
     redirect_to trip_path(@trip)
+    authorize @item
   end
 
   def update_to_booked

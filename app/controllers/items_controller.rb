@@ -52,7 +52,13 @@ class ItemsController < ApplicationController
     authorize @item
   end
 
-  def
+  def destroy
+    @item = Item.find(params[:id])
+    @trip = @item.trip
+    @item.destroy
+    redirect_to trip_path(@trip)
+    authorize @item
+  end
 
   private
 

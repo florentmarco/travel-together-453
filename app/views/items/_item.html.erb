@@ -20,11 +20,11 @@
         aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
         <div class="dropdown-menu dropdown-menu-right dropdown-primary">
           <%= link_to "#", class: "dropdown-item" do %>
-          <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
           <% end %>
 
-          <%= link_to "#", class: "dropdown-item" do %>
-          <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
+          <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item" do %>
+            <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
           <% end %>
 
         </div>
@@ -67,7 +67,6 @@
       <div class="action-card-main-flight-top d-flex">
         <div class="maincard-dep-flight">
           <p class="time"> <%= item.start_date.strftime("%k:%M") %> </p>
-          <% raise %>
           <p class="date"> <%= item.start_date.strftime("%d/%m/%Y") %>  </p>
           <p class="airport"><%= item.flight_detail.departure_airport %></p>
         </div>
@@ -95,13 +94,13 @@
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-            <%= link_to "#", class: "dropdown-item" do %>
-            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+            <%= link_to trip_item_path(item.trip, item), method: :patch, class: "dropdown-item" do %>
+              <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
             <% end %>
 
-            <%= link_to "#", class: "dropdown-item" do %>
-          <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
-          <% end %>
+            <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item" do %>
+              <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
+            <% end %>
           </div>
         </div>
           <div class="pricecard-price">
@@ -162,11 +161,11 @@
         aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
         <div class="dropdown-menu dropdown-menu-right dropdown-primary">
           <%= link_to "#", class: "dropdown-item" do %>
-          <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
           <% end %>
 
-          <%= link_to "#", class: "dropdown-item" do %>
-          <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
+          <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item",  do %>
+            <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
           <% end %>
         </div>
       </div>

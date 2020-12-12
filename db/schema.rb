@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_12_05_081112) do
-=======
-ActiveRecord::Schema.define(version: 2020_12_08_213748) do
->>>>>>> 459aad6489e73888d12e4086be697a1361f6ba95
+ActiveRecord::Schema.define(version: 2020_12_12_012204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +103,16 @@ ActiveRecord::Schema.define(version: 2020_12_08_213748) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "read_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_notifications_on_trip_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
@@ -161,6 +167,8 @@ ActiveRecord::Schema.define(version: 2020_12_08_213748) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "trips"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "trips"
+  add_foreign_key "notifications", "users"
   add_foreign_key "trips", "users"
   add_foreign_key "votes", "items"
   add_foreign_key "votes", "users"

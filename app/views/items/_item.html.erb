@@ -67,6 +67,7 @@
       <div class="action-card-main-flight-top d-flex">
         <div class="maincard-dep-flight">
           <p class="time"> <%= item.start_date.strftime("%k:%M") %> </p>
+          <% raise %>
           <p class="date"> <%= item.start_date.strftime("%d/%m/%Y") %>  </p>
           <p class="airport"><%= item.flight_detail.departure_airport %></p>
         </div>

@@ -52,6 +52,8 @@ class ItemsController < ApplicationController
     authorize @item
   end
 
+  def
+
   private
 
   def set_trip

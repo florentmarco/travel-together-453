@@ -9,10 +9,32 @@
       <h3>Trip to <%= @trip.location %>  </h3>
       <h4><%= @trip.start_date %> to <%= @trip.end_date %></h4>
     </div>
-    <div class="btn-trip-show-top">
-    <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
-    <%#= link_to 'Back', trips_path, class: "btn btn-primary-tt btn-sm" %>
-    </div>
+
+
+
+    <div class=" ellipsis-trip-icon dropdown">
+          <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+           <!--  <a class="dropdown-item" href="edit_trip_path(@trip)"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</a> -->
+            <%= link_to edit_trip_path(@trip), class: "dropdown-item" do %>
+              <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+             <% end %>
+
+             <%= link_to edit_trip_path(@trip), class: "dropdown-item" do %>
+              <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
+             <% end %>
+
+             <%= link_to edit_trip_path(@trip), class: "dropdown-item" do %>
+              <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
+             <% end %>
+          </div>
+        </div>
+
+            <!-- <div class="btn-trip-show-top">
+            <%#= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
+            <%#= link_to 'Back', trips_path, class: "btn btn-primary-tt btn-sm" %>
+            </div> -->
   </div>
 
   <div class="d-flex align-items-center justify-content-between">

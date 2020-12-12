@@ -1,15 +1,17 @@
 
-<h1>Create new item</h1>
-
-<div class="dropdown  my-1 mr-3 py-1" data-controller="item-form" data-item-form-url= "<%= form_trip_items_path(@trip) %>" >
-  <span data-target="item-form.category" type="text"></span>
-  <button class="btn btn-primary-tt dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Add item
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <p data-action="click->item-form#serve" data-item="Flight" class="dropdown-item" >Flight</p>
-    <p data-action="click->item-form#serve" data-item="Accommodation" class="dropdown-item" >Accommodation</p>
-    <p data-action="click->item-form#serve" data-item="Activity" class="dropdown-item" >Activity</p>
+<div class="container">
+  <div class="item-forms">
+    <div class="dropdown  my-1 mr-3 py-1" data-controller="item-form" data-item-form-url= "<%= form_trip_items_path(@trip) %>" >
+      <span data-target="item-form.category" type="text"></span>
+      <button class="btn-main-trips dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Choose item
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <p data-action="click->item-form#serve" data-item="Flight" class="dropdown-item" >Flight</p>
+        <p data-action="click->item-form#serve" data-item="Accommodation" class="dropdown-item" >Accommodation</p>
+        <p data-action="click->item-form#serve" data-item="Activity" class="dropdown-item" >Activity</p>
+      </div>
+      <div data-target="item-form.form"></div>
+    </div>
   </div>
-  <div data-target="item-form.form"></div>
 </div>

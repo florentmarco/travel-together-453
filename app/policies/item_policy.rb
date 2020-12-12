@@ -26,4 +26,7 @@ class ItemPolicy < ApplicationPolicy
     record.user == user || record.trip.user == user
   end
 
+  def form?
+    true
+  end
 end

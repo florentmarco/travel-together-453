@@ -3,7 +3,7 @@ require 'open-uri'
 
 class TripsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link, :invite]
   before_action :set_chatroom, only: [:show]
 
 
@@ -37,7 +37,7 @@ class TripsController < ApplicationController
     @guests_trip_arr = current_user.guests.map do |guest|
       guest.trip
     end
-    
+
     # allow trip owner to enter
     if @trip.user == current_user
       @trip
@@ -110,6 +110,9 @@ class TripsController < ApplicationController
   def destroy
     @trip.destroy
     redirect_to trips_path
+  end
+
+  def invite
   end
 
   private

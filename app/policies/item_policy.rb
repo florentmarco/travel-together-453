@@ -21,4 +21,8 @@ class ItemPolicy < ApplicationPolicy
   def create?
     record.trip.guests.include?(user) || record.trip.user == user
   end
+
+  def form?
+    true
+  end
 end

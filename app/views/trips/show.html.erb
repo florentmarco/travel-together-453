@@ -11,6 +11,11 @@
     </div>
 
     <div class="buttons-show-page d-flex">
+
+      <div class="create-button">
+        <%= link_to '', new_trip_item_path(@trip), class: "create-icon fas fa-plus fa-lg" %>
+      </div>
+
     <div class="chat-button">
         <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
     </div>
@@ -38,19 +43,6 @@
 
   <div class="d-flex align-items-center justify-content-between mb-2">
     <div class="d-flex align-items-center">
-      <div class="dropdown  my-1 mr-3 py-1" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
-        <span data-target="item-form.category" type="text"></span>
-        <button class="btn btn-primary-tt dropdown-toggle" type="button" data-action="click->item_form#serve" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Add item
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <p data-action="click->item-form#serve" data-item="Flight" class="dropdown-item" >Flight</p>
-          <p data-action="click->item-form#serve" data-item="Accommodation" class="dropdown-item" >Accommodation</p>
-          <p data-action="click->item-form#serve" data-item="Activity" class="dropdown-item" >Activity</p>
-        </div>
-        <span data-target="item-form.form"></span>
-      </div>
-
       <div>
         <% if @trip_owner.avatar.attached? %>
           <%= image_tag @trip_owner.avatar, class: "avatar" %>

@@ -3,9 +3,10 @@
   <div class="btn-create-trip">
     <%= link_to "CREATE TRIP", new_trip_path, class: "btn-main-trips" %>
   </div>
-   <h3>UPCOMING TRIPS</h3>
+  <h3>UPCOMING TRIPS</h3>
   <% @trips.each do |trip| %>
-    <div class="card-product d-flex">
+    <% if trip.end_date > Date.today%>
+     <div class="card-product d-flex">
         <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
         <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
         <% @spot = @client.spot("#{@reference}") %>
@@ -42,15 +43,53 @@
             <p><%= (trip.end_date - trip.start_date).to_i %> days</p>
            </div>
         </div>
-    </div>
+     </div>
     <br>
+    <% end%>
   <% end %>
-<h3>PAST TRIPS</h3>
+  <h3>PAST TRIPS</h3>
+  <% @trips.each do |trip| %>
+    <% if trip.end_date < Date.today%>
+     <div class="card-product d-flex">
+        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+        <% @spot = @client.spot("#{@reference}") %>
+        <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
 
 
+        <div class=" ellipsis-trip-icon dropdown">
+          <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+            <%= link_to "#", class: "dropdown-item" do %>
+              <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+             <% end %>
+
+             <%= link_to "#", class: "dropdown-item" do %>
+              <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
+             <% end %>
+
+             <%= link_to "#", class: "dropdown-item" do %>
+              <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
+             <% end %>
+          </div>
+        </div>
 
 
-
-
+        <%#= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
+        <div class="card-product-infos d-flex">
+          <div class="product-info-main">
+            <h2><%= link_to trip.location, trip_path(trip) %></h2>
+            <p><%= trip.start_date %> - <%= trip.end_date %></p>
+          </div>
+          <div class="clock d-flex">
+            <i class="far fa-clock"></i>
+            <p><%= (trip.end_date - trip.start_date).to_i %> days</p>
+           </div>
+        </div>
+     </div>
+    <br>
+    <% end%>
+  <% end %>
 </div>
 

@@ -21,7 +21,7 @@
               <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
              <% end %>
 
-             <%= link_to edit_trip_path(@trip), class: "dropdown-item" do %>
+             <%= link_to trip_path(@trip), method: :delete, class: "dropdown-item" do %>
               <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
              <% end %>
 

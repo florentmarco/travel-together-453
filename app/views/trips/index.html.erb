@@ -16,11 +16,11 @@
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-            <%= link_to "#", class: "dropdown-item" do %>
+            <%= link_to edit_trip_path(trip), class: "dropdown-item" do %>
               <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
              <% end %>
 
-             <%= link_to "#", class: "dropdown-item" do %>
+             <%= link_to trip_path(trip), method: :delete, class: "dropdown-item" do %>
               <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
              <% end %>
 
@@ -34,7 +34,7 @@
         <%#= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
         <div class="card-product-infos d-flex">
           <div class="product-info-main">
-            <h2><%= link_to trip.location, trip_path(trip) %></h2>
+            <h2><%= link_to trip.name, trip_path(trip) %></h2>
             <p><%= trip.start_date %> - <%= trip.end_date %></p>
           </div>
           <div class="clock d-flex">

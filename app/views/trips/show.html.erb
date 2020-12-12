@@ -14,6 +14,7 @@
       <div class="chat-button">
           <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
       </div>
+          <%= render partial: "notifications/notification" %>
 
       <div class=" ellipsis-trip-icon-show dropdown fa-lg">
         <a  type="button" id="dropdownMenu2" data-toggle="dropdown"

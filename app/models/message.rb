@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :chatroom
   belongs_to :user
+  has_one :notification
 
   after_create :create_notifications
 

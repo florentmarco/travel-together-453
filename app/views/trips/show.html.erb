@@ -10,9 +10,12 @@
       <h4><%= @trip.start_date %> to <%= @trip.end_date %></h4>
     </div>
 
+    <div class="buttons-show-page d-flex">
+    <div class="chat-button">
+        <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
+    </div>
 
-
-    <div class=" ellipsis-trip-icon dropdown">
+    <div class=" ellipsis-trip-icon-show dropdown fa-lg">
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
@@ -25,19 +28,15 @@
               <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
              <% end %>
 
-             <%= link_to edit_trip_path(@trip), class: "dropdown-item" do %>
+             <%= link_to invite_trip_path(@trip), class: "dropdown-item" do %>
               <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
              <% end %>
           </div>
         </div>
-
-            <!-- <div class="btn-trip-show-top">
-            <%#= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-primary-tt btn-sm" %>
-            <%#= link_to 'Back', trips_path, class: "btn btn-primary-tt btn-sm" %>
-            </div> -->
+    </div>
   </div>
 
-  <div class="d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-center justify-content-between mb-2">
     <div class="d-flex align-items-center">
       <div class="dropdown  my-1 mr-3 py-1" data-controller="item-form" data-item-form-url= "<%= new_trip_item_path(@trip) %>" >
         <span data-target="item-form.category" type="text"></span>
@@ -73,32 +72,8 @@
       </div>
     </div>
     <div>
-      <div>
-        <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "far fa-comments my-1 mx-3 h2" %>
-      </div>
     </div>
   </div>
-
-
-  <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
-  <p> Invite link: <%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %> </p>
-
-  <p> Share via Email : </p>
-  <form action="/email">
-    <label for="email">Send to:  </label>
-    <input type="text" name="email" placeholder="Enter an email address">
-    <input type="hidden" name="token" value="<%= Rails.application.routes.url_helpers.trip_url(@trip) %>?token=<%= @trip.invite_token %>">
-    <input type="hidden" name="subject" value="Your friend <%= @trip.user.name %> has invited you to the <%= @trip.location %> trip">
-    <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-    <input type="hidden" name="trip_name" value="<%= @trip.location %>">
-    <input type="hidden" name="trip_sdate" value="<%= @trip.start_date %>">
-    <input type="hidden" name="trip_edate" value="<%= @trip.end_date %>">
-    <input type="hidden" name="trip_user" value="<%= @trip.user.name %>">
-    <input type="submit" value="Send" class="btn btn-primary-tt btn-sm">
-    <input type="submit" value="Cancel" class="btn btn-danger-tt btn-sm">
-  </form>
-
-  <hr>
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
      <div>

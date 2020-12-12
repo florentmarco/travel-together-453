@@ -29,4 +29,8 @@ class TripPolicy < ApplicationPolicy
   def email?
     true
   end
+
+  def invite?
+    true
+  end
 end

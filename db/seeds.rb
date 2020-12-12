@@ -29,6 +29,71 @@ owner2 = User.new(
 )
 owner2.save!
 
+puts "Creating past trips"
+
+10.times do
+  start_date = Date.today - rand(10..100)
+  end_date = start_date + 5
+  name = ['Kerala', 'France', 'Nepal', 'New Zealand', 'Canada', 'Indonesia', 'Australia']
+
+  user_id_array = []
+  User.all.each do |user|
+    user_id_array << user.id
+  end
+  trip_name = name.sample
+  newtrip = Trip.new(
+    name: trip_name + 'Trip',
+    location: trip_name,
+    start_date: start_date,
+    user_id: user_id_array.sample,
+    end_date: end_date,
+    invite_token: rand(999999999)
+  )
+  newtrip.save!
+  puts
+  puts "#{newtrip.name.upcase}"
+
+  15.times do
+    newitem = Item.new(
+      category: ["Flight", "Accommodation", "Activity"].sample,
+      status: ["Pending", "Approved", "Booked"].sample
+      )
+    newitem.trip = newtrip
+    newitem.user = newtrip.user
+    newitem.price = rand(0..250)
+    newitem.url = 'www.sample.com'
+
+    case newitem.category
+    when "Accommodation"
+      newitem.name = Faker::Hipster.word
+      newitem.start_date = newitem.trip.start_date
+      newitem.end_date = newitem.trip.end_date
+    when "Activity"
+      newitem.name = Faker::Restaurant.name
+      newitem.address = Faker::Address.street_address
+      newitem.start_date = newitem.trip.start_date + rand(0..2)
+    end
+
+    if newitem.category == 'Flight'
+      newitem.start_date = newitem.trip.start_date
+      newitem.end_date = newitem.trip.end_date
+      fd = FlightDetail.new(
+        airline: ['Air Asia', 'Singapore Airline', 'Scoot'].sample,
+        flight_number: ['AA', 'SG', 'SC'].sample + rand(100..999).to_s,
+        departure_airport: 'SIN',
+        arrival_airport: ['AAA', 'BBB', 'CCC', 'DDD', 'EEE'].sample
+        )
+      fd.item = newitem
+      fd.save!
+    end
+
+    newitem.save!
+
+    puts "#{newitem.category} - #{newitem.status}"
+  end
+end
+
+
 puts "Creating trip and items"
 
 
@@ -60,6 +125,7 @@ puts "Creating trip and items"
 
   puts
   puts "#{newtrip.name.upcase}"
+
 
   15.times do
     newitem = Item.new(

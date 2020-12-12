@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_trip, only: [:new, :create, :update]
+  before_action :set_trip, only: [:new, :create, :update, :update_to_booked]
 
   def index
     # status filter function
@@ -21,13 +21,14 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new(category: params[:category])
+    @item = @trip.items.new(category: params[:category])
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new
     end
 
     # render "items/_form_#{params[:category]}"
     render partial: "items/form_#{params[:category]}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
+    authorize @item
   end
 
   def create
@@ -41,16 +42,12 @@ class ItemsController < ApplicationController
       @item.flight_detail = @flight_detail
     end
     redirect_to trip_path(@trip)
+    authorize @item
   end
 
-  def update
-    @item = Item.find(params[:id])
+  def update_to_booked
+    @item = Item.find(params[:item_id])
     @item.update(status: "Booked")
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: { item: @item } }
-    # end
 
     authorize @item
   end
@@ -59,7 +56,7 @@ class ItemsController < ApplicationController
 
   def set_trip
     @trip = Trip.find(params[:trip_id])
-    authorize @trip
+    # authorize @trip
   end
 
   def item_params

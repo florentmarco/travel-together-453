@@ -6,6 +6,19 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def update?
+    record.trip.guests.include?(user) || record.trip.user == user
+    # record.user == user
+  end
+
+  def new?
+    record.trip.guests.include?(user) || record.trip.user == user
+  end
+
+  def update_to_booked?
     record.user == user
+  end
+
+  def create?
+    record.trip.guests.include?(user) || record.trip.user == user
   end
 end

@@ -46,15 +46,18 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # @item.category = params[:category]
     @item.user = current_user
     @item.trip = @trip
-    @item.save!
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new(flight_detail_params)
       @item.flight_detail = @flight_detail
     end
-    redirect_to trip_path(@trip)
+    if @item.save && @flight_detail.save
+      redirect_to trip_path(@trip)
+    else
+      render :new
+    end
+
     authorize @item
   end
 

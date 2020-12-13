@@ -17,7 +17,15 @@ class ItemsController < ApplicationController
     else
       @status_filter = @category_filter
     end
-    @items = @status_filter
+
+    if params[:category] == "Flight Accommodation Activity"
+      @itinerary_filter = @status_filter.sort_by { |item| item.start_date }
+    else
+      @itinerary_filter = @status_filter
+    end
+
+    @items = @itinerary_filter
+    # raise
 
     render partial: 'items/item', collection: @items
   end

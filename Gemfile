@@ -35,11 +35,9 @@ gem 'pundit'
 gem 'turbolinks_render'
 gem 'cloudinary', '~> 1.16.0'
 
-
 gem 'pg_search', '~> 2.3.0'
 
 gem 'google_places'
-
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

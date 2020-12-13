@@ -60,7 +60,7 @@ class TripsController < ApplicationController
 
   def regenerate_invite_link
     @trip.update(invite_token: rand(99999999))
-    redirect_to trip_path(@trip)
+    redirect_to invite_trip_path(@trip)
   end
 
   def email

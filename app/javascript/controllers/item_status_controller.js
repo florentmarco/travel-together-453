@@ -33,7 +33,7 @@ const fetchStatusResults = (action) => {
 }
 
 export default class extends Controller {
-  static targets = [ "items", "tag"]
+  static targets = [ "items" ]
 
   connect() {
     console.log('item status connected')
@@ -41,19 +41,19 @@ export default class extends Controller {
 
   pending(event) {
     event.preventDefault();
-    statusArrUpdate("PENDING")
+    statusArrUpdate("Pending")
     fetchStatusResults(this)
   }
 
   approved(event) {
     event.preventDefault();
-    statusArrUpdate("APPROVED")
+    statusArrUpdate("Approved")
     fetchStatusResults(this)
   }
 
   booked(event) {
     event.preventDefault();
-    statusArrUpdate("BOOKED")
+    statusArrUpdate("Booked")
     fetchStatusResults(this)
   }
 
@@ -97,20 +97,5 @@ export default class extends Controller {
     categoryArr = ["Activity"];
     statusArr = ["Pending", "Approved", "Booked"];
     fetchCategoryResults(this)
-  }
-
-  change_to_booked(event) {
-    event.preventDefault();
-    url = event.target.dataset.item;
-    console.log(url)
-    fetch(url, {
-      headers: {
-        accept: 'application/json',
-        "X-CSRF-Token": csrf_token
-      },
-      method: "POST"
-    })
-    this.tagTarget.className = "booked-tag"
-    this.tagTarget.innerText = "Booked";
   }
 }

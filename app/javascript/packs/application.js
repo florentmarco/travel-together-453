@@ -62,6 +62,13 @@ document.addEventListener('turbolinks:load', () => {
     bookedTab.checked = "true";
   }
 
+  const onlyTickBooked = () => {
+    pendingTab.checked = "false";
+    approvedTab.checked = "false";
+    bookedTab.checked = "false";
+    bookedTab.checked = "true";
+  }
+
   // if condition to prevent error on other pages
   if (flightTab) {
     flightTab.addEventListener("click", (event) => {
@@ -72,7 +79,7 @@ document.addEventListener('turbolinks:load', () => {
 
     itineraryTab.addEventListener("click", (event) => {
       wipeCategoryActive()
-      resetStatusActive()
+      onlyTickBooked()
       event.currentTarget.classList.add("active");
     });
 

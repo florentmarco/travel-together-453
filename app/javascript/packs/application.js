@@ -100,14 +100,17 @@ document.addEventListener('turbolinks:load', () => {
   const copyText = document.querySelector("#invite-link");
   const copyLink = document.querySelector("#copy-link");
 
-  copyLink.addEventListener("click", (event) => {
-    /* Select the text field */
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  // if condition is to prevent javascript errors on other pages
+  if (copyText) {
+    copyLink.addEventListener("click", (event) => {
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
-  });
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+    });
+  }
 
 });
 

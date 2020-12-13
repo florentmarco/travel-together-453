@@ -3,21 +3,22 @@ class ItemsController < ApplicationController
   before_action :set_trip, only: [:new, :create, :update, :update_to_booked, :form]
   before_action :set_item, only: [:edit, :update, :destroy]
 
-
   def index
-    # status filter function
+    # category filter
     if params[:category].present?
       @category_filter = policy_scope(Item).search_by_category(params[:category]).search_by_id(params[:trip_id])
     else
       @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
     end
 
+    # status filter
     if params[:status].present? || params[:status] == ""
       @status_filter = @category_filter.search_by_status(params[:status]).search_by_id(params[:trip_id])
     else
       @status_filter = @category_filter
     end
 
+    # itinerary filter
     if params[:category] == "Flight Accommodation Activity"
       @itinerary_filter = @status_filter.sort_by { |item| item.start_date }
     else
@@ -25,7 +26,6 @@ class ItemsController < ApplicationController
     end
 
     @items = @itinerary_filter
-    # raise
 
     render partial: 'items/item', collection: @items
   end

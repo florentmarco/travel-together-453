@@ -51,7 +51,9 @@
       </div>
     </div>
     <div class="btn">
-      <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+      <% if policy(item).update_to_booked? %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -125,7 +127,9 @@
           </div>
         </div>
         <div class="btn">
-          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+          <% if policy(item).update_to_booked? %>
+            <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+          <% end %>
         </div>
     </div>
 </div>
@@ -191,7 +195,9 @@
       </div>
     </div>
     <div class="btn">
-      <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+      <% if policy(item).update_to_booked? %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+      <% end %>
     </div>
   </div>
 </div>

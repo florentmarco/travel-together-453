@@ -2,10 +2,10 @@
 
   <% invite_link = Rails.application.routes.url_helpers.trip_url(@trip) + "?token=" + @trip.invite_token %>
   <!-- The text field -->
-  <input type="text" value= <%= invite_link %> id= invite-link>
+  <input type="text" value= <%= invite_link %> id= invite-link >
   <!-- The button used to copy the text -->
-  <button id ="copy-link">Copy invite link</button>
-  <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch %>
+  <button id ="copy-link" class= "btn btn-primary-tt btn-sm">Copy invite link</button>
+  <%= link_to "Re-generate invite link", regenerate_invite_link_path(@trip), method: :patch , class:"btn btn-danger-tt btn-sm" %>
 
   <hr>
 

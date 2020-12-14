@@ -5,5 +5,5 @@ class FlightDetail < ApplicationRecord
   validates :flight_number, presence: true
   validates :departure_airport, presence: true
   validates :arrival_airport, presence: true
-  # validates :item_id, presence: true
+  validates :item, presence: true
 end

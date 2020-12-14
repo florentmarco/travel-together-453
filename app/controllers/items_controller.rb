@@ -50,9 +50,10 @@ class ItemsController < ApplicationController
     @item.trip = @trip
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new(flight_detail_params)
-      @item.flight_detail = @flight_detail
+      @flight_detail.item = @item
+      @flight_detail.save
     end
-    if @item.save && @flight_detail.save
+    if @item.save
       redirect_to trip_path(@trip)
     else
       render :new

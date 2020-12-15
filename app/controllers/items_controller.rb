@@ -71,15 +71,17 @@ class ItemsController < ApplicationController
 
   def edit
     @flight_detail = @item.flight_detail
-    render partial: "items/form_#{@item.category}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
 
     authorize @item
   end
 
   def update
     @item.update(item_params)
-    @flight_detail = @item.flight_detail
-    @flight_detail.update(flight_detail_params)
+    if @item.flight_detail.nil?
+    else
+      @flight_detail = @item.flight_detail
+      @flight_detail.update(flight_detail_params)
+    end
     redirect_to trip_path(@trip)
 
     authorize @item

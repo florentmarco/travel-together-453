@@ -16,6 +16,7 @@ puts "Deleting databases"
 Trip.destroy_all
 User.destroy_all
 
+# get random picture from api
 def get_random_pic
   url = 'https://randomuser.me/api/'
   user_serialized = open(url).read
@@ -23,6 +24,7 @@ def get_random_pic
   user['results'].first["picture"]["large"]
 end
 
+# attach random profile pic to user and upload to cloudinary
 def use_cloudinary(user, pic_file)
   file = URI.open(pic_file)
   user.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')

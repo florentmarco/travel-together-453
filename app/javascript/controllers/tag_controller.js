@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "booked"]
+  static targets = [ "booked", "confirmButton"]
 
   connect() {
     console.log('tag connected')
@@ -19,7 +19,8 @@ export default class extends Controller {
       },
       method: "PATCH"
     })
-    this.bookedTarget.className = "booked-tag"
+    this.bookedTarget.className = "booked-tag";
     this.bookedTarget.innerText = "Booked";
+    this.confirmButtonTarget.classList.add("disabled");
   }
 }

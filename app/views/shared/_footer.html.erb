@@ -1,3 +1,4 @@
+<%# raise %>
 <div class="footer d-flex">
     <div class="footer-items">
       <%= link_to "", trips_path, class: "fas fa-home" %>
@@ -6,7 +7,8 @@
       <%= link_to "", trips_path, class: "fas fa-angle-left" %>
     </div>
     <div class="footer-items">
-      <%= link_to "+", new_trip_path, class: "btn-main-footer" %>
+      <% trip = @trip ? @trip : nil %>
+      <%= link_to "+", path_for_route(request.env['PATH_INFO'], trip), class: "btn-main-footer" %>
     </div>
       <div class="footer-items">
         <div class="notification-symbol">

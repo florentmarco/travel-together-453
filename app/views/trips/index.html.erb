@@ -5,67 +5,37 @@
   </div>
   <h3>UPCOMING TRIPS</h3>
   <% @trips.each do |trip| %>
-  <% if trip.end_date > Date.today%>
-  <div class="card-product d-flex">
-    <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-    <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-    <% @spot = @client.spot("#{@reference}") %>
-    <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
+    <% if trip.end_date > Date.today%>
+      <div class="card-product d-flex">
+        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+        <% @spot = @client.spot("#{@reference}") %>
+        <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
 
 
-    <div class=" ellipsis-trip-icon dropdown">
-      <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-        <%= link_to edit_trip_path(trip), class: "dropdown-item" do %>
-        <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
-        <% end %>
+        <div class=" ellipsis-trip-icon dropdown">
+          <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+            <%= link_to edit_trip_path(trip), class: "dropdown-item" do %>
+            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+            <% end %>
 
-        <%= link_to trip_path(trip), method: :delete, class: "dropdown-item" do %>
-        <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
-        <% end %>
+            <%= link_to trip_path(trip), method: :delete, class: "dropdown-item" do %>
+            <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
+            <% end %>
 
-        <%= link_to "#", class: "dropdown-item" do %>
-        <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
-        <% end %>
-      </div>
-    </div>
+            <%= link_to "#", class: "dropdown-item" do %>
+            <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
+            <% end %>
+          </div>
+        </div>
 
 
-    <%#= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
-    <div class="card-product-infos d-flex">
-      <div class="product-info-main">
-        <h2><%= link_to trip.name, trip_path(trip) %></h2>
-        <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
-          <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b') %></p>
-        <% elsif trip.start_date.year == trip.end_date.year %>
-          <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
-        <% else %>
-          <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
-        <% end %>
-      </div>
-      <div class="clock d-flex">
-        <i class="far fa-clock"></i>
-        <p><%= (trip.end_date - trip.start_date).to_i %> days</p>
-      </div>
-    </div>
-  </div>
-  <br>
-  <% end%>
-  <% end %>
-
-    <h3>PAST TRIPS</h3>
-  <div class="row ml-0">
-    <% @trips.each do |trip| %>
-      <% if trip.end_date < Date.today %>
-      <!-- here we render all past trips -->
-      <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-      <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-      <% @spot = @client.spot("#{@reference}") %>
-      <div class="col-xs-6 mr-2 my-1">
-        <div class="cardTripPast" style="background-image: url(<%= image_path(@spot.photos[0].fetch_url(800)) %>)">
-          <div class="past-product-info-main">
-            <h2><%= trip.name %></h2>
+        <%#= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
+        <div class="card-product-infos d-flex">
+          <div class="product-info-main">
+            <h2><%= link_to trip.name, trip_path(trip) %></h2>
             <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
               <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b') %></p>
             <% elsif trip.start_date.year == trip.end_date.year %>
@@ -74,9 +44,39 @@
               <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
             <% end %>
           </div>
+          <div class="clock d-flex">
+            <i class="far fa-clock"></i>
+            <p><%= (trip.end_date - trip.start_date).to_i %> days</p>
+          </div>
         </div>
-
       </div>
+      <br>
+    <% end%>
+  <% end %>
+
+  <h3>PAST TRIPS</h3>
+  <div class="row ml-0">
+    <% @trips.each do |trip| %>
+      <% if trip.end_date < Date.today %>
+        <!-- here we render all past trips -->
+        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+        <% @spot = @client.spot("#{@reference}") %>
+        <div class="col-xs-6 mr-2 my-1">
+          <div class="cardTripPast" style="background-image: url(<%= image_path(@spot.photos[0].fetch_url(800)) %>)">
+            <div class="past-product-info-main">
+              <h2><%= trip.name %></h2>
+              <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
+                <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b') %></p>
+              <% elsif trip.start_date.year == trip.end_date.year %>
+                <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
+              <% else %>
+                <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
       <% end %>
     <% end %>
   </div>

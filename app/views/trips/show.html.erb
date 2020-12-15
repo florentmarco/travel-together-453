@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="trip-show-top d-flex ">
+  <div class="trip-show-top d-flex">
     <div>
-      <h3>Trip to <%= @trip.location %>  </h3>
+      <h3>Trip to <%= @trip.location %></h3>
       <% if @trip.start_date.year == @trip.end_date.year && Date.today.year == @trip.start_date.year %>
         <h4><%= @trip.start_date.strftime('%a %-d %b') %> to <%= @trip.end_date.strftime("%y") %></h4>
       <% elsif @trip.start_date.year == @trip.end_date.year %>

@@ -1,8 +1,6 @@
 
 <% if item.category == "Activity" %>
 
-
-
 <div class="action-card">
   <div class="action-card-top d-flex">
     <div class="action-card-main-activity d-flex">
@@ -51,7 +49,11 @@
       </div>
     </div>
     <div class="btn">
-      <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+      <% if item.status == "Booked" %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+      <% else %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+      <% end %>
     </div>
   </div>
 </div>
@@ -59,7 +61,6 @@
 
 
 <% elsif item.category == "Flight" %>
-
 
 <div class="action-card">
   <div class="action-card-top d-flex">
@@ -125,7 +126,11 @@
           </div>
         </div>
         <div class="btn">
-          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+          <% if item.status == "Booked" %>
+            <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+          <% else %>
+            <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+          <% end %>
         </div>
     </div>
 </div>
@@ -191,7 +196,11 @@
       </div>
     </div>
     <div class="btn">
-      <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked" %>
+      <% if item.status == "Booked" %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+      <% else %>
+        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+      <% end %>
     </div>
   </div>
 </div>

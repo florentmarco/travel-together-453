@@ -6,7 +6,6 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link, :invite]
   before_action :set_chatroom, only: [:show]
 
-
   def index
     # get array of trips current user created (see TripPolicy)
     @trips_i_own = policy_scope(Trip)

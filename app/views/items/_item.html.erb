@@ -13,20 +13,22 @@
       </div>
     </div>
     <div class="action-card-pricecard">
-      <div class=" ellipsis-trip-icon-action-card dropdown">
-        <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-          <%= link_to edit_trip_item_path(item.trip, item), method: :get, class: "dropdown-item" do %>
-            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
-          <% end %>
-
-          <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item" do %>
-            <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
-          <% end %>
-
+      <% if policy(item).destroy? %>
+        <div class=" ellipsis-trip-icon-action-card dropdown">
+          <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+            <%= link_to edit_trip_item_path(item.trip, item), method: :get, class: "dropdown-item" do %>
+              <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+            <% end %>
+            <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item" do %>
+              <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% else %>
+        <div class="p-2"></div>
+      <% end %>
       <div class="pricecard-price">
         <p class="mt-3 mb-0 price"> $<%= item.price %></p>
         <p class="mt-0 "> per pax </p>
@@ -49,10 +51,12 @@
       </div>
     </div>
     <div class="btn">
-      <% if item.status == "Booked" %>
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
-      <% else %>
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+      <% if policy(item).update_to_booked? %>
+        <% if item.status == "Booked" %>
+          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+        <% else %>
+          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -91,6 +95,7 @@
     </div>
 
     <div class="action-card-pricecard">
+      <% if policy(item).destroy? %>
         <div class=" ellipsis-trip-icon-action-card dropdown">
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
@@ -104,11 +109,14 @@
             <% end %>
           </div>
         </div>
-          <div class="pricecard-price">
-            <p class="mt-3 mb-0 price"> $<%= item.price %></p>
-            <p class="mt-0 "> per pax </p>
-          </div>
-        </div>
+      <% else %>
+        <div class="p-2"></div>
+      <% end %>
+      <div class="pricecard-price">
+        <p class="mt-3 mb-0 price"> $<%= item.price %></p>
+        <p class="mt-0 "> per pax </p>
+      </div>
+    </div>
   </div>
  <div class="action-card-bstrip d-flex" data-controller="tag">
         <div class="d-flex align-items-center">
@@ -126,10 +134,12 @@
           </div>
         </div>
         <div class="btn">
-          <% if item.status == "Booked" %>
-            <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
-          <% else %>
-            <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+          <% if policy(item).update_to_booked? %>
+            <% if item.status == "Booked" %>
+              <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+            <% else %>
+              <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+            <% end %>
           <% end %>
         </div>
     </div>
@@ -161,19 +171,23 @@
       </div>
     </div>
     <div class="action-card-pricecard">
-      <div class=" ellipsis-trip-icon-action-card dropdown">
-        <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-          <%= link_to edit_trip_path(item.trip, item), method: :get, class: "dropdown-item" do %>
-            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
-          <% end %>
+      <% if policy(item).destroy? %>
+        <div class=" ellipsis-trip-icon-action-card dropdown">
+          <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+            <%= link_to edit_trip_path(item.trip, item), method: :get, class: "dropdown-item" do %>
+              <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+            <% end %>
 
-          <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item" do %>
-            <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
-          <% end %>
+            <%= link_to trip_item_path(item.trip, item), method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item" do %>
+              <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Remove
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% else %>
+        <div class="p-2"></div>
+      <% end %>
       <div class="pricecard-price">
         <p class="mt-3 mb-0 price"> $<%= item.price %></p>
         <p class="mt-0 "> per pax </p>
@@ -196,10 +210,12 @@
       </div>
     </div>
     <div class="btn">
-      <% if item.status == "Booked" %>
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
-      <% else %>
-        <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+      <% if policy(item).update_to_booked? %>
+        <% if item.status == "Booked" %>
+          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+        <% else %>
+          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+        <% end %>
       <% end %>
     </div>
   </div>

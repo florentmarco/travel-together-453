@@ -1,6 +1,10 @@
 <div class="message-container" id="message-<%= message.id %>">
   <i class="author">
-    <span><%= image_tag message.user.avatar, class: "avatar" %></span>
+    <% if current_user.avatar.attached? %>
+      <span><%= image_tag message.user.avatar, class: "avatar" %></span>
+    <% else %>
+      <span><%= image_tag "https://res.cloudinary.com/dowupfbnq/image/upload/v1604735390/istockphoto-1223671392-612x612_dyrhd5.jpg", class: "avatar"%></span>
+    <% end %>
     <span><%= message.user.name[0] %></span>
     <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
   </i>

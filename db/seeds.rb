@@ -9,10 +9,17 @@
 require "faker"
 require "date"
 require "open-uri"
+require 'json'
+
 
 puts "Deleting databases"
 Trip.destroy_all
 User.destroy_all
+
+url = 'https://randomuser.me/api/'
+user_serialized = open(url).read
+user = JSON.parse(user_serialized)
+puts "#{user['results'].first["picture"]["large"]}"
 
 puts "Creating users"
 owner1 = User.new(

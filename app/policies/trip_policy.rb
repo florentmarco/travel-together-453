@@ -15,11 +15,11 @@ class TripPolicy < ApplicationPolicy
   end
 
   def update?
-    user && (user == record.user || user.admin)
+    user && user == record.user
   end
 
   def destroy?
-    user && (user == record.user || user.admin)
+    user && user == record.user
   end
 
   def regenerate_invite_link?

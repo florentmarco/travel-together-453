@@ -1,8 +1,3 @@
-
-<!-- <div class="banner-show">
-<%#= image_tag (@spot.photos[0].fetch_url(800)) %>
-</div>
- -->
 <div class="container">
   <div class="trip-show-top d-flex ">
     <div>
@@ -16,11 +11,11 @@
         <%= link_to '', new_trip_item_path(@trip), class: "create-icon fas fa-plus fa-lg" %>
       </div>
 
-    <div class="chat-button">
-        <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
-    </div>
-
-    <div class=" ellipsis-trip-icon-show dropdown fa-lg">
+      <div class="chat-button">
+          <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
+      </div>
+      <% if policy(@trip).destroy? %>
+        <div class=" ellipsis-trip-icon-show dropdown fa-lg">
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
@@ -38,6 +33,7 @@
              <% end %>
           </div>
         </div>
+      <% end %>
     </div>
   </div>
 

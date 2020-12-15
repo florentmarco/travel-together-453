@@ -16,10 +16,17 @@ puts "Deleting databases"
 Trip.destroy_all
 User.destroy_all
 
-url = 'https://randomuser.me/api/'
-user_serialized = open(url).read
-user = JSON.parse(user_serialized)
-puts "#{user['results'].first["picture"]["large"]}"
+def get_random_pic
+  url = 'https://randomuser.me/api/'
+  user_serialized = open(url).read
+  user = JSON.parse(user_serialized)
+  user['results'].first["picture"]["large"]
+end
+
+def use_cloudinary(user, pic_file)
+  file = URI.open(pic_file)
+  user.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+end
 
 puts "Creating users"
 owner1 = User.new(
@@ -27,6 +34,7 @@ owner1 = User.new(
   password: '111111',
   name: 'owner1'
 )
+use_cloudinary(owner1, get_random_pic)
 owner1.save!
 
 owner2 = User.new(
@@ -34,6 +42,7 @@ owner2 = User.new(
   password: '111111',
   name: "owner2"
 )
+use_cloudinary(owner2, get_random_pic)
 owner2.save!
 
 puts "Creating past trips"

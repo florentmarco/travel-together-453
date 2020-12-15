@@ -38,6 +38,7 @@ owner1 = User.new(
 )
 use_cloudinary(owner1, get_random_pic)
 owner1.save!
+puts "#{owner1.name} created"
 
 owner2 = User.new(
   email: "owner2@example.com",
@@ -46,6 +47,53 @@ owner2 = User.new(
 )
 use_cloudinary(owner2, get_random_pic)
 owner2.save!
+puts "#{owner2.name} created"
+
+guest1 = User.new(
+  email: "guest1@example.com",
+  password: '111111',
+  name: "guest1"
+)
+use_cloudinary(guest1, get_random_pic)
+guest1.save!
+puts "#{guest1.name} created"
+
+guest2 = User.new(
+  email: "guest2@example.com",
+  password: '111111',
+  name: "guest2"
+)
+use_cloudinary(guest2, get_random_pic)
+guest2.save!
+puts "#{guest2.name} created"
+
+guest3 = User.new(
+  email: "guest3@example.com",
+  password: '111111',
+  name: "guest3"
+)
+use_cloudinary(guest3, get_random_pic)
+guest3.save!
+puts "#{guest3.name} created"
+
+guest4 = User.new(
+  email: "guest4@example.com",
+  password: '111111',
+  name: "guest4"
+)
+use_cloudinary(guest4, get_random_pic)
+guest4.save!
+puts "#{guest4.name} created"
+
+guest5 = User.new(
+  email: "guest5@example.com",
+  password: '111111',
+  name: "guest5"
+)
+use_cloudinary(guest5, get_random_pic)
+guest5.save!
+puts "#{guest5.name} created"
+
 
 puts "Creating past trips"
 
@@ -137,6 +185,12 @@ puts "Creating trip and items"
   puts
   puts "#{newtrip.name.upcase}"
 
+  # add 3x guests to each trip
+  3.times do
+    guest = Guest.new
+    guest.user = [guest1, guest2, guest3, guest4, guest5].sample
+    guest.trip = newtrip
+  end
 
   15.times do
     newitem = Item.new(

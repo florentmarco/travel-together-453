@@ -38,7 +38,8 @@ class MessagesController < ApplicationController
 
   def trip_members
     trip = Trip.find(params[:trip_id])
-    guest = Guest.find_by(trip_id: trip.id)
-    [User.find(trip.user_id)] + [User.find(guest.user_id)]
+    guests = Guest.where(trip_id: trip.id).to_a
+    guest_users = guests.map { |guest| User.find(guest.user_id)}
+    [User.find(trip.user_id)] + guest_users
   end
 end

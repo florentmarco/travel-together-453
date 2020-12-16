@@ -54,12 +54,19 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   const resetStatusActive = () => {
-    pendingTab.checked = "false";
-    approvedTab.checked = "false";
-    bookedTab.checked = "false";
-    pendingTab.checked = "true";
-    approvedTab.checked = "true";
-    bookedTab.checked = "true";
+    pendingTab.checked = false;
+    approvedTab.checked = false;
+    bookedTab.checked = false;
+    pendingTab.checked = true;
+    approvedTab.checked = true;
+    bookedTab.checked = true;
+  }
+
+  const onlyTickBooked = () => {
+    pendingTab.checked = false;
+    approvedTab.checked = false;
+    bookedTab.checked = false;
+    bookedTab.checked = true;
   }
 
   // if condition to prevent error on other pages
@@ -72,7 +79,7 @@ document.addEventListener('turbolinks:load', () => {
 
     itineraryTab.addEventListener("click", (event) => {
       wipeCategoryActive()
-      resetStatusActive()
+      onlyTickBooked()
       event.currentTarget.classList.add("active");
     });
 
@@ -89,6 +96,23 @@ document.addEventListener('turbolinks:load', () => {
     });
   }
 
+  // copy to clipboard
+  const copyText = document.querySelector("#invite-link");
+  const copyLink = document.querySelector("#copy-link");
+
+  // if condition is to prevent javascript errors on other pages
+  if (copyText) {
+    copyLink.addEventListener("click", (event) => {
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+    });
+  }
+
 });
+
 
 import "controllers"

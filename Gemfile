@@ -22,7 +22,6 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
-gem 'google_places'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,11 +34,9 @@ gem 'pundit'
 gem 'turbolinks_render'
 gem 'cloudinary', '~> 1.16.0'
 
-
 gem 'pg_search', '~> 2.3.0'
 
 gem 'google_places'
-
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

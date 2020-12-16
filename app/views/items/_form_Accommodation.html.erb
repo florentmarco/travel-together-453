@@ -1,7 +1,22 @@
 <div class="container" data-controller="future-controller" style="padding: 60px;">
-  <span>
-   <h3>ADD LODGING</h3>
-   <%= simple_form_for [@trip, @item] do |f| %>
+  <% if Item.exists?(@item.id) %>
+    <span>
+     <h3>EDIT LODGING</h3>
+     <%= simple_form_for [@trip, @item] do |f| %>
+          <%= f.hidden_field :category %>
+          <%= f.input :name %>
+          <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
+          <%= f.input :end_date, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.input :address %>
+          <%= f.input :url %>
+          <%= f.input :price %>
+          <%= f.submit "Edit", class: "btn-main-trips"%>
+      <% end %>
+    </span>
+  <% else %>
+    <span>
+      <h3>ADD LODGING</h3>
+      <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category %>
         <%= f.input :name %>
         <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
@@ -9,8 +24,9 @@
         <%= f.input :address %>
         <%= f.input :url %>
         <%= f.input :price %>
-        <%= f.submit "create", class: "btn-main-trips"%>
-    <% end %>
-  </span>
+        <%= f.submit "Create", class: "btn-main-trips"%>
+      <% end %>
+    </span>
+  <% end %>
 </div>
 

@@ -1,0 +1,9 @@
+<div class="container">
+  <% if @item.category == "Flight" %>
+    <%= render partial: 'items/form_edit_Flight', locals: { trip: @trip, item: @item, flight_detail: @flight_detail} %>
+  <% elsif @item.category == "Accomodation" %>
+    <%= render partial: 'items/form_Accomodation', locals: { trip: @trip, item: @item} %>
+  <% else %>
+    <%= render partial: 'items/form_Activity', locals: { trip: @trip, item: @item} %>
+  <% end %>
+</div>

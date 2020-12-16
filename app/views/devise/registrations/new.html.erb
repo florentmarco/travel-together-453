@@ -1,5 +1,12 @@
-<div class="container" style="padding: 60px;">
-  <h2>Sign up</h2>
+<div class="container devise" style="padding: 60px;">
+  <div class="d-flex justify-content-between">
+    <div>
+      <h2>Sign up</h2>
+    </div>
+    <div>
+     <h2 class= "other"><%= render "devise/shared/links" %></h2>
+    </div>
+  </div>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -27,5 +34,4 @@
     </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
 </div>

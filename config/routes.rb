@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # root should redirect to the login page,
   # as we don't accept users not logged in to access our content
-  root to: 'trips#index'
+  root to: 'landing#index'
   # root to: 'devise/sessions#new'
 
   resources :trips, only: [:index, :new, :edit, :update, :create, :show, :destroy] do
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :votes, only: [:destroy]
 
   get 'uikit', to: 'uikits#index'
-  get 'landing', to: 'landing#index'
+  # get 'landing', to: 'landing#index'
 
   patch "regenerate_invite_link/:id", to: "trips#regenerate_invite_link", as: :regenerate_invite_link
   get "email", to: "trips#email"

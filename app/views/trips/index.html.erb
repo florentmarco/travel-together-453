@@ -29,7 +29,6 @@
           </div>
         </div>
 
-
         <%#= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
         <div class="card-product-infos d-flex">
           <div class="product-info-main">
@@ -73,11 +72,29 @@
               <% end %>
             </div>
           </div>
-
         </div>
       <% end %>
     <% end %>
   </div>
+
+  <% if @trips == [] %>
+    <div>
+      <br>
+      <h3>Welcome, Fellow traveller</h3>
+      <br>
+      <p>Travel Togetether has been created to allow Friends and Familly to organize quickly and efficiently trips together</p>
+      <p>how to use it?</p>
+      <p>it's quite simple:</p>
+      <ol>
+        <li>Create a Trip</li>
+        <li>Define where and when</li>
+        <li>Invite your friend to join TravelTogether</li>
+        <li>everybody suggests fligths, lodging options and activities</li>
+        <li>vote for the one you prefered</li>
+      </ol>
+    </div>
+  <% end %>
+
 </div>
 
 

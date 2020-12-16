@@ -108,7 +108,7 @@ puts "Creating past trips"
   end
   trip_name = name.sample
   newtrip = Trip.new(
-    name: trip_name + 'Trip',
+    name: trip_name,
     location: trip_name,
     start_date: start_date,
     user_id: user_id_array.sample,
@@ -166,31 +166,34 @@ puts "Creating trip and items"
 10.times do
   start_date = Date.today + rand(10..100)
   end_date = start_date + 5
-  name = ['Kerala', 'France', 'Nepal', 'New Zealand', 'Canada', 'Indonesia', 'Australia']
+  name = ['Kerala', 'France', 'Nepal', 'New Zealand', 'Canada', 'Indonesia', 'Australia', "Japan", "London", "Bangkok", "Hanoi", "Brazil"]
 
-  user_id_array = []
-  User.all.each do |user|
-    user_id_array << user.id
-  end
+  # user_id_array = []
+  # User.all.each do |user|
+  #   user_id_array << user.id
+  # end
+
   trip_name = name.sample
   newtrip = Trip.new(
-    name: trip_name + 'Trip',
+    name: trip_name,
     location: trip_name,
     start_date: start_date,
-    user_id: user_id_array.sample,
+    user_id: [owner1.id, owner2.id].sample,
     end_date: end_date,
     invite_token: rand(999999999)
   )
+
+  # add 3x guests to each trip
+  [guest1, guest2, guest3, guest4, guest5].sample(3).each do |one_user|
+    guest = Guest.new
+    guest.user = one_user
+    guest.trip = newtrip
+    guest.save!
+  end
+
   newtrip.save!
   puts
   puts "#{newtrip.name.upcase}"
-
-  # add 3x guests to each trip
-  3.times do
-    guest = Guest.new
-    guest.user = [guest1, guest2, guest3, guest4, guest5].sample
-    guest.trip = newtrip
-  end
 
   15.times do
     newitem = Item.new(
@@ -204,18 +207,20 @@ puts "Creating trip and items"
 
     case newitem.category
     when "Accommodation"
-      newitem.name = Faker::Hipster.word
+      # newitem.name = Faker::Hipster.word
+      newitem.name = ["Cotton House hotel", "Hotel Ett Hem Les", "Hotel Fermes de Marie", "Hilton hotel", "Hotel du Cap-Eden-Roc", "Four Seasons Hotel", "Ballyfin Hotel", "Grand Hotel a Villa Feltrinelli Hotel"].sample
       newitem.start_date = newitem.trip.start_date
       newitem.end_date = newitem.trip.end_date
     when "Activity"
-      newitem.name = Faker::Restaurant.name
+      # newitem.name = Faker::Restaurant.name
+      newitem.name = ["Hiking", "Mountain Climbing", "Bungie jump", "Swimming", "Cycling", "Zoo", "Shopping"].sample
       newitem.address = Faker::Address.street_address
       newitem.start_date = newitem.trip.start_date + rand(0..2)
     end
 
     if newitem.category == 'Flight'
-      newitem.start_date = newitem.trip.start_date
-      newitem.end_date = newitem.trip.end_date
+      newitem.start_date = Time.now
+      newitem.end_date = Time.now + rand(10000..30000)
       fd = FlightDetail.new(
         airline: ['Air Asia', 'Singapore Airline', 'Scoot'].sample,
         flight_number: ['AA', 'SG', 'SC'].sample + rand(100..999).to_s,

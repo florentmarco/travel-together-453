@@ -7,12 +7,14 @@
   <% @trips.each do |trip| %>
   <% if trip.end_date > Date.today%>
   <div class="card-product d-flex">
-    <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-    <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-    <% @spot = @client.spot("#{@reference}") %>
-    <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
-
-
+    <% if get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
+      <%= image_tag (get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
+    <% else %>
+      <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+      <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+      <% @spot = @client.spot("#{@reference}") %>
+      <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
+    <% end %>
     <div class=" ellipsis-trip-icon dropdown">
       <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
@@ -53,22 +55,29 @@
     <% @trips.each do |trip| %>
     <% if trip.end_date < Date.today %>
     <!-- here we render all past trips -->
-    <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-    <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-    <% @spot = @client.spot("#{@reference}") %>
-    <div class="col-xs-6 mr-2 my-1">
-      <div class="cardTripPast" style="background-image: url(<%= image_path(@spot.photos[0].fetch_url(800)) %>)">
-        <div class="past-product-info-main">
-          <h2><%= trip.name %></h2>
-          <p> <%= trip.start_date %> - <%= trip.end_date %></p>
+      <% if get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
+        <div class="col-xs-6 mr-2 my-1">
+          <div class="cardTripPast" style="background-image: url(<%= image_path(get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY'])) %>)">
+            <div class="past-product-info-main">
+              <h2><%= trip.name %></h2>
+              <p> <%= trip.start_date %> - <%= trip.end_date %></p>
+            </div>
+          </div>
         </div>
-      </div>
-
-    </div>
+      <% else %>
+        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+        <% @spot = @client.spot("#{@reference}") %>
+        <div class="col-xs-6 mr-2 my-1">
+          <div class="cardTripPast" style="background-image: url(<%= image_path(@spot.photos[0].fetch_url(800)) %>)">
+            <div class="past-product-info-main">
+              <h2><%= trip.name %></h2>
+              <p> <%= trip.start_date %> - <%= trip.end_date %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
     <% end %>
   </div>
 </div>
-
-
-

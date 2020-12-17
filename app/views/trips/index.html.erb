@@ -3,32 +3,34 @@
 <div class="container">
   <h3>UPCOMING TRIPS</h3>
   <% @trips.each do |trip| %>
-    <% if trip.end_date > Date.today%>
-      <div class="card-product d-flex">
-        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-        <% @spot = @client.spot("#{@reference}") %>
-        <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
+  <% if trip.end_date > Date.today%>
+  <div class="card-product d-flex">
+    <% if trip.location %>
+      <%= image_tag "https://source.unsplash.com/400x400/?#{trip.location},trip", class: 'card-trip-image' %>
+    <% else %>
+      <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+      <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+      <% @spot = @client.spot("#{@reference}") %>
+      <%= image_tag (@spot.photos[0].fetch_url(800)), class: 'card-trip-image' %>
+    <% end %>
+    <% if policy(trip).destroy? %>
+      <div class=" ellipsis-trip-icon dropdown">
+        <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+          <%= link_to edit_trip_path(trip), class: "dropdown-item" do %>
+          <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+          <% end %>
+              <%= link_to trip_path(trip), method: :delete, class: "dropdown-item" do %>
+              <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
+              <% end %>
 
-
-        <div class=" ellipsis-trip-icon dropdown">
-          <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-            <%= link_to edit_trip_path(trip), class: "dropdown-item" do %>
-            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
-            <% end %>
-
-            <%= link_to trip_path(trip), method: :delete, class: "dropdown-item" do %>
-            <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
-            <% end %>
-
-            <%= link_to "#", class: "dropdown-item" do %>
-            <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
-            <% end %>
+              <%= link_to "#", class: "dropdown-item" do %>
+              <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
+              <% end %>
+            </div>
           </div>
-        </div>
-
+    <% end %>
         <%#= image_tag "ellipsis.png", class: "ellipsis-trip-icon"%>
         <div class="card-product-infos d-flex">
           <div class="product-info-main">
@@ -55,24 +57,44 @@
   <div class="row ml-0">
     <% @trips.each do |trip| %>
       <% if trip.end_date < Date.today %>
-        <!-- here we render all past trips -->
-        <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
-        <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
-        <% @spot = @client.spot("#{@reference}") %>
-        <div class="col-xs-6 mr-2 my-1">
-          <div class="cardTripPast" style="background-image: url(<%= image_path(@spot.photos[0].fetch_url(800)) %>)">
-            <div class="past-product-info-main">
-              <h2><%= trip.name %></h2>
-              <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
-                <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b') %></p>
-              <% elsif trip.start_date.year == trip.end_date.year %>
-                <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
-              <% else %>
-                <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
-              <% end %>
+      <!-- here we render all past trips using unsplash-->
+        <% if trip.location %>
+          <div class="col-xs-6 mr-2 my-1">
+            <div class="cardTripPast" style="background-image: url(<%= image_path("https://source.unsplash.com/400x400/?#{trip.location},trip") %>)">
+              <div class="past-product-info-main">
+                <h2><%= trip.name %></h2>
+                <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
+                  <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b') %></p>
+                <% elsif trip.start_date.year == trip.end_date.year %>
+                  <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
+                <% else %>
+                  <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% else %>
+          <% if trip.end_date < Date.today %>
+            <!-- here we render all past trips using places api-->
+            <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
+            <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
+            <% @spot = @client.spot("#{@reference}") %>
+            <div class="col-xs-6 mr-2 my-1">
+              <div class="cardTripPast" style="background-image: url(<%= image_path(@spot.photos[0].fetch_url(800)) %>)">
+                <div class="past-product-info-main">
+                  <h2><%= trip.name %></h2>
+                  <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
+                    <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b') %></p>
+                  <% elsif trip.start_date.year == trip.end_date.year %>
+                    <p><%= trip.start_date.strftime('%a %-d %b') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
+                  <% else %>
+                    <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -82,20 +104,21 @@
       <br>
       <h3>Welcome, Fellow traveller</h3>
       <br>
-      <p>Travel Togetether has been created to allow Friends and Familly to organize quickly and efficiently trips together</p>
-      <p>how to use it?</p>
-      <p>it's quite simple:</p>
+      <p>Travel Together has been created to allow Friends and Familly to organize quickly and efficiently trips together</p>
+      <p>How to use it?</p>
+      <p>It's quite simple:</p>
       <ol>
         <li>Create a Trip</li>
         <li>Define where and when</li>
         <li>Invite your friend to join TravelTogether</li>
-        <li>everybody suggests fligths, lodging options and activities</li>
-        <li>vote for the one you prefered</li>
+        <li>Everybody can suggest flights, lodging options and activities</li>
+        <li>Vote for the options you prefer</li>
+        <li>Confirm option and the Itinerary will be displayed</li>
       </ol>
     </div>
   <% end %>
-
 </div>
+
 
 
 

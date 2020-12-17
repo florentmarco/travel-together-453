@@ -6,7 +6,6 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy, :regenerate_invite_link, :invite]
   before_action :set_chatroom, only: [:show]
 
-
   def index
     # get array of trips current user created (see TripPolicy)
     @trips_i_own = policy_scope(Trip)
@@ -135,14 +134,4 @@ class TripsController < ApplicationController
       @chatroom = Chatroom.find_by(trip_id: @trip.id)
     end
   end
-
-  #def place_api(location)
-  #  url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{location}&inputtype=textquery&fields=photos&key=#{ENV['PLACES_API']}"
-  #  photo_serialised = open(url).read
-  #  photo = JSON.parse(photo_serialised)
-  #  photo_reference = photo["candidates"][0]["photos"][0]["photo_reference"]
-  #  photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV['PLACES_API']}"
-  #  photo_serialised = open(photo_url).read
-  #end
 end
-#

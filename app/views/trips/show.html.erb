@@ -1,47 +1,48 @@
-
-<!-- <div class="banner-show">
-<%#= image_tag (@spot.photos[0].fetch_url(800)) %>
-</div>
- -->
 <div class="container">
   <div class="trip-show-top d-flex ">
     <div>
       <h3>Trip to <%= @trip.location %>  </h3>
-      <h4><%= @trip.start_date %> to <%= @trip.end_date %></h4>
+      <% if @trip.start_date.year == @trip.end_date.year && Date.today.year == @trip.start_date.year %>
+        <h4><%= @trip.start_date.strftime('%a %-d %b') %> to <%= @trip.end_date.strftime("%y") %></h4>
+      <% elsif @trip.start_date.year == @trip.end_date.year %>
+        <h4><%= @trip.start_date.strftime('%a %-d %b') %> to <%= @trip.end_date.strftime('%a %-d %b %Y') %></h4>
+      <% else %>
+        <h4><%= @trip.start_date.strftime('%a %-d %b %Y') %> to <%= @trip.end_date.strftime('%a %-d %b %Y') %></h4>
+      <% end %>
     </div>
 
     <div class="buttons-show-page d-flex">
-
       <div class="create-button">
         <%= link_to '', new_trip_item_path(@trip), class: "create-icon fas fa-plus fa-lg" %>
       </div>
 
-    <div class="chat-button">
+      <div class="chat-button">
         <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
-    </div>
-
-    <div class=" ellipsis-trip-icon-show dropdown fa-lg">
+      </div>
+      <% if policy(@trip).destroy? %>
+        <div class=" ellipsis-trip-icon-show dropdown fa-lg">
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
            <!--  <a class="dropdown-item" href="edit_trip_path(@trip)"><i class="far fa-edit"></i>&nbsp;&nbsp;Edit</a> -->
             <%= link_to edit_trip_path(@trip), class: "dropdown-item" do %>
               <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
-             <% end %>
+            <% end %>
 
-             <%= link_to trip_path(@trip), method: :delete, class: "dropdown-item" do %>
+            <%= link_to trip_path(@trip), method: :delete, class: "dropdown-item" do %>
               <i class="far fa-trash-alt"></i>&nbsp;&nbsp;Delete
-             <% end %>
+            <% end %>
 
-             <%= link_to invite_trip_path(@trip), class: "dropdown-item" do %>
+            <%= link_to invite_trip_path(@trip), class: "dropdown-item" do %>
               <i class="fas fa-share-alt-square"></i>&nbsp;&nbsp;Share
              <% end %>
           </div>
         </div>
+      <% end %>
     </div>
   </div>
 
-  <div class="d-flex align-items-center justify-content-between mb-2">
+  <div class="d-flex align-items-center justify-content-between my-2" style="margin: auto;">
     <div class="d-flex align-items-center">
       <div>
         <% if @trip_owner.avatar.attached? %>
@@ -63,32 +64,29 @@
         <% end %>
       </div>
     </div>
-    <div>
-    </div>
   </div>
 
-  <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>">
+  <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>" >
     <div>
       <div class="list-inline tabs-underlined">
         <div>
           <%= link_to "ITINERARY", "#", class: "tab-underlined", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
         </div>
         <div>
-          <%= link_to "FLIGHT", "#", class: "tab-underlined", id: "flightTab", "data-action": 'click->item-status#flight' %>
+          <%= link_to "FLIGHT", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
         </div>
         <div>
-          <%= link_to "ACCOMMODATION", "#", class: "tab-underlined", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
+          <%= link_to "ACCOMMODATION", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
         </div>
         <div>
-         <%= link_to "ACTIVITY", "#", class: "tab-underlined", id: "activityTab", "data-action": 'click->item-status#activity'  %>
+         <%= link_to "ACTIVITY", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
         </div>
       </div>
     </div>
 
-
     <div class="dropdown mb-2 mt-2">
       <button class="btn-primary-tt-filter dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-filter-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-filter-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
           <path fill-rule="evenodd" d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
         </svg>
@@ -115,10 +113,8 @@
       </div>
     </div>
 
-
-    <div data-target='item-status.items'>
-      <%= render partial: 'items/item', collection: @trip.items %>
-    </div>
+  <div data-target='item-status.items'>
+    <%= render partial: 'items/item', collection: @trip.items %>
   </div>
 
 <!-- closing div for container -->

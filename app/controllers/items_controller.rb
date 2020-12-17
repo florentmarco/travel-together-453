@@ -3,21 +3,22 @@ class ItemsController < ApplicationController
   before_action :set_trip, only: [:new, :create, :update, :update_to_booked, :form]
   before_action :set_item, only: [:edit, :update, :destroy]
 
-
   def index
-    # status filter function
+    # category filter
     if params[:category].present?
       @category_filter = policy_scope(Item).search_by_category(params[:category]).search_by_id(params[:trip_id])
     else
       @category_filter = policy_scope(Item).search_by_id(params[:trip_id])
     end
 
+    # status filter
     if params[:status].present? || params[:status] == ""
       @status_filter = @category_filter.search_by_status(params[:status]).search_by_id(params[:trip_id])
     else
       @status_filter = @category_filter
     end
 
+    # itinerary filter
     if params[:category] == "Flight Accommodation Activity"
       @itinerary_filter = @status_filter.sort_by { |item| item.start_date }
     else
@@ -25,7 +26,6 @@ class ItemsController < ApplicationController
     end
 
     @items = @itinerary_filter
-    # raise
 
     render partial: 'items/item', collection: @items
   end
@@ -46,15 +46,19 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # @item.category = params[:category]
     @item.user = current_user
     @item.trip = @trip
-    @item.save!
     if @item.category == 'Flight'
       @flight_detail = FlightDetail.new(flight_detail_params)
-      @item.flight_detail = @flight_detail
+      @flight_detail.item = @item
+      @flight_detail.save
     end
-    redirect_to trip_path(@trip)
+    if @item.save
+      redirect_to trip_path(@trip)
+    else
+      render :new
+    end
+
     authorize @item
   end
 
@@ -67,15 +71,17 @@ class ItemsController < ApplicationController
 
   def edit
     @flight_detail = @item.flight_detail
-    render partial: "items/form_#{@item.category}", locals: {trip: @trip, item: @item, flight_detail: @flight_detail}
 
     authorize @item
   end
 
   def update
     @item.update(item_params)
-    @flight_detail = @item.flight_detail
-    @flight_detail.update(flight_detail_params)
+    if @item.flight_detail.nil?
+    else
+      @flight_detail = @item.flight_detail
+      @flight_detail.update(flight_detail_params)
+    end
     redirect_to trip_path(@trip)
 
     authorize @item

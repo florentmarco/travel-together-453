@@ -1,12 +1,13 @@
 .card-product {
   height: 120px;
-  width: 346px;
+  width: 375px;
   background: white;
   // box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 4px;
   display: flex;
   margin-bottom: -18px;
   position: relative;
+  margin: auto;
 }
 
 .card-product .card-trip-image {

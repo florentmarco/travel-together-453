@@ -1,19 +1,39 @@
 <div class="container" data-controller="future-controller" style="padding: 60px;">
-  <span>
-   <h2>Add Flight</h2>
-    <%= simple_form_for [@trip, @item] do |f| %>
-      <%= f.hidden_field :category  %>
-      <%= f.input :start_date, as: :string, label: "Depature Date/Time", input_html: {class: "datepicker"} %>
-      <%= f.input :end_date, as: :string, label: "Arrival Date/Time", input_html: {class: "datepicker"} %>
-      <%= f.simple_fields_for :flight_detail do |fd| %>
-        <%= fd.input :airline %>
-        <%= fd.input :flight_number %>
-        <%= fd.input :departure_airport %>
-        <%= fd.input :arrival_airport %>
+  <% if Item.exists?(@item.id) %>
+    <span>
+     <h2>EDIT FLIGTH</h2>
+      <%= simple_form_for [@trip, @item] do |f| %>
+        <%= f.hidden_field :category  %>
+        <%= f.input :start_date, as: :string, label: "Departure Date/Time", input_html: {class: "datepicker"} %>
+        <%= f.input :end_date, as: :string, label: "Arrival Date/Time", input_html: {class: "datepicker"} %>
+        <%= f.simple_fields_for @flight_detail do |fd| %>
+          <%= fd.input :airline %>
+          <%= fd.input :flight_number %>
+          <%= fd.input :departure_airport %>
+          <%= fd.input :arrival_airport %>
+        <% end %>
+        <%= f.input :url %>
+        <%= f.input :price %>
+        <%= f.submit "Edit", class: "btn-main-trips" %>
       <% end %>
-      <%= f.input :url %>
-      <%= f.input :price %>
-      <%= f.submit "create", class: "btn-main-trips" %>
-    <% end %>
-  </span>
+    </span>
+  <% else %>
+    <span>
+     <h2>ADD FLIGHT</h2>
+      <%= simple_form_for [@trip, @item] do |f| %>
+        <%= f.hidden_field :category  %>
+        <%= f.input :start_date, as: :string, label: "Departure Date/Time", input_html: {class: "datepicker"} %>
+        <%= f.input :end_date, as: :string, label: "Arrival Date/Time", input_html: {class: "datepicker"} %>
+        <%= f.simple_fields_for @flight_detail do |fd| %>
+          <%= fd.input :airline %>
+          <%= fd.input :flight_number %>
+          <%= fd.input :departure_airport %>
+          <%= fd.input :arrival_airport %>
+        <% end %>
+        <%= f.input :url %>
+        <%= f.input :price %>
+        <%= f.submit "create", class: "btn-main-trips" %>
+      <% end %>
+    </span>
+  <% end %>
 </div>

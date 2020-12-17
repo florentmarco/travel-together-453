@@ -8,6 +8,8 @@ class Item < ApplicationRecord
   has_one :flight_detail
 
   validates :category, inclusion: { in: %w(Flight Accommodation Activity) }
+  validates :start_date, presence: true
+  validates :price, presence: true
 
   include PgSearch::Model
   pg_search_scope :search_by_status,

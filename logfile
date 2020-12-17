@@ -1,0 +1,17 @@
+2020-12-15 15:50:52.704 CET [1947] LOG:  starting PostgreSQL 13.0 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 12.0.0 (clang-1200.0.32.2), 64-bit
+2020-12-15 15:50:52.705 CET [1947] LOG:  listening on IPv6 address "::1", port 5432
+2020-12-15 15:50:52.705 CET [1947] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-12-15 15:50:52.707 CET [1947] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-12-15 15:50:52.715 CET [1948] LOG:  database system was shut down at 2020-12-15 15:49:47 CET
+2020-12-15 15:50:52.725 CET [1947] LOG:  database system is ready to accept connections
+2020-12-15 15:51:03.573 CET [2001] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:05.077 CET [2003] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:06.235 CET [2004] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:06.959 CET [2005] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:07.696 CET [2006] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:08.290 CET [2007] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:08.953 CET [2008] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:09.529 CET [2009] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:10.143 CET [2010] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:10.736 CET [2011] FATAL:  database "travel_together_453_development" does not exist
+2020-12-15 15:51:32.528 CET [2077] FATAL:  database "travel_together_453_development" does not exist

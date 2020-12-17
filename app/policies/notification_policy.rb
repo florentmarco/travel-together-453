@@ -12,4 +12,8 @@ class NotificationPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def mark_as_read?
+    true
+  end
 end

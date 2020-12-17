@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
 
   def mark_as_read
     @notifications = policy_scope(Notification).where(recipient: current_user).where(read_at: nil)
-    @notification.update_all(read_at: Time.zone.now)
+    @notifications.update_all(read_at: Time.zone.now)
     render json: {success: true}
   end
 

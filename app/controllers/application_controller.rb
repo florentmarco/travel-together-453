@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_notification_counter
-    @notification_count = Notification.where(recipient: current_user, read_at: nil).count
+    @notifications = Notification.where(recipient: current_user, read_at: nil)
+    @notification_count = @notifications.count
   end
 end

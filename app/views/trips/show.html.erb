@@ -10,14 +10,14 @@
         <h4><%= @trip.start_date.strftime('%a %-d %b %Y') %> to <%= @trip.end_date.strftime('%a %-d %b %Y') %></h4>
       <% end %>
     </div>
-    <div class="flex-fill"> </div>
+
     <div class="buttons-show-page d-flex">
       <div class="create-button">
         <%= link_to '', new_trip_item_path(@trip), class: "create-icon fas fa-plus fa-lg" %>
       </div>
 
       <div class="chat-button">
-          <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
+        <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
       </div>
       <% if policy(@trip).destroy? %>
         <div class=" ellipsis-trip-icon-show dropdown fa-lg">
@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <div class="d-flex align-items-center justify-content-between my-2">
+  <div class="d-flex align-items-center justify-content-between my-2" style="margin: auto;">
     <div class="d-flex align-items-center">
       <div>
         <% if @trip_owner.avatar.attached? %>

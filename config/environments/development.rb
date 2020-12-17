@@ -1,7 +1,7 @@
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
-  config.action_controller.default_url_options = { host: "http://localhost:3000" }
-  Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
+  # config.action_controller.default_url_options = { host: "http://localhost:3000" }
+  # Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.delivery_method = :smtp
 
@@ -62,4 +62,9 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.hosts << /\A[a-z0-9]+\.ngrok\.io/
 end
+
+
+
+

@@ -5,8 +5,8 @@
   <div class="action-card-top d-flex">
     <div class="action-card-main-activity d-flex">
       <div class="action-card-main-activity-image">
-        <% if get_activity_pic(item.name, ENV['UNSPLASH_API_KEY']) %>
-          <%= image_tag (get_activity_pic(item.name, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
+        <% if get_query_pic(item.name, ENV['UNSPLASH_API_KEY']) %>
+          <%= image_tag (get_query_pic(item.name, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
         <% else %>
           <%= image_tag "https://cdn.britannica.com/47/80547-050-8B316D38/Field-green-tea-Mount-Fuji-Shizuoka-prefecture.jpg" %>
         <% end %>
@@ -162,8 +162,8 @@
   <div class="action-card-top d-flex">
     <div class="action-card-main-accomodation d-flex">
       <div class="action-card-main-accomodation-image">
-        <% if get_accommodation_pic(item.name, ENV['UNSPLASH_API_KEY']) %>
-          <%= image_tag (get_accommodation_pic(item.name, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
+        <% if get_query_pic(item.name, ENV['UNSPLASH_API_KEY']) %>
+          <%= image_tag (get_query_pic(item.name, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
         <% else %>
           <%= image_tag "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp" %>
         <% end %>

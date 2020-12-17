@@ -5,8 +5,8 @@
   <% @trips.each do |trip| %>
   <% if trip.end_date > Date.today%>
   <div class="card-product d-flex">
-    <% if get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
-      <%= image_tag (get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
+    <% if get_query_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
+      <%= image_tag (get_query_pic(trip.location, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
     <% else %>
       <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
       <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
@@ -57,9 +57,9 @@
     <% @trips.each do |trip| %>
       <% if trip.end_date < Date.today %>
       <!-- here we render all past trips using unsplash-->
-        <% if get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
+        <% if get_query_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
           <div class="col-xs-6 mr-2 my-1">
-            <div class="cardTripPast" style="background-image: url(<%= image_path(get_trip_pic(trip.location, ENV['UNSPLASH_API_KEY'])) %>)">
+            <div class="cardTripPast" style="background-image: url(<%= image_path(get_query_pic(trip.location, ENV['UNSPLASH_API_KEY'])) %>)">
               <div class="past-product-info-main">
                 <h2><%= trip.name %></h2>
                 <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>
@@ -103,15 +103,16 @@
       <br>
       <h3>Welcome, Fellow traveller</h3>
       <br>
-      <p>Travel Togetether has been created to allow Friends and Familly to organize quickly and efficiently trips together</p>
-      <p>how to use it?</p>
-      <p>it's quite simple:</p>
+      <p>Travel Together has been created to allow Friends and Familly to organize quickly and efficiently trips together</p>
+      <p>How to use it?</p>
+      <p>It's quite simple:</p>
       <ol>
         <li>Create a Trip</li>
         <li>Define where and when</li>
         <li>Invite your friend to join TravelTogether</li>
-        <li>everybody suggests fligths, lodging options and activities</li>
-        <li>vote for the one you prefered</li>
+        <li>Everybody can suggest flights, lodging options and activities</li>
+        <li>Vote for the options you prefer</li>
+        <li>Confirm option and the Itinerary will be displayed</li>
       </ol>
     </div>
   <% end %>

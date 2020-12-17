@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       resources :messages, only: :create
     end
 
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     resources :items, only: [:index, :new, :create, :edit, :update, :destroy] do
       collection do
@@ -25,6 +27,12 @@ Rails.application.routes.draw do
     end
   end
   resources :votes, only: [:destroy]
+
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 
   get 'uikit', to: 'uikits#index'
   # get 'landing', to: 'landing#index'

@@ -15,6 +15,17 @@ class MessagesController < ApplicationController
         @chatroom,
         render_to_string(partial: "message", locals: { message: @message })
       )
+
+      (trip_members - [current_user]).each do |recipient|
+        @notification = Notification.new(
+          recipient_id: recipient.id,
+          user_id: current_user.id,
+          trip_id: @message.trip_id
+        )
+        authorize @notification
+        @notification.save!
+      end
+
       # redirect_to trip_path(@trip, anchor: "message-#{@message.id}")
     else
       render "trip/show"
@@ -23,5 +34,12 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def trip_members
+    trip = Trip.find(params[:trip_id])
+    guests = Guest.where(trip_id: trip.id).to_a
+    guest_users = guests.map { |guest| User.find(guest.user_id)}
+    [User.find(trip.user_id)] + guest_users
   end
 end

@@ -192,6 +192,13 @@ puts "Creating trip and items"
   end
 
   newtrip.save!
+
+  newchatroom = Chatroom.new(
+    name: newtrip.name + ' chatroom',
+    trip_id: newtrip.id
+  )
+  newchatroom.save!
+
   puts
   puts "#{newtrip.name.upcase}"
 

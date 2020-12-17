@@ -8,9 +8,12 @@
     <div class="footer-items">
       <%= link_to "+", new_trip_path, class: "btn-main-footer" %>
     </div>
-      <div class="footer-items">
-        <div class="notification-symbol">
-        <%= link_to "", new_user_session_path, class: "far fa-bell" %>
+    <div class="footer-items">
+      <div class="notification-symbol">
+        <%= link_to "", notifications_path, class: "far fa-bell" %>
+        <% if @notification_count > 0 %>
+          <span><%= @notification_count %></span>
+        <% end %>
       </div>
     </div>
     <div class="footer-items">

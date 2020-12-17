@@ -5,8 +5,8 @@
   <% @trips.each do |trip| %>
   <% if trip.end_date > Date.today%>
   <div class="card-product d-flex">
-    <% if get_query_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
-      <%= image_tag (get_query_pic(trip.location, ENV['UNSPLASH_API_KEY'])), class: 'card-trip-image' %>
+    <% if trip.location %>
+      <%= image_tag "https://source.unsplash.com/400x400/?#{trip.location},trip", class: 'card-trip-image' %>
     <% else %>
       <% @client = GooglePlaces::Client.new(ENV['PLACES_API'])%>
       <% @reference = @client.spots_by_query("#{trip.location}")[0].reference %>
@@ -57,9 +57,9 @@
     <% @trips.each do |trip| %>
       <% if trip.end_date < Date.today %>
       <!-- here we render all past trips using unsplash-->
-        <% if get_query_pic(trip.location, ENV['UNSPLASH_API_KEY']) %>
+        <% if trip.location %>
           <div class="col-xs-6 mr-2 my-1">
-            <div class="cardTripPast" style="background-image: url(<%= image_path(get_query_pic(trip.location, ENV['UNSPLASH_API_KEY'])) %>)">
+            <div class="cardTripPast" style="background-image: url(<%= image_path("https://source.unsplash.com/400x400/?#{trip.location},trip") %>)">
               <div class="past-product-info-main">
                 <h2><%= trip.name %></h2>
                 <% if trip.start_date.year == trip.end_date.year && Date.today.year == trip.start_date.year %>

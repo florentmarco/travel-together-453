@@ -2,11 +2,11 @@
 
 .action-card {
   height: 173px;
-  width: 346px;
+  width: 100%;
   background: white;
   // box-shadow: 0 0 1px rgba(0,0,0,0.2);
   border-radius: 4px;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
 }
 
 
@@ -15,7 +15,7 @@
 .action-card-bstrip {
   overflow: hidden;
   height: 40px;
-  width: 346px;
+  width: 100%;
   background: white;
   border-radius: 0px 0px 4px 4px;
   align-items: center;
@@ -33,7 +33,7 @@
 
 .action-card-pricecard {
   height: 133px;
-  width: 80px;
+  width: 25%;
   background: white;
   border-bottom: .2px solid rgba(50, 50, 50, .2);
   // box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -50,8 +50,9 @@
 }
 
 .pricecard-price {
-  text-align: center;
-  margin-top: 5px;
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 15%;
 }
 
 .pricecard-price .price {
@@ -64,7 +65,7 @@
 .action-card-main-flight {
   overflow: hidden;
   height: 133px;
-  width: 266px;
+  width: 75%;
   background: white;
   border-right: .2px solid rgba(50, 50, 50, .2);
   border-bottom: .2px solid rgba(50, 50, 50, .2);
@@ -145,7 +146,7 @@
 .action-card-main-accomodation {
   overflow: hidden;
   height: 133px;
-  width: 266px;
+  width: 75%;
   background: white;
   border-right: .2px solid rgba(50, 50, 50, .2);
   border-bottom: .2px solid rgba(50, 50, 50, .2);
@@ -194,7 +195,7 @@
 .action-card-main-activity {
   overflow: hidden;
   height: 133px;
-  width: 266px;
+  width: 75%;
   background: white;
   border-right: .2px solid rgba(50, 50, 50, .2);
   border-bottom: .2px solid rgba(50, 50, 50, .2);
@@ -228,7 +229,7 @@
  position: relative;
  top: 3px;
  color: #757575;
- margin-left: 67px;
+ margin-left: 85%;
  z-index: 1;
 }
 

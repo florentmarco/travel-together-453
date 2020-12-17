@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :tasks
   has_many :items
+  has_many :notifications, foreign_key: :recipient_id
   has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,

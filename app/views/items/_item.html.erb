@@ -61,7 +61,7 @@
         <% if item.status == "Booked" %>
           <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm disabled", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
         <% else %>
-          <%= link_to "CONFIRM", "#", class: "btn btn-main-trips", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
+          <%= link_to "CONFIRM", "#", class: "btn btn-primary-tt btn-sm", "data-action": "click->tag#change_to_booked", "data-item": "/trips/#{item.trip.id}/items/#{item.id}/update_to_booked", "data-target": "tag.confirmButton"%>
         <% end %>
       <% end %>
     </div>

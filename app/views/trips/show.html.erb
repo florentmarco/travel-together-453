@@ -13,10 +13,6 @@
     </div>
 
     <div class="buttons-show-page d-flex">
-      <!-- <div class="create-button">
-        <%= link_to '', new_trip_item_path(@trip), class: "create-icon fas fa-plus fa-lg" %>
-      </div> -->
-
       <div class="chat-button">
         <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
       </div>
@@ -121,9 +117,17 @@
 
     </div>
 
-    <div data-target='item-status.items'>
-      <%= render partial: 'items/item', collection: @trip.items %>
-    </div>
+    <% if @trip.items.count > 0 %>
+      <div data-target='item-status.items'>
+        <%= render partial: 'items/item', collection: @trip.items %>
+      </div>
+    <% else %>
+
+      <div class= "d-flex justify-content-center mt-3">
+        <%= link_to "Invite your Friends!", invite_trip_path(@trip), class: "btn btn-main-trips" %>
+      </div>
+
+    <% end %>
 
   </div>
 

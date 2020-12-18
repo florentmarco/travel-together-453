@@ -8,8 +8,7 @@
   background-size: cover;
   border-radius: 4px;
   height: 240px;
-  width: 184px;
-  justify-content: space-between;
+  width: 100%;
 
 }
 
@@ -20,6 +19,7 @@
 .past-product-info-main {
   padding-top: 90px;
   padding-left: 15px;
+  width: 100%
 
 }
 
@@ -28,10 +28,20 @@
   color: white;
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
+  margin-left: -10px;
 }
 
 
 .past-product-info-main p {
   color: white;
   font-size: 12px;
+  text-align: center;
+  margin-right: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 50% repeat(1, 1fr);
+  grid-column-gap: 10px;
 }

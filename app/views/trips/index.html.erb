@@ -54,12 +54,12 @@
   <% end %>
 
   <h3>PAST TRIPS</h3>
-  <div class="row ml-0">
+  <div class="grid">
     <% @trips.each do |trip| %>
       <% if trip.end_date < Date.today %>
       <!-- here we render all past trips using unsplash-->
         <% if trip.location %>
-          <div class="col-xs-6 mr-2 my-1">
+          <!-- <div class="grid"> -->
             <div class="cardTripPast" style="background-image: url(<%= image_path("https://source.unsplash.com/400x400/?#{trip.location},trip") %>)">
               <div class="past-product-info-main">
                 <h2><%= trip.name %></h2>
@@ -71,7 +71,7 @@
                   <p><%= trip.start_date.strftime('%a %-d %b %Y') %> to <%= trip.end_date.strftime('%a %-d %b %Y') %></p>
                 <% end %>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         <% else %>
           <% if trip.end_date < Date.today %>

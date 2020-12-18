@@ -71,7 +71,7 @@
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>" >
 
-    <div class="d-flex align-items-center">
+    <div class=" tab-bar d-flex align-items-center">
 
       <div>
         <div class="list-inline tabs-underlined">
@@ -97,7 +97,7 @@
             <path fill-rule="evenodd" d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
           </svg>
         </button>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu dropdown-menu-right">
           <div class="form-check ml-3" >
             <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
             <label class="form-check-label" for="dropdownCheck2">

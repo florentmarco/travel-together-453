@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="trip-show-top d-flex ">
+
+  <div class="trip-show-top d-flex justify-content-between">
     <div>
       <h3>Trip to <%= @trip.location %>  </h3>
       <% if @trip.start_date.year == @trip.end_date.year && Date.today.year == @trip.start_date.year %>
@@ -12,13 +13,14 @@
     </div>
 
     <div class="buttons-show-page d-flex">
-      <div class="create-button">
+      <!-- <div class="create-button">
         <%= link_to '', new_trip_item_path(@trip), class: "create-icon fas fa-plus fa-lg" %>
-      </div>
+      </div> -->
 
       <div class="chat-button">
         <%= link_to '', trip_chatroom_path(@trip, @chatroom), class: "chat-icon far fa-comment-dots fa-2x" %>
       </div>
+
       <% if policy(@trip).destroy? %>
         <div class=" ellipsis-trip-icon-show dropdown fa-lg">
           <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
@@ -39,6 +41,7 @@
           </div>
         </div>
       <% end %>
+
     </div>
   </div>
 
@@ -67,54 +70,61 @@
   </div>
 
   <div data-controller="item-status" data-item-status-url="<%= trip_items_path(@trip) %>" >
-    <div>
-      <div class="list-inline tabs-underlined">
-        <div>
-          <%= link_to "ITINERARY", "#", class: "tab-underlined", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
-        </div>
-        <div>
-          <%= link_to "FLIGHT", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
-        </div>
-        <div>
-          <%= link_to "ACCOMMODATION", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
-        </div>
-        <div>
-         <%= link_to "ACTIVITY", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
+
+    <div class="d-flex align-items-center">
+
+      <div>
+        <div class="list-inline tabs-underlined">
+          <div>
+            <%= link_to "ITINERARY", "#", class: "tab-underlined", id: "itineraryTab", "data-action": 'click->item-status#itinerary' %>
+          </div>
+          <div>
+            <%= link_to "FLIGHT", "#", class: "tab-underlined active", id: "flightTab", "data-action": 'click->item-status#flight' %>
+          </div>
+          <div>
+            <%= link_to "ACCOMMODATION", "#", class: "tab-underlined active", id: "accommodationTab", "data-action": 'click->item-status#accommodation' %>
+          </div>
+          <div>
+           <%= link_to "ACTIVITY", "#", class: "tab-underlined active", id: "activityTab", "data-action": 'click->item-status#activity'  %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="dropdown mb-2 mt-2">
-      <button class="btn-primary-tt-filter dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-filter-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path fill-rule="evenodd" d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-      </button>
-      <div class="dropdown-menu">
-        <div class="form-check ml-3" >
-          <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
-          <label class="form-check-label" for="dropdownCheck2">
-            Pending
-          </label>
-        </div>
-        <div class="form-check ml-3" >
-          <input id= "approvedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#approved'>
-          <label class="form-check-label" for="dropdownCheck2">
-            Approved
-          </label>
-        </div>
-        <div class="form-check ml-3" >
-          <input id= "bookedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#booked'>
-          <label class="form-check-label" for="dropdownCheck2">
-            Booked
-          </label>
+      <div class="dropdown mb-2 mt-2">
+        <button class="btn-primary-tt-filter dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-filter-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="form-check ml-3" >
+            <input id= "pendingTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#pending'>
+            <label class="form-check-label" for="dropdownCheck2">
+              Pending
+            </label>
+          </div>
+          <div class="form-check ml-3" >
+            <input id= "approvedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#approved'>
+            <label class="form-check-label" for="dropdownCheck2">
+              Approved
+            </label>
+          </div>
+          <div class="form-check ml-3" >
+            <input id= "bookedTab" type="checkbox" class="form-check-input" id="dropdownCheck2" checked="true" data-action ='change->item-status#booked'>
+            <label class="form-check-label" for="dropdownCheck2">
+              Booked
+            </label>
+          </div>
         </div>
       </div>
+
     </div>
 
-  <div data-target='item-status.items'>
-    <%= render partial: 'items/item', collection: @trip.items %>
+    <div data-target='item-status.items'>
+      <%= render partial: 'items/item', collection: @trip.items %>
+    </div>
+
   </div>
 
 <!-- closing div for container -->

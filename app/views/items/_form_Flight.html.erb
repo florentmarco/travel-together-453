@@ -1,7 +1,8 @@
 <div class="container" data-controller="future-controller" style="padding: 60px;">
+  <div class="add-forms">
   <% if Item.exists?(@item.id) %>
     <span>
-     <h2>EDIT FLIGTH</h2>
+     <h3>EDIT FLIGTH</h3>
       <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category  %>
         <%= f.input :start_date, as: :string, label: "Departure Date/Time", input_html: {class: "datepicker"} %>
@@ -19,7 +20,7 @@
     </span>
   <% else %>
     <span>
-     <h2>ADD FLIGHT</h2>
+     <h3>ADD FLIGHT</h3>
       <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category  %>
         <%= f.input :start_date, as: :string, label: "Departure Date/Time", input_html: {class: "datepicker"} %>
@@ -36,4 +37,5 @@
       <% end %>
     </span>
   <% end %>
+</div>
 </div>

@@ -1,7 +1,8 @@
 <div class="container" data-controller="future-controller" style="padding: 60px;">
+  <div class="add-forms">
   <% if Item.exists?(@item.id) %>
     <span>
-     <h3>EDIT LODGING</h3>
+     <h3>EDIT ACCOMMODATION</h3>
      <%= simple_form_for [@trip, @item] do |f| %>
           <%= f.hidden_field :category %>
           <%= f.input :name %>
@@ -15,7 +16,7 @@
     </span>
   <% else %>
     <span>
-      <h3>ADD LODGING</h3>
+      <h3>ADD ACCOMMODATION</h3>
       <%= simple_form_for [@trip, @item] do |f| %>
         <%= f.hidden_field :category %>
         <%= f.input :name %>
@@ -29,4 +30,4 @@
     </span>
   <% end %>
 </div>
-
+</div>

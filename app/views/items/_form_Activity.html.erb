@@ -1,4 +1,5 @@
 <div class="container" data-controller="future-controller" style="padding: 60px;">
+  <div class="add-forms">
   <% if Item.exists?(@item.id) %>
     <span>
       <h3>EDIT ACTIVITY</h3>
@@ -26,4 +27,5 @@
       <% end %>
     </span>
   <% end %>
+</div>
 </div>

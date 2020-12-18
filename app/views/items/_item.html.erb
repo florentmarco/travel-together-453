@@ -45,7 +45,7 @@
       <i class="fas fa-hiking ml-2 mr-2"></i>
 
       <div class="tag">
-        <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.capitalize %> </p>
+        <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.upcase %> </p>
       </div>
       <div class="bstrip-like d-flex" data-controller = "vote">
         <% if item.voted_by?(current_user) %>
@@ -132,7 +132,7 @@
           <i class="fas fa-plane ml-2 mr-2"></i>
 
           <div class="tag">
-            <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.capitalize %> </p>
+            <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.upcase %> </p>
           </div>
 
           <div class="bstrip-like d-flex" data-controller = "vote">
@@ -214,7 +214,7 @@
       <i class="fas fa-hotel ml-2 mr-2"></i>
 
       <div class="tag">
-        <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.capitalize %> </p>
+        <p class="<%= item.status.downcase %>-tag" data-target= "tag.booked"> <%= item.status.upcase %> </p>
       </div>
       <div class="bstrip-like d-flex" data-controller = "vote">
         <% if item.voted_by?(current_user) %>

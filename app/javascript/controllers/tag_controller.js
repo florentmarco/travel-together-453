@@ -20,7 +20,7 @@ export default class extends Controller {
       method: "PATCH"
     })
     this.bookedTarget.className = "booked-tag";
-    this.bookedTarget.innerText = "Booked";
+    this.bookedTarget.innerText = "BOOKED";
     this.confirmButtonTarget.classList.add("disabled");
   }
 }
